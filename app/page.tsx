@@ -171,18 +171,28 @@ const HomePage = () => {
                 comprehensive solutions that drive growth and efficiency.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button size="lg" className="shadow-accent group hover:shadow-hover">
-                  Explore services
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-                <Button size="lg" variant="outline">
-                  Contact us
-                </Button>
+                <Link href="/services">
+                  <Button size="lg" className="shadow-accent group hover:shadow-hover cursor-pointer">
+                    Explore services
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+                <Link href="/contact">
+                  <Button size="lg" variant="outline" className="cursor-pointer">
+                    Contact us
+                  </Button>
+                </Link>
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 shadow-accent">
-                <Image src="/assets/home/home-hero.jpg" priority fill className="object-fill rounded-2xl" alt="Hero Image" />
+              <div className="aspect-square rounded-2xl overflow-hidden ">
+                <Image
+                  src="/assets/home/home-hero-2.png"
+                  priority
+                  fill
+                  alt="Hero Image"
+                  className="object-cover rounded-2xl mix-blend-darken"
+                />
               </div>
             </div>
           </div>
@@ -308,7 +318,7 @@ const HomePage = () => {
 
           <div className="text-center mt-12">
             <Link href="/services">
-              <Button size="lg" variant="outline" className="shadow-accent hover:shadow-hover">
+              <Button size="lg" variant="outline" className="shadow-accent hover:shadow-hover cursor-pointer">
                 View All Services
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -445,12 +455,20 @@ const HomePage = () => {
                 Let&apos;s discuss how our strategic solutions can drive your organizational growth and innovation
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
-                <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90 shadow-medium">
-                  Get started
-                </Button>
-                <Button size="lg" variant="default" className="border-white text-white hover:shadow-hover shadow-accent">
-                  Schedule consultation
-                </Button>
+                <Link href="/services">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="bg-white text-primary hover:bg-white/90 shadow-medium hover:shadow-hover shadow-accent cursor-pointer"
+                  >
+                    Get started
+                  </Button>
+                </Link>
+                <Link href="/contact">
+                  <Button size="lg" variant="default" className="border-white text-white hover:shadow-hover shadow-accent cursor-pointer">
+                    Schedule consultation
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -479,9 +497,11 @@ const HomePage = () => {
           <div className="text-center mt-16">
             <h3 className="text-2xl font-bold text-foreground mb-4">Still have questions?</h3>
             <p className="text-muted-foreground mb-8">Our team is ready to provide detailed information and personalized guidance</p>
-            <Button variant="outline" className="hover:shadow-hover shadow-accent" size="lg">
-              Contact
-            </Button>
+            <Link href="/contact">
+              <Button variant="outline" className="hover:shadow-hover shadow-accent cursor-pointer" size="lg">
+                Contact
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
