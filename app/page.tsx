@@ -1,26 +1,10 @@
 'use client';
 
-import { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import {
-  ArrowRight,
-  CheckCircle2,
-  TrendingUp,
-  Target,
-  Zap,
-  BarChart3,
-  Cloud,
-  Brain,
-  Shield,
-  Users,
-  Award,
-  ChevronLeft,
-  ChevronRight,
-  Mail,
-  Phone,
-} from 'lucide-react';
+import { ArrowRight, Award, BarChart3, Brain, Calculator, ChevronLeft, ChevronRight, Target, Workflow, Zap } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
 
 const HomePage = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -54,25 +38,25 @@ const HomePage = () => {
 
   const services = [
     {
-      category: 'Digital',
-      title: 'Digital transformation services',
-      description: 'Modernize your technology infrastructure and processes',
-      image: { src: '/assets/home/digital-transformation.jpg', alt: 'Digital Transformation Image' },
-      link: '/services/digital-transformation',
-    },
-    {
-      category: 'Cloud',
-      title: 'Cloud migration solutions',
-      description: 'Seamless transition to scalable cloud environments',
-      link: '/services/cloud-migration',
-      image: { src: '/assets/home/cloud-migration.jpg', alt: 'Cloud Migration Image' },
-    },
-    {
       category: 'Analytics',
-      title: 'Data insights platform',
-      description: 'Advanced analytics to drive strategic decision-making',
-      link: '/services/analytics',
-      image: { src: '/assets/home/data-insights.jpg', alt: 'Data Insights Image' },
+      title: 'Power BI Analytics',
+      description: 'Transform your data into actionable insights with interactive dashboards',
+      image: { src: '/assets/home/power-bi.avif', alt: 'Power BI Analytics Image' },
+      link: '/services#power-bi',
+    },
+    {
+      category: 'ERP & Finance',
+      title: 'Tally Solutions',
+      description: 'Streamline your accounting operations with Tally Prime implementation',
+      link: '/services#tally',
+      image: { src: '/assets/home/tally-prime.avif', alt: 'Tally Solutions Image' },
+    },
+    {
+      category: 'Automation',
+      title: 'Zoho Integration',
+      description: 'Connect and automate your business with comprehensive Zoho ecosystem',
+      link: '/services#zoho',
+      image: { src: '/assets/home/zoho-one.avif', alt: 'Zoho Integration Image' },
     },
   ];
 
@@ -278,20 +262,20 @@ const HomePage = () => {
                       </Link>
                     </div>
 
-                    <div className="relative overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10">
+                    <div className="relative overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10 border-l border-1">
                       {service.image && (
                         <Image
                           src={service.image.src}
                           alt={service.image.alt}
                           fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out opacity-80"
+                          className="object-cover group-hover:scale-110 scale-105 transition-transform duration-500 ease-out opacity-80"
                         />
                       )}
                     </div>
                   </div>
                 ) : (
                   <>
-                    <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10 opacity-80">
+                    <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10 opacity-80 border-b border-1">
                       {service.image && (
                         <Image
                           src={service.image.src}
@@ -321,6 +305,15 @@ const HomePage = () => {
               </div>
             ))}
           </div>
+
+          <div className="text-center mt-12">
+            <Link href="/services">
+              <Button size="lg" variant="outline" className="shadow-accent hover:shadow-hover">
+                View All Services
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -332,7 +325,6 @@ const HomePage = () => {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6">Why choose our strategic solutions</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">Proven approaches that deliver measurable business outcomes</p>
           </div>
-
           <div className="grid md:grid-cols-2 gap-8">
             {benefits.map((benefit, index) => (
               <div
