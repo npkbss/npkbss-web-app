@@ -111,30 +111,27 @@ const AboutPage = () => {
     {
       name: 'Dellibabu Nallabothu',
       role: 'Founder & CEO',
-      image: { src: '/assets/about/team-founder.jpg', alt: 'Dellibabu Nallabothu' },
+      image: { src: '/assets/about/team-ceo.jpg', alt: 'Dellibabu Nallabothu' },
       bio: 'Visionary entrepreneur with passion for innovation and digital transformation',
-      linkedin: 'https://www.linkedin.com/in/dellibabun/',
+      // linkedin: 'https://www.linkedin.com/in/dellibabun/',
     },
     {
       name: 'Team Member',
       role: 'Chief Technology Officer',
-      image: { src: '/assets/about/team-cto.jpg', alt: 'CTO Name' },
+      image: { src: '/assets/about/team-cto.avif', alt: 'CTO Name' },
       bio: 'Technology leader specializing in cloud solutions and enterprise architecture',
-      linkedin: '#',
     },
     {
       name: 'Team Member',
       role: 'Head of Operations',
-      image: { src: '/assets/about/team-operations.jpg', alt: 'Operations Head' },
+      image: { src: '/assets/about/team-ho.avif', alt: 'Operations Head' },
       bio: 'Operations expert ensuring excellence in project delivery and client success',
-      linkedin: '#',
     },
     {
       name: 'Team Member',
       role: 'Project Manager',
-      image: { src: '/assets/about/team-pm.jpg', alt: 'Project Manager' },
+      image: { src: '/assets/about/team-pm.avif', alt: 'Project Manager' },
       bio: 'Experienced PM driving successful implementation of complex technology projects',
-      linkedin: '#',
     },
   ];
 
@@ -511,8 +508,9 @@ const AboutPage = () => {
                   <Image
                     src={member.image.src}
                     alt={member.image.alt}
-                    width={200}
-                    height={200}
+                    // width={200}
+                    // height={200}
+                    fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                   />
                 </div>
@@ -520,14 +518,14 @@ const AboutPage = () => {
                   <h3 className="text-xl font-bold text-foreground mb-1">{member.name}</h3>
                   <div className="text-sm text-primary font-medium mb-3">{member.role}</div>
                   <p className="text-sm text-muted-foreground mb-4">{member.bio}</p>
-                  <Link
+                  {member.linkedin && (<Link
                     href={member.linkedin}
                     className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     <Linkedin className="h-5 w-5" />
-                  </Link>
+                  </Link>)}
                 </div>
               </div>
             ))}
