@@ -1,34 +1,31 @@
-import { Button } from '@/components/ui/button';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
+'use client';
 
-const ContactPage = () => {
+import Hero from '@/components/contact/Hero';
+import Timeline from '@/components/contact/Timeline';
+import ContactInfo from '@/components/contact/ContactInfo';
+import ContactForm from '@/components/contact/ContactForm';
+import FAQ from '@/components/contact/FAQ';
+import FinalCTA from '@/components/contact/FinalCTA';
+
+export default function ContactPage() {
   return (
-    <div className="flex flex-col items-center justify-center mx-auto max-w-7xl min-h-screen text-center px-4 py-10">
-      <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-foreground">Contact Us</h1>
+    <main className="min-h-screen bg-slate-50 text-slate-800">
+      <Hero />
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-5 gap-10">
+          <div className="lg:col-span-2 space-y-8">
+            <Timeline />
+            <ContactInfo />
+          </div>
 
-      <div className="relative w-full max-w-xl mb-10">
-        <Image
-          src="/assets/page-under-construction.png"
-          alt="Website Under Construction"
-          width={600}
-          height={400}
-          className="object-contain mix-blend-darken mx-auto"
-          priority
-        />
-      </div>
+          <div className="lg:col-span-3">
+            <ContactForm />
+          </div>
+        </div>
+      </section>
 
-      <p className="text-lg text-muted-foreground max-w-2xl mb-8">
-        Get in touch with us to learn more about our services and how we can help your business grow.
-      </p>
-      <Link href="/services">
-        <Button size="lg" variant="default" className="shadow-accent hover:shadow-hover cursor-pointer transition-all">
-          Explore Services
-        </Button>
-      </Link>
-    </div>
+      <FAQ />
+      <FinalCTA />
+    </main>
   );
-};
-
-export default ContactPage;
+}
