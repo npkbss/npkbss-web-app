@@ -106,8 +106,19 @@ const AboutPage = () => {
     },
   ];
 
+  type TeamMember = {
+  name: string;
+  role: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+  bio: string;
+  linkedin?: string; 
+};
+
   //   Leadership Team
-  const team = [
+  const team: TeamMember[] = [
     {
       name: 'Dellibabu Nallabothu',
       role: 'Founder & CEO',
@@ -518,7 +529,7 @@ const AboutPage = () => {
                   <h3 className="text-xl font-bold text-foreground mb-1">{member.name}</h3>
                   <div className="text-sm text-primary font-medium mb-3">{member.role}</div>
                   <p className="text-sm text-muted-foreground mb-4">{member.bio}</p>
-                  {member.linkedin && (<Link
+                  {member?.linkedin && (<Link
                     href={member.linkedin}
                     className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
                     target="_blank"

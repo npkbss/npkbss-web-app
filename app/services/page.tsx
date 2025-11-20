@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import {
@@ -33,8 +33,11 @@ import {
   ArrowDown,
   Code2,
   Cloud,
+  Factory, ShoppingCart, Heart, Landmark, Building2, Truck
 } from 'lucide-react';
 import Link from 'next/link';
+import NetflixServicesSection from '@/components/services/ServiceCard';
+import TechnologiesSection from '@/components/services/TechnologiesSection';
 
 // --- Data ---
 const stats = [
@@ -63,7 +66,7 @@ const allServices = [
     shortDesc: 'Transform raw data into powerful visual insights',
     fullDesc:
       'Leverage Microsoft Power BI to create interactive dashboards, custom reports, and real-time analytics that drive business decisions.',
-    image: { src: '/assets/services/power-bi-hero.jpg', alt: 'Power BI Consulting & Development' },
+    image: { src: '/assets/services/microsoft-powerbi.avif', alt: 'Power BI Consulting & Development' },
     gradient: 'from-yellow-400 via-orange-500 to-red-500',
     features: [
       'Custom Dashboard Development',
@@ -94,7 +97,7 @@ const allServices = [
     shortDesc: 'Cloud-based BI platform for SMEs',
     fullDesc:
       'Implement Zoho Analytics to consolidate data from multiple sources and generate insightful reports with AI-powered analytics.',
-    image: { src: '/assets/services/zoho-analytics-logo.avif', alt: 'Zoho Analytics Implementation' },
+    image: { src: '/assets/services/zoho-analytics.avif', alt: 'Zoho Analytics Implementation' },
     gradient: 'from-blue-500 via-purple-500 to-pink-500',
     features: [
       'Multi-source Data Integration',
@@ -124,7 +127,7 @@ const allServices = [
     title: 'Data Visualization Services',
     shortDesc: 'Beautiful, insightful data storytelling',
     fullDesc: 'Create stunning visualizations that communicate complex data clearly and drive action across your organization.',
-    image: { src: '/assets/services/data-viz.jpg', alt: 'Data Visualization Services' },
+    image: { src: '/assets/services/data-visualization.avif', alt: 'Data Visualization Services' },
     gradient: 'from-green-400 via-emerald-500 to-teal-600',
     features: [
       'Custom Chart Design',
@@ -149,7 +152,7 @@ const allServices = [
     shortDesc: 'Complete accounting & inventory management',
     fullDesc:
       'Full-service Tally Prime implementation including setup, customization, data migration, and training for seamless business operations.',
-    image: { src: '/assets/services/tally-prime-hero.jpg', alt: 'Tally Prime Implementation' },
+    image: { src: '/assets/services/tally-prime.avif', alt: 'Tally Prime Implementation' },
     gradient: 'from-indigo-500 via-purple-500 to-pink-500',
     features: [
       'Complete Tally Prime Setup',
@@ -202,7 +205,7 @@ const allServices = [
     title: 'Accounting & Bookkeeping Services',
     shortDesc: 'Professional accounting support',
     fullDesc: 'Comprehensive accounting services including bookkeeping, financial statements, tax filing, and compliance management.',
-    image: { src: '/assets/services/accounting.jpg', alt: 'Accounting & Bookkeeping Services' },
+    image: { src: '/assets/services/accounting.avif', alt: 'Accounting & Bookkeeping Services' },
     gradient: 'from-amber-500 via-orange-500 to-red-500',
     features: [
       'Daily Bookkeeping',
@@ -228,7 +231,7 @@ const allServices = [
     title: 'Business Process Automation',
     shortDesc: 'Eliminate repetitive tasks, boost efficiency',
     fullDesc: 'Automate your business workflows using cutting-edge tools like Zoho Flow, Power Automate, and custom scripts.',
-    image: { src: '/assets/services/automation.jpg', alt: 'Business Process Automation' },
+    image: { src: '/assets/services/zoho-flow.avif', alt: 'Business Process Automation' },
     gradient: 'from-violet-500 via-purple-500 to-fuchsia-500',
     features: [
       'Workflow Analysis & Design',
@@ -253,7 +256,7 @@ const allServices = [
     title: 'API Development & Integration',
     shortDesc: 'Connect your business systems seamlessly',
     fullDesc: 'Custom API development and integration services to connect different platforms, sync data, and create unified systems.',
-    image: { src: '/assets/services/api-integration.jpg', alt: 'API Development & Integration' },
+    image: { src: '/assets/services/rest-api.png', alt: 'API Development & Integration' },
     gradient: 'from-rose-500 via-pink-500 to-fuchsia-500',
     features: [
       'REST API Development',
@@ -278,7 +281,7 @@ const allServices = [
     title: 'Custom Excel & Tally Add-ins',
     shortDesc: 'Extend functionality with custom tools',
     fullDesc: 'Develop custom add-ins for Excel and Tally to extend functionality and meet specific business requirements.',
-    image: { src: '/assets/services/addins.jpg', alt: 'Custom Excel & Tally Add-ins' },
+    image: { src: '/assets/services/microsoft-excel.png', alt: 'Custom Excel & Tally Add-ins' },
     gradient: 'from-lime-500 via-green-500 to-emerald-600',
     features: [
       'Excel VBA Macros',
@@ -329,7 +332,7 @@ const allServices = [
     shortDesc: 'Strategic technology guidance',
     fullDesc:
       'Expert IT consulting to help you make informed technology decisions, optimize infrastructure, and plan digital transformation.',
-    image: { src: '/assets/services/it-consulting.jpg', alt: 'IT Consulting & Strategy' },
+    image: { src: '/assets/services/it-consulting.avif', alt: 'IT Consulting & Strategy' },
     gradient: 'from-teal-500 via-cyan-500 to-blue-600',
     features: [
       'IT Infrastructure Assessment',
@@ -354,7 +357,7 @@ const allServices = [
     title: 'Training & Workshops',
     shortDesc: 'Empower your team with knowledge',
     fullDesc: 'Customized training programs on Power BI, Tally, Zoho, Excel, and other business tools for your team.',
-    image: { src: '/assets/services/training.jpg', alt: 'Training & Workshops' },
+    image: { src: '/assets/services/training.avif', alt: 'Training & Workshops' },
     gradient: 'from-orange-500 via-red-500 to-pink-600',
     features: [
       'Power BI Training',
@@ -380,7 +383,7 @@ const allServices = [
     shortDesc: 'Bespoke web & mobile solutions tailored to your business',
     fullDesc:
       'End-to-end custom application development services including modern web applications, native Android apps, and cloud-based solutions designed specifically for your business needs.',
-    image: { src: '/assets/services/custom-dev.jpg', alt: 'Custom Application Development' },
+    image: { src: '/assets/services/custom-app.avif', alt: 'Custom Application Development' },
     gradient: 'from-indigo-600 via-blue-600 to-cyan-500',
     features: [
       'Angular Web Applications',
@@ -418,7 +421,7 @@ const allServices = [
     shortDesc: 'Seamless cloud transformation and data migration services',
     fullDesc:
       'Expert cloud infrastructure setup and data migration services to move your business systems to AWS/Azure with zero downtime and complete data integrity.',
-    image: { src: '/assets/services/cloud-migration.jpg', alt: 'Cloud Infrastructure & Data Migration' },
+    image: { src: '/assets/services/data-migration.avif', alt: 'Cloud Infrastructure & Data Migration' },
     gradient: 'from-sky-400 via-blue-500 to-indigo-600',
     features: [
       'Data Migration (Tally, SAP, Oracle, etc.)',
@@ -456,7 +459,7 @@ const featuredServices = [
     description: 'Transform your data into actionable insights',
     stats: '50+ Dashboards Built',
     gradient: 'from-yellow-400 to-orange-600',
-    image: { src: '/assets/services/power-bi-logo.jpeg', alt: 'Power BI Analytics' },
+    image: { src: '/assets/services/power-bi-logo.avif', alt: 'Power BI Analytics' },
   },
   {
     title: 'Tally Solutions',
@@ -464,7 +467,7 @@ const featuredServices = [
     description: 'Streamline your accounting operations',
     stats: '100+ Implementations',
     gradient: 'from-purple-500 to-pink-600',
-    image: { src: '/assets/services/tally-logo.png', alt: 'Tally Solutions' },
+    image: { src: '/assets/services/tally-logo.avif', alt: 'Tally Solutions' },
   },
   {
     title: 'Zoho Integration',
@@ -472,7 +475,7 @@ const featuredServices = [
     description: 'Connect and automate your business',
     stats: '200+ Integrations',
     gradient: 'from-blue-500 to-cyan-500',
-    image: { src: '/assets/services/zoho-logo.png', alt: 'Zoho Integration' },
+    image: { src: '/assets/services/zoho-logo.avif', alt: 'Zoho Integration' },
   },
 ];
 
@@ -524,59 +527,46 @@ const processSteps = [
   },
 ];
 
-const technologies = [
-  { name: 'Power BI', icon: '📊', color: 'from-yellow-400 to-orange-500' },
-  { name: 'Tally Prime', icon: '💼', color: 'from-purple-500 to-pink-500' },
-  { name: 'Zoho', icon: '⚡', color: 'from-blue-500 to-cyan-500' },
-  { name: 'Excel', icon: '📈', color: 'from-green-500 to-emerald-500' },
-  { name: 'Python', icon: '🐍', color: 'from-blue-600 to-indigo-600' },
-  { name: 'Node.js', icon: '💚', color: 'from-green-600 to-teal-600' },
-  { name: 'SQL', icon: '🗄️', color: 'from-orange-500 to-red-500' },
-  { name: 'Azure', icon: '☁️', color: 'from-blue-400 to-blue-600' },
-  { name: 'REST API', icon: '🔌', color: 'from-indigo-500 to-purple-500' },
-  { name: 'Power Automate', icon: '⚙️', color: 'from-cyan-500 to-blue-500' },
-  { name: 'VBA', icon: '📝', color: 'from-gray-600 to-gray-800' },
-  { name: 'TDL', icon: '⚡', color: 'from-pink-500 to-rose-500' },
-];
 
 const industries = [
   {
     name: 'Manufacturing',
-    icon: <Package className="h-8 w-8" />,
+    icon: <Factory className="h-8 w-8" />,
     services: ['Inventory Management', 'Production Analytics', 'Quality Control'],
-    color: 'from-blue-500 to-indigo-600',
+    color: 'from-indigo-400 via-indigo-300 to-purple-400',
   },
   {
     name: 'Retail & E-commerce',
-    icon: <Globe className="h-8 w-8" />,
+    icon: <ShoppingCart className="h-8 w-8" />,
     services: ['POS Integration', 'Sales Analytics', 'Customer Insights'],
-    color: 'from-purple-500 to-pink-600',
+    color: 'from-purple-400 via-fuchsia-300 to-pink-400',
   },
   {
     name: 'Healthcare',
-    icon: <Users className="h-8 w-8" />,
+    icon: <Heart className="h-8 w-8" />,
     services: ['Patient Management', 'Billing Systems', 'Compliance'],
-    color: 'from-green-500 to-emerald-600',
+    color: 'from-cyan-400 via-sky-300 to-blue-400',
   },
   {
     name: 'Finance & Banking',
-    icon: <DollarSign className="h-8 w-8" />,
-    services: ['Risk Analytics', 'Portfolio Management', 'Reporting'],
-    color: 'from-orange-500 to-red-600',
+    icon: <Landmark className="h-8 w-8" />,
+    services: ['Risk Analytics', 'Portfolio Management', 'Financial Reporting'],
+    color: 'from-indigo-400 via-blue-300 to-cyan-400',
   },
   {
     name: 'Real Estate',
-    icon: <Briefcase className="h-8 w-8" />,
+    icon: <Building2 className="h-8 w-8" />,
     services: ['Property Management', 'Lead Tracking', 'Financial Reports'],
-    color: 'from-cyan-500 to-blue-600',
+    color: 'from-cyan-400 via-teal-300 to-emerald-400',
   },
   {
-    name: 'Logistics',
-    icon: <Layers className="h-8 w-8" />,
-    services: ['Fleet Management', 'Route Optimization', 'Tracking'],
-    color: 'from-teal-500 to-green-600',
+    name: 'Logistics & Distribution',
+    icon: <Truck className="h-8 w-8" />,
+    services: ['Fleet Management', 'Route Optimization', 'Shipment Tracking'],
+    color: 'from-purple-400 via-indigo-300 to-blue-400',
   },
 ];
+
 
 const whyChooseUs = [
   {
@@ -610,7 +600,7 @@ const whyChooseUs = [
 ];
 
 const ServicesPage = () => {
-  const [hoveredService, setHoveredService] = useState(null);
+  const [hoveredService, setHoveredService] = useState<number | null>(null);
   const [activeCategory, setActiveCategory] = useState('all');
   const [scrollY, setScrollY] = useState(0);
 
@@ -683,45 +673,8 @@ const ServicesPage = () => {
             </div>
           </div>
 
-          {/* Stats Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="group relative bg-background/80 backdrop-blur-sm rounded-2xl p-6 border border-border shadow-soft hover:shadow-accent transition-all duration-500 animate-in slide-in-from-bottom"
-                style={{ animationDelay: `${(index + 4) * 100}ms` }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="relative">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
-                    {stat.icon}
-                  </div>
-                  <div className="text-4xl font-bold text-primary mb-2 group-hover:scale-105 transition-transform">{stat.value}</div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <style jsx>{`
-          @keyframes gradient {
-            0%,
-            100% {
-              background-position: 0% 50%;
-            }
-            50% {
-              background-position: 100% 50%;
-            }
-          }
-          .animate-gradient {
-            background-size: 200% auto;
-            animation: gradient 3s ease infinite;
-          }
-        `}</style>
-      </section>
-
-      {/* Featured Services */}
-      <section className="py-20 bg-gradient-to-br from-muted/30 via-background to-muted/30">
+          {/* Featured Services */}
+      <section className="pt-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="grid md:grid-cols-3 gap-8">
             {featuredServices.map((service, index) => (
@@ -772,8 +725,47 @@ const ServicesPage = () => {
         </div>
       </section>
 
+          {/* Stats Grid */}
+          {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
+            {stats.map((stat, index) => (
+              <div
+                key={index}
+                className="group relative bg-background/80 backdrop-blur-sm rounded-2xl p-6 border border-border shadow-soft hover:shadow-accent transition-all duration-500 animate-in slide-in-from-bottom"
+                style={{ animationDelay: `${(index + 4) * 100}ms` }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
+                    {stat.icon}
+                  </div>
+                  <div className="text-4xl font-bold text-primary mb-2 group-hover:scale-105 transition-transform">{stat.value}</div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                </div>
+              </div>
+            ))}
+          </div> */}
+        </div>
+        <style jsx>{`
+          @keyframes gradient {
+            0%,
+            100% {
+              background-position: 0% 50%;
+            }
+            50% {
+              background-position: 100% 50%;
+            }
+          }
+          .animate-gradient {
+            background-size: 200% auto;
+            animation: gradient 3s ease infinite;
+          }
+        `}</style>
+      </section>
+
+      
+
       {/* Service Categories */}
-      <section className="py-20 scroll-mt-10" id="services-section">
+      {/* <section className="py-20 scroll-mt-10" id="services-section">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="text-center mb-12">
             <span className="text-sm font-semibold text-primary uppercase tracking-wider">Our Expertise</span>
@@ -803,7 +795,6 @@ const ServicesPage = () => {
               </button>
             ))}
           </div>
-          {/* Services Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredServices.map((service, index) => (
               <div
@@ -853,7 +844,6 @@ const ServicesPage = () => {
                       {service.timeline}
                     </div>
                   </div>
-                  {/* CTA Button */}
                   <Button className="w-full group/btn relative overflow-hidden" variant="outline">
                     <span className="relative z-10 flex items-center justify-center">
                       {service.cta}
@@ -864,7 +854,6 @@ const ServicesPage = () => {
                     />
                   </Button>
                 </div>
-                {/* Hover Details Overlay */}
                 <div className="absolute inset-0 bg-background/95 backdrop-blur-sm p-6 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-full group-hover:translate-y-0 overflow-y-auto custom-scrollbar">
                   <div className="h-full flex flex-col">
                     <h4 className="text-lg font-bold text-foreground mb-3">{service.title}</h4>
@@ -919,24 +908,18 @@ const ServicesPage = () => {
               background: rgba(59, 130, 246, 0.5);
             }
 
-            /* Firefox */
             .custom-scrollbar {
               scrollbar-width: thin;
               scrollbar-color: rgba(59, 130, 246, 0.3) transparent;
             }
           `}</style>
         </div>
-      </section>
+      </section> */}
+      <NetflixServicesSection />
 
       {/* Process Timeline */}
-      <section className="py-20 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div
-            className="absolute top-0 left-0 w-full h-full"
-            style={{ backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)', backgroundSize: '50px 50px' }}
-          />
-        </div>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="text-center mb-16">
             <span className="text-sm font-semibold text-primary uppercase tracking-wider">Our Process</span>
             <h2 className="text-4xl sm:text-5xl font-bold text-foreground mt-4 mb-6">How We Work With You</h2>
@@ -944,104 +927,112 @@ const ServicesPage = () => {
               A streamlined, proven methodology that delivers results every time
             </p>
           </div>
-          {/* Vertical Timeline */}
-          <div className="max-w-4xl mx-auto">
-            {processSteps.map((item, index) => (
-              <div key={index} className="relative flex gap-8 mb-12 group">
-                {index < 5 && <div className="absolute left-8 top-20 w-0.5 h-full bg-gradient-to-b from-primary to-secondary opacity-30" />}
-                <div className="relative flex-shrink-0">
+
+          {/* Stepped Circle Design */}
+          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {processSteps.map((item, index) => {
+              const isOrange = index === 2 || index === 5;
+              return (
+                <div key={index} className="group relative">
                   <div
-                    className={`w-16 h-16 rounded-full bg-gradient-to-br ${item.color} flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                    className={`relative w-full aspect-square rounded-full border-4 ${
+                      isOrange ? 'bg-primary border-primary' : 'bg-background border-border'
+                    } flex flex-col items-center justify-center p-8 transition-all duration-300 hover:scale-105 hover:shadow-2xl`}
                   >
-                    {item.step}
-                  </div>
-                  <div
-                    className={`absolute inset-0 rounded-full bg-gradient-to-br ${item.color} blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300`}
-                  />
-                </div>
-                <div className="flex-1 bg-background rounded-2xl p-6 border border-border group-hover:border-primary/50 group-hover:shadow-accent transition-all duration-300 group-hover:-translate-y-1">
-                  <div className="flex items-start gap-4">
                     <div
-                      className={`p-3 rounded-xl bg-gradient-to-br ${item.color} text-white group-hover:scale-110 transition-transform duration-300`}
+                      className={`absolute -top-4 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full ${
+                        isOrange ? 'bg-primary-foreground text-primary' : 'bg-primary text-primary-foreground'
+                      } flex items-center justify-center font-bold text-lg shadow-lg`}
                     >
-                      {item.icon}
+                      {item.step}
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">{item.title}</h3>
-                      <p className="text-muted-foreground">{item.description}</p>
-                    </div>
+                    <div className={`mb-4 ${isOrange ? 'text-primary-foreground' : 'text-primary'}`}>{item.icon}</div>
+                    <h3 className={`text-lg font-bold text-center mb-3 ${isOrange ? 'text-primary-foreground' : 'text-foreground'}`}>
+                      {item.title}
+                    </h3>
+                    <p className={`text-sm text-center line-clamp-4 ${isOrange ? 'text-primary-foreground/80' : 'text-muted-foreground'}`}>
+                      {item.description}
+                    </p>
+                    <div
+                      className={`absolute inset-0 rounded-full ${
+                        isOrange ? 'bg-primary' : 'bg-primary'
+                      } blur-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
+                    />
                   </div>
+                  {index < processSteps.length - 1 && index % 3 !== 2 && (
+                    <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-primary to-transparent" />
+                  )}
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Technologies & Tools */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="text-center mb-16">
-            <span className="text-sm font-semibold text-primary uppercase tracking-wider">Technology Stack</span>
-            <h2 className="text-4xl sm:text-5xl font-bold text-foreground mt-4 mb-6">Tools & Technologies We Master</h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Leveraging cutting-edge technologies to deliver world-class solutions
-            </p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-            {technologies.map((tech, index) => (
-              <div
-                key={index}
-                className="group relative bg-background rounded-xl p-6 border border-border hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-accent text-center cursor-pointer"
-              >
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${tech.color} opacity-0 group-hover:opacity-10 rounded-xl transition-opacity`}
-                />
-                <div className="relative">
-                  <div className="text-4xl mb-3 transform group-hover:scale-125 transition-transform duration-300">{tech.icon}</div>
-                  <div className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">{tech.name}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TechnologiesSection />
 
       {/* Industries We Serve */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <section className="py-20 bg-gradient-to-br from-background via-muted/30 to-background relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='currentColor' fill-opacity='0.1'%3E%3Cpath d='m36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+              backgroundSize: '60px 60px',
+            }}
+          />
+        </div>
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
           <div className="text-center mb-16">
             <span className="text-sm font-semibold text-primary uppercase tracking-wider">Industry Expertise</span>
             <h2 className="text-4xl sm:text-5xl font-bold text-foreground mt-4 mb-6">Serving Diverse Industries</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">Tailored solutions for your specific industry challenges</p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {industries.map((industry, index) => (
-              <div
-                key={index}
-                className="group relative bg-background rounded-2xl p-8 border border-border hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-accent overflow-hidden"
-              >
+          <div className="relative max-w-6xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
+              {industries.map((industry, index) => (
                 <div
-                  className={`absolute inset-0 bg-gradient-to-br ${industry.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
-                />
-                <div className="relative">
-                  <div
-                    className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${industry.color} text-white mb-6 group-hover:scale-110 transition-transform duration-300`}
-                  >
-                    {industry.icon}
-                  </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">{industry.name}</h3>
-                  <div className="space-y-2">
-                    {industry.services.map((service, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <CheckCircle2 className="h-4 w-4 text-primary" />
-                        <span>{service}</span>
+                  key={index}
+                  className="group relative"
+                  style={{
+                    marginTop: index % 2 === 1 ? '2rem' : '0',
+                    animationDelay: `${index * 150}ms`,
+                  }}
+                >
+                  <div className="relative w-full aspect-square max-w-64 mx-auto">
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${industry.color} rounded-3xl transform rotate-12 group-hover:rotate-6 transition-all duration-500 opacity-10 group-hover:opacity-20`}
+                    />
+                    <div className="relative w-full h-full bg-background border-2 border-border group-hover:border-primary/50 rounded-3xl transform group-hover:scale-105 transition-all duration-500 flex flex-col items-center justify-center p-6 group-hover:shadow-2xl">
+                      <div
+                        className={`p-4 rounded-2xl bg-gradient-to-br ${industry.color} text-white mb-4 group-hover:scale-110 transition-transform duration-300`}
+                      >
+                        {industry.icon}
                       </div>
-                    ))}
+                      <h3 className="text-lg font-bold text-center text-foreground group-hover:text-primary transition-colors mb-3">
+                        {industry.name}
+                      </h3>
+                      {/* <div className="text-xs text-muted-foreground text-center">{industry.services.length} Solutions</div> */}
+
+                      {/* Hover */}
+                      <div className="absolute inset-0 bg-background/95 backdrop-blur-sm rounded-3xl p-4 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-center">
+                        <h4 className="font-bold text-primary text-center mb-3">{industry.name}</h4>
+                        <div className="space-y-1">
+                          {industry.services.map((service, idx) => (
+                            <div key={idx} className="flex items-center gap-2 text-xs">
+                              <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${industry.color}`} />
+                              <span className="text-foreground">{service}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -1088,7 +1079,7 @@ const ServicesPage = () => {
               className="object-cover object-center"
               sizes="(max-width: 1280px) 100vw, 1280px"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/30" />
             <div className="relative z-10 flex flex-col justify-center h-full px-6 sm:px-8 lg:px-12">
               <div className="max-w-3xl">
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">Let&apos;s Transform Your Business Together</h2>

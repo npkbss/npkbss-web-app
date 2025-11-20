@@ -3,10 +3,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-const ContactPage = () => {
+const GalleryPage = () => {
   return (
     <div className="flex flex-col items-center justify-center mx-auto max-w-7xl min-h-screen text-center px-4 py-10">
-      <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-foreground">Contact Us</h1>
+      <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-foreground">Gallery</h1>
 
       <div className="relative w-full max-w-xl mb-10">
         <Image
@@ -31,4 +31,4 @@ const ContactPage = () => {
   );
 };
 
-export default ContactPage;
+export default GalleryPage;

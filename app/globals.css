@@ -1,6 +1,6 @@
 /* app/globals.css */
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -98,8 +98,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, system-ui,
-      sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -110,8 +109,7 @@
   h4,
   h5,
   h6 {
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, system-ui,
-      sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     font-weight: 600;
     letter-spacing: -0.02em;
   }
@@ -160,4 +158,18 @@
 .whatsapp-float:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 32px rgba(37, 211, 102, 0.45);
+}
+
+.embla {
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+  touch-action: pan-y;
+  margin-left: -1rem;
+}
+
+.embla__slide {
+  transform: translate3d(0, 0, 0);
 }

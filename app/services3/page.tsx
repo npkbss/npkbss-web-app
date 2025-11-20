@@ -18,8 +18,8 @@ import {
 const ServicesPage = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [scrollY, setScrollY] = useState(0);
-  const [activeFaq, setActiveFaq] = useState(null);
-  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [activeFaq, setActiveFaq] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);

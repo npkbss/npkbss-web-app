@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
-import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Menu, X, ChevronDown, Phone, Mail } from 'lucide-react';
+import { ChevronDown, Menu, X } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,19 +13,19 @@ const Header = () => {
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md shadow-soft border-b border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
             <div className="w-12 h-12 rounded-xl overflow-hidden shadow-medium group-hover:shadow-accent transition-all duration-300">
               <Image src="/assets/npk-logo.jpg" alt="NPK Logo" width={48} height={48} className="object-cover" />
             </div>
             <div className="hidden sm:block">
-              <h1 className="font-bold text-xl lg:text-2xl text-foreground tracking-tight"><em>NPK Business Solutions</em></h1>
+              <h1 className="font-bold text-xl lg:text-2xl text-foreground tracking-tight">
+                <em>NPK Business Solutions</em>
+              </h1>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-1">
-            {/* Home */}
             <Link
               href="/"
               className="px-4 py-2 rounded-lg text-foreground hover:text-primary hover:bg-muted/50 transition-all duration-200 font-medium"
@@ -84,26 +84,14 @@ const Header = () => {
             </Link>
           </nav>
 
-          {/* Contact Actions */}
+          {/* Contact */}
           <div className="hidden lg:flex items-center space-x-2">
-            {/* <Button variant="ghost" size="sm" asChild className="hover:bg-muted/50">
-              <a href="tel:+8147707125" className="flex items-center gap-2">
-                <Phone className="h-4 w-4" />
-                <span className="hidden xl:inline">Call Us</span>
-              </a>
-            </Button>
-            <Button variant="ghost" size="sm" asChild className="hover:bg-muted/50">
-              <a href="mailto:npk@npkbss.in" className="flex items-center gap-2">
-                <Mail className="h-4 w-4" />
-                <span className="hidden xl:inline">Email</span>
-              </a>
-            </Button> */}
             <Button asChild className="shadow-accent hover:shadow-hover transition-all duration-300">
               <Link href="/contact">Book a Meeting</Link>
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu */}
           <button
             className="lg:hidden p-2 rounded-lg hover:bg-muted/50 transition-all duration-200"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -134,22 +122,8 @@ const Header = () => {
                 </Link>
               ))}
 
-              {/* Mobile Contact Actions */}
+              {/* Mobile Contact */}
               <div className="pt-3 mt-3 border-t border-border space-y-2">
-                {/* <a
-                  href="tel:+8147707125"
-                  className="flex items-center gap-2 py-3 px-4 rounded-lg text-foreground hover:bg-muted/50 transition-all duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Phone className="h-4 w-4" /> Call Us
-                </a>
-                <a
-                  href="mailto:npk@npkbss.in"
-                  className="flex items-center gap-2 py-3 px-4 rounded-lg text-foreground hover:bg-muted/50 transition-all duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Mail className="h-4 w-4" /> Email
-                </a> */}
                 <Button className="w-full shadow-accent" asChild>
                   <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
                     Book a Meeting

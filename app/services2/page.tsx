@@ -7,11 +7,11 @@ import { ArrowRight, Phone, Mail, ChevronDown, Play } from 'lucide-react';
 import { servicesData, categories, heroStats, processSteps, technologies, industries, whyChooseUs, faq } from '@/data/servicesData';
 
 const ServicesPage = () => {
-  const [hoveredService, setHoveredService] = useState(null);
+  const [hoveredService, setHoveredService] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState('all');
   const [scrollY, setScrollY] = useState(0);
-  const [activeFaq, setActiveFaq] = useState(null);
-  const [hoveredCard, setHoveredCard] = useState(null);
+  const [activeFaq, setActiveFaq] = useState<number | null>(null);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
