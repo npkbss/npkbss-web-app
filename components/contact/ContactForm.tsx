@@ -1,17 +1,21 @@
 'use client';
 
 import { useState } from 'react';
+import { Users, Briefcase, Mail, Phone, MapPin, Layers, MessageCircle, ArrowRight, CheckCircle2 } from 'lucide-react';
+
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
-import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select';
-import { Mail, Phone, Users, Briefcase, MapPin, Layers, MessageCircle, Clock, CheckCircle2, ArrowRight } from 'lucide-react';
-import { zohoProducts, contactTimes } from './data';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 
-export default function GlassForm() {
+import { zohoProducts } from '@/components/contact/data';
+
+export default function ContactForm() {
   const [loading, setLoading] = useState(false);
-  const [done, setDone] = useState(false);
+  const [errors, setErrors] = useState<any>({});
+  const [open, setOpen] = useState(false);
+
   const [form, setForm] = useState({
     fullName: '',
     business: '',
@@ -20,196 +24,234 @@ export default function GlassForm() {
     city: '',
     zohoProducts: [] as string[],
     requirements: '',
-    contactTime: '',
     agree: false,
   });
 
-  const update = (k: string, v: any) => setForm(p => ({ ...p, [k]: v }));
+  const update = (k: string, v: string | string[] | boolean) => setForm(prev => ({ ...prev, [k]: v }));
 
   const toggleProduct = (p: string) =>
     update('zohoProducts', form.zohoProducts.includes(p) ? form.zohoProducts.filter(x => x !== p) : [...form.zohoProducts, p]);
 
   const submit = async (e: any) => {
     e.preventDefault();
-    if (!form.fullName || !form.email || !form.phone || !form.zohoProducts.length || !form.agree) return;
+
+    const newErrors: any = {};
+
+    if (!form.fullName) newErrors.fullName = 'Full Name is required';
+    if (!form.email) newErrors.email = 'Email is required';
+    if (!form.zohoProducts.length) newErrors.zohoProducts = 'Select at least one product';
+    if (!form.requirements) newErrors.requirements = 'Requirements are required';
+    if (!form.agree) newErrors.agree = 'You must agree before submitting';
+
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length > 0) return;
+
     setLoading(true);
-    await new Promise(res => setTimeout(res, 1200));
-    setDone(true);
-    setTimeout(() => setDone(false), 4000);
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setOpen(true);
+
+        setForm({
+          fullName: '',
+          business: '',
+          email: '',
+          phone: '',
+          city: '',
+          zohoProducts: [],
+          requirements: '',
+          agree: false,
+        });
+
+        setErrors({});
+      }
+    } catch (err) {
+      console.error(err);
+    }
+
     setLoading(false);
   };
 
   return (
     <>
-    <form
-      onSubmit={submit}
-      className="
-        relative
-        bg-white/10
-        backdrop-blur-xl
-        rounded-3xl
-        p-10
-        shadow-[0_0_40px_rgba(0,0,0,0.25)]
-        border
-        border-white/20
-        overflow-hidden
-      "
-    >
-      {/* animated gradient border */}
-      <div className="absolute inset-0 rounded-3xl border-[3px] border-transparent animate-borderGlow pointer-events-none" />
-
-      <h2 className="text-3xl font-semibold text-black mb-6">Book Your Free Consultation</h2>
-
-      {done && (
-        <div className="mb-6 flex items-center gap-3 bg-green-500/20 border border-green-400/30 text-green-100 px-4 py-3 rounded-xl">
-          <CheckCircle2 className="h-5 w-5" /> Your request has been submitted!
-        </div>
-      )}
-
-      <div className="grid md:grid-cols-2 gap-6">
-        <FloatingField label="Full Name" icon={<Users />} value={form.fullName} onChange={v => update('fullName', v)} />
-
-        <FloatingField label="Business Name" icon={<Briefcase />} value={form.business} onChange={v => update('business', v)} />
-
-        <FloatingField label="Email Address" icon={<Mail />} value={form.email} onChange={v => update('email', v)} type="email" />
-
-        <FloatingField label="Phone / WhatsApp" icon={<Phone />} value={form.phone} onChange={v => update('phone', v)} />
-      </div>
-
-      <div className="mt-6">
-        <FloatingField label="City" icon={<MapPin />} value={form.city} onChange={v => update('city', v)} />
-      </div>
-
-      {/* Zoho products */}
-      <div className="mt-8">
-        <label className="text-sm font-medium text-black/90 mb-3 flex gap-2 items-center">
-          <Layers className="h-4 w-4 text-cyan-300" /> Zoho Products Interested In *
-        </label>
-
-        <div className="grid sm:grid-cols-2 gap-3">
-          {zohoProducts.map(p => (
-            <label
-              key={p}
-              className="
-                flex items-center gap-3 p-3 rounded-xl
-                bg-white/10 border border-black/20
-                hover:bg-white/20 hover:border-cyan-300/50
-                text-black/90 text-sm cursor-pointer backdrop-blur-md
-                transition-all
-              "
-            >
-              <Checkbox checked={form.zohoProducts.includes(p)} onCheckedChange={() => toggleProduct(p)} />
-              {p}
-            </label>
-          ))}
-        </div>
-      </div>
-
-      {/* Requirements */}
-      <div className="mt-8">
-        <label className="text-sm font-medium text-black/90 mb-2 flex gap-2 items-center">
-          <MessageCircle className="h-4 w-4 text-cyan-300" /> Requirements *
-        </label>
-        <Textarea
-          rows={4}
-          value={form.requirements}
-          onChange={e => update('requirements', e.target.value)}
-          placeholder="Describe what you're looking to automate or improve..."
-          className="
-            bg-white/10 border-black/20 text-black placeholder-black/40
-            backdrop-blur-md rounded-xl
-          "
-        />
-      </div>
-
-      {/* Contact time */}
-      <div className="mt-8">
-        <label className="text-sm font-medium text-black/90 mb-2 flex gap-2 items-center">
-          <Clock className="h-4 w-4 text-cyan-300" /> Preferred Time
-        </label>
-        <Select value={form.contactTime} onValueChange={v => update('contactTime', v)}>
-          <SelectTrigger className="bg-white/10 backdrop-blur-lg border-white/20 text-black">
-            <SelectValue placeholder="Select time" />
-          </SelectTrigger>
-          <SelectContent className="bg-slate-800 border-black/20">
-            {contactTimes.map(t => (
-              <SelectItem key={t.value} value={t.value} className="text-black">
-                {t.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
-
-      {/* Agree */}
-      <label className="flex items-start gap-3 mt-6 text-black/90 text-sm cursor-pointer">
-        <Checkbox checked={form.agree} onCheckedChange={v => update('agree', v as boolean)} />I agree to be contacted regarding this
-        inquiry.
-      </label>
-
-      {/* Submit */}
-      <Button
-        type="submit"
-        disabled={loading}
-        className="
-          w-full mt-8 py-6 rounded-xl text-lg
-          bg-gradient-to-r from-cyan-400 to-indigo-500
-          text-black font-semibold shadow-xl
-          hover:scale-[1.02] transition
-        "
+      <form
+        id="contact-form"
+        onSubmit={submit}
+        className="scroll-mt-32 relative bg-white/10 backdrop-blur-xl rounded-3xl p-6 md:p-8 shadow-xl border border-white/20 space-y-6"
       >
-        {loading ? 'Submitting...' : 'Submit Request'}
-        <ArrowRight className="ml-2 h-5 w-5" />
-      </Button>
+        <h2 className="text-3xl font-semibold text-black">Book Your Free Consultation</h2>
 
-      {/* gradient blur orb */}
-      <div className="absolute -bottom-20 -right-20 w-60 h-60 bg-cyan-400/30 blur-3xl rounded-full pointer-events-none" />
-    </form>
-    
+        <div className="grid md:grid-cols-2 gap-6">
+          <Field
+            label="Full Name"
+            required
+            name="fullName"
+            autoComplete="name"
+            icon={<Users />}
+            value={form.fullName}
+            onChange={(v: string) => update('fullName', v)}
+            error={errors.fullName}
+          />
+
+          <Field
+            label="Business Name"
+            name="business"
+            autoComplete="organization"
+            icon={<Briefcase />}
+            value={form.business}
+            onChange={(v: string) => update('business', v)}
+          />
+
+          <Field
+            label="Email Address"
+            required
+            type="email"
+            name="email"
+            autoComplete="email"
+            icon={<Mail />}
+            value={form.email}
+            onChange={(v: string) => update('email', v)}
+            error={errors.email}
+          />
+
+          <Field
+            label="Phone / WhatsApp (Optional)"
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            icon={<Phone />}
+            value={form.phone}
+            onChange={(v: string) => update('phone', v)}
+          />
+        </div>
+
+        <Field
+          label="City"
+          name="city"
+          autoComplete="address-level2"
+          icon={<MapPin />}
+          value={form.city}
+          onChange={(v: string) => update('city', v)}
+        />
+
+        {/* Products */}
+        <div>
+          <LabelRequired>Products Interested In</LabelRequired>
+
+          <div className="grid sm:grid-cols-2 gap-3 mt-2">
+            {zohoProducts.map(p => (
+              <label
+                key={p}
+                className="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-black/20 hover:bg-white/20 hover:border-cyan-300/50 cursor-pointer transition-all"
+              >
+                <Checkbox checked={form.zohoProducts.includes(p)} onCheckedChange={() => toggleProduct(p)} />
+                {p}
+              </label>
+            ))}
+          </div>
+
+          {errors.zohoProducts && <p className="text-red-600 text-xs mt-1">{errors.zohoProducts}</p>}
+        </div>
+
+        {/* Requirements */}
+        <div>
+          <LabelRequired>Requirements</LabelRequired>
+
+          <Textarea
+            name="requirements"
+            autoComplete="off"
+            rows={4}
+            value={form.requirements}
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => update('requirements', e.target.value)}
+            onInput={(e: React.FormEvent<HTMLTextAreaElement>) => update('requirements', e.currentTarget.value)}
+            className="bg-white/10 border-black/20 text-black placeholder-black/40 rounded-xl backdrop-blur-md mt-2"
+            placeholder="Tell us what you want to automate or improve..."
+          />
+
+          {errors.requirements && <p className="text-red-600 text-xs mt-1">{errors.requirements}</p>}
+        </div>
+
+        {/* Agree */}
+        <label className="flex items-start gap-3 text-black text-sm cursor-pointer">
+          <Checkbox checked={form.agree} onCheckedChange={v => update('agree', v as boolean)} />I agree to be contacted regarding this
+          inquiry
+          <span className="text-red-500">*</span>
+        </label>
+
+        {errors.agree && <p className="text-red-600 text-xs">{errors.agree}</p>}
+
+        <Button
+          type="submit"
+          disabled={loading}
+          className="w-full py-5 rounded-xl text-lg bg-gradient-to-r from-cyan-400 to-indigo-500 text-black font-semibold shadow-xl hover:scale-[1.02] transition"
+        >
+          {loading ? 'Submitting...' : 'Submit Request'}
+          <ArrowRight className="ml-2 h-5 w-5" />
+        </Button>
+      </form>
+
+      {/* Popup */}
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="bg-white rounded-2xl shadow-xl max-w-sm text-center">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-semibold">Thank You! 🎉</DialogTitle>
+            <DialogDescription>Your request has been submitted. We’ll reach out shortly!</DialogDescription>
+          </DialogHeader>
+
+          <div className="flex justify-center mt-4">
+            <CheckCircle2 className="w-12 h-12 text-green-500" />
+          </div>
+
+          <Button className="mt-6 bg-cyan-500 text-black" onClick={() => setOpen(false)}>
+            Close
+          </Button>
+        </DialogContent>
+      </Dialog>
     </>
-    
   );
 }
 
-function FloatingField({
-  label,
-  icon,
-  value,
-  onChange,
-  type = 'text',
-}: {
-  label: string;
-  icon: any;
-  value: string;
-  onChange: (v: string) => void;
-  type?: string;
-}) {
+/* -------------------------- FIELD COMPONENT -------------------------- */
+function Field({ label, icon, value, onChange, error, required, type = 'text', name, autoComplete }: any) {
   return (
-    <div className="relative">
-      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-black/50">{icon}</div>
-
-      <Input
-        type={type}
-        value={value}
-        onChange={e => onChange(e.target.value)}
-        className="
-          pl-12 bg-white/10 border-black/20 text-black
-          rounded-xl backdrop-blur-md
-          focus:border-cyan-300 focus:ring-0
-          peer
-        "
-      />
-
-      <label
-        className="
-          absolute left-12 top-1/2 -translate-y-1/2
-          text-white/50 text-sm transition-all
-          peer-focus:-top-3 peer-focus:text-xs peer-focus:text-cyan-200
-          peer-not-placeholder-shown:-top-3 peer-not-placeholder-shown:text-xs
-        "
-      >
-        {label}
+    <div className="space-y-1">
+      <label className="text-sm font-semibold text-black flex items-center gap-1">
+        {label} {required && <span className="text-red-500">*</span>}
       </label>
+
+      <div className="relative">
+        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-black/50">{icon}</div>
+
+        <Input
+          name={name}
+          autoComplete={autoComplete}
+          type={type}
+          value={value}
+          onChange={e => onChange(e.target.value)}
+          onInput={e => onChange(e.currentTarget.value)}
+          className={`pl-12 bg-white/10 border text-black rounded-xl backdrop-blur-md ${
+            error ? 'border-red-500' : 'border-black/20'
+          } focus:border-cyan-300 focus:ring-0`}
+        />
+      </div>
+
+      {error && <p className="text-red-600 text-xs">{error}</p>}
     </div>
+  );
+}
+
+function LabelRequired({ children }: any) {
+  return (
+    <label className="text-sm font-semibold text-black flex items-center gap-1">
+      {children} <span className="text-red-500">*</span>
+    </label>
   );
 }

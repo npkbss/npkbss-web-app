@@ -1,4 +1,4 @@
-import { Phone, Lightbulb, Zap, Rocket, Mail, MessageCircle, MapPin, Clock, Users, Award, TrendingUp } from 'lucide-react';
+import { Mail, Phone, MessageCircle, MapPin, Clock, Users, Lightbulb, TrendingUp } from 'lucide-react';
 
 export const zohoProducts = [
   'Zoho CRM',
@@ -8,19 +8,9 @@ export const zohoProducts = [
   'Zoho Desk (Support)',
   'Zoho One (Full Suite)',
   'Custom Development',
-];
-
-export const contactTimes = [
-  { value: 'morning', label: 'Morning (10 AM - 1 PM)' },
-  { value: 'afternoon', label: 'Afternoon (1 PM - 4 PM)' },
-  { value: 'evening', label: 'Evening (4 PM - 7 PM)' },
-];
-
-export const steps = [
-  { step: '01', title: 'Discovery', desc: 'Free 30-min consultation', icon: Phone },
-  { step: '02', title: 'Blueprint', desc: 'Custom Zoho blueprint', icon: Lightbulb },
-  { step: '03', title: 'Implement', desc: 'Configure & customize', icon: Zap },
-  { step: '04', title: 'Launch', desc: 'Team onboarding included', icon: Rocket },
+  'Power BI',
+  'Tally',
+  'Consulting & Training',
 ];
 
 export const contactInfo = [
@@ -48,14 +38,7 @@ export const faqList = [
     value: 'customization',
     icon: Lightbulb,
     title: 'Can you customize Zoho for our needs?',
-    content:
-      "Absolutely. We build custom workflows, automations, integrations and dashboards tailored to your operations.",
-  },
-  {
-    value: 'support',
-    icon: Award,
-    title: 'What support is included?',
-    content: '30-day post-launch support is included. Extended support plans are available for ongoing maintenance.',
+    content: 'Absolutely. We build custom workflows, automations, integrations and dashboards tailored to your operations.',
   },
   {
     value: 'pricing',
