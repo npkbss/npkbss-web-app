@@ -17,7 +17,7 @@ export const contactInfo = [
   { icon: Mail, label: 'Email', value: 'npk@npkbss.in', color: 'text-blue-400' },
   { icon: Phone, label: 'Phone', value: '+91 8147707125', color: 'text-green-400' },
   { icon: MessageCircle, label: 'WhatsApp', value: 'Chat with us', color: 'text-emerald-400' },
-  { icon: MapPin, label: 'Location', value: 'Bangalore, India', color: 'text-purple-400' },
+  { icon: MapPin, label: 'Location', value: 'Bangalore, Mumbai, Kurnool', color: 'text-purple-400' },
 ];
 
 export const faqList = [

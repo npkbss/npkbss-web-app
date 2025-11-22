@@ -1,61 +1,60 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
+import { CategoryServicesModel } from '@/components/services/CategoryServicesModel';
+import ConsultingTrainingPremium from '@/components/services/ConsultingTrainingPremium';
+import DesignThree from '@/components/services/Design3';
+import DesignEight from '@/components/services/DesignEight';
+import DesignFive from '@/components/services/DesignFive';
+import DesignFour from '@/components/services/DesignFour';
+import DesignNine from '@/components/services/DesignNine';
+import DesignSeven from '@/components/services/DesignSeven';
+import DesignSix from '@/components/services/DesignSix';
+import DesignTen from '@/components/services/DesignTen';
+import DesignTwo from '@/components/services/DesignTwo';
+import DevIntegrationCloudFuturistic from '@/components/services/DevIntegrationCloudFuturistic';
+import NetflixServicesSection from '@/components/services/NetflixServicesModel';
+import PowerBIShowcase from '@/components/services/PowerBIShowcase';
+import ServicesSection from '@/components/services/ServicesSection';
+import TallyServicesSection from '@/components/services/TallyServicesSection';
+import TechnologiesSection from '@/components/services/TechnologiesSection';
+import ZohoShowcase from '@/components/services/ZohoShowcase';
 import { Button } from '@/components/ui/button';
 import {
-  ArrowRight,
-  BarChart3,
-  Database,
-  Plug,
-  Calculator,
-  TrendingUp,
-  FileSpreadsheet,
-  Layers,
-  Zap,
-  CheckCircle2,
-  Clock,
-  Shield,
-  Users,
-  Target,
-  Sparkles,
-  Code,
-  Briefcase,
-  Globe,
-  PieChart,
-  FileText,
-  Workflow,
-  Package,
-  DollarSign,
-  LightbulbIcon,
-  Rocket,
-  Award,
-  Phone,
   ArrowDown,
-  Code2,
+  ArrowRight,
+  Award,
+  BarChart3,
+  Briefcase,
+  Building2,
+  Calculator,
+  Clock,
   Cloud,
-  Factory, ShoppingCart, Heart, Landmark, Building2, Truck
+  Code,
+  Code2,
+  Database,
+  Factory,
+  FileSpreadsheet,
+  FileText,
+  Heart,
+  Landmark,
+  LightbulbIcon,
+  Phone,
+  PieChart,
+  Plug,
+  Shield,
+  ShoppingCart,
+  Sparkles,
+  Target,
+  TrendingUp,
+  Truck,
+  Users,
+  Workflow,
+  Zap,
 } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
-import NetflixServicesSection from '@/components/services/ServiceCard';
-import TechnologiesSection from '@/components/services/TechnologiesSection';
+import { useEffect, useState } from 'react';
 
 // --- Data ---
-const stats = [
-  { value: '100+', label: 'Projects Delivered', icon: <Rocket className="h-5 w-5" /> },
-  { value: '50+', label: 'Happy Clients', icon: <Users className="h-5 w-5" /> },
-  { value: '24/7', label: 'Support Available', icon: <Clock className="h-5 w-5" /> },
-  { value: '98%', label: 'Success Rate', icon: <Award className="h-5 w-5" /> },
-];
-
-const categories = [
-  { id: 'all', name: 'All Services', icon: <Layers className="h-4 w-4" /> },
-  { id: 'analytics', name: 'Analytics & BI', icon: <BarChart3 className="h-4 w-4" /> },
-  { id: 'erp', name: 'ERP & Finance', icon: <Calculator className="h-4 w-4" /> },
-  { id: 'automation', name: 'Automation', icon: <Workflow className="h-4 w-4" /> },
-  { id: 'development', name: 'Development', icon: <Code2 className="h-4 w-4" /> }, // NEW
-  { id: 'consulting', name: 'Consulting', icon: <Briefcase className="h-4 w-4" /> },
-];
-
 const allServices = [
   // Analytics & BI Services
   {
@@ -527,7 +526,6 @@ const processSteps = [
   },
 ];
 
-
 const industries = [
   {
     name: 'Manufacturing',
@@ -566,7 +564,6 @@ const industries = [
     color: 'from-purple-400 via-indigo-300 to-blue-400',
   },
 ];
-
 
 const whyChooseUs = [
   {
@@ -674,76 +671,56 @@ const ServicesPage = () => {
           </div>
 
           {/* Featured Services */}
-      <section className="pt-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="grid md:grid-cols-3 gap-8">
-            {featuredServices.map((service, index) => (
-              <div
-                key={index}
-                className="group relative overflow-hidden rounded-3xl p-8 bg-background border border-border hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 cursor-pointer"
-                onMouseEnter={() => setHoveredService(index)}
-                onMouseLeave={() => setHoveredService(null)}
-              >
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
-                />
-                <div className="relative mb-6 inline-flex">
-                  {service.image ? (
-                    <div className={`p-0.5 rounded-2xl bg-gradient-to-br ${service.gradient}`}>
-                      <Image
-                        src={service.image.src}
-                        alt={service.image.alt}
-                        width={60}
-                        height={100}
-                        objectFit="contain"
-                        className="rounded-2xl"
-                      />
-                    </div>
-                  ) : (
+          <section className="pt-20">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+              <div className="grid md:grid-cols-3 gap-8">
+                {featuredServices.map((service, index) => (
+                  <div
+                    key={index}
+                    className="group relative overflow-hidden rounded-3xl p-8 bg-background border border-border hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 cursor-pointer"
+                    onMouseEnter={() => setHoveredService(index)}
+                    onMouseLeave={() => setHoveredService(null)}
+                  >
                     <div
-                      className={`p-4 rounded-2xl bg-gradient-to-br ${service.gradient} text-white transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500`}
-                    >
-                      {service.icon}
+                      className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+                    />
+                    <div className="relative mb-6 inline-flex">
+                      {service.image ? (
+                        <div className={`p-0.5 rounded-2xl bg-gradient-to-br ${service.gradient}`}>
+                          <Image
+                            src={service.image.src}
+                            alt={service.image.alt}
+                            width={60}
+                            height={100}
+                            objectFit="contain"
+                            className="rounded-2xl"
+                          />
+                        </div>
+                      ) : (
+                        <div
+                          className={`p-4 rounded-2xl bg-gradient-to-br ${service.gradient} text-white transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500`}
+                        >
+                          {service.icon}
+                        </div>
+                      )}
+                      {hoveredService === index && (
+                        <div className="absolute inset-0 blur-xl bg-gradient-to-br from-primary/50 to-secondary/50 animate-pulse" />
+                      )}
                     </div>
-                  )}
-                  {hoveredService === index && (
-                    <div className="absolute inset-0 blur-xl bg-gradient-to-br from-primary/50 to-secondary/50 animate-pulse" />
-                  )}
-                </div>
-                <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">{service.title}</h3>
-                <p className="text-muted-foreground mb-6">{service.description}</p>
-                <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full text-sm font-medium text-primary">
-                  <Award className="h-4 w-4" />
-                  {service.stats}
-                </div>
-                <div className="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-300">
-                  <ArrowRight className="h-6 w-6 text-primary" />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-          {/* Stats Grid */}
-          {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="group relative bg-background/80 backdrop-blur-sm rounded-2xl p-6 border border-border shadow-soft hover:shadow-accent transition-all duration-500 animate-in slide-in-from-bottom"
-                style={{ animationDelay: `${(index + 4) * 100}ms` }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="relative">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
-                    {stat.icon}
+                    <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">{service.title}</h3>
+                    <p className="text-muted-foreground mb-6">{service.description}</p>
+                    <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full text-sm font-medium text-primary">
+                      <Award className="h-4 w-4" />
+                      {service.stats}
+                    </div>
+                    <div className="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-300">
+                      <ArrowRight className="h-6 w-6 text-primary" />
+                    </div>
                   </div>
-                  <div className="text-4xl font-bold text-primary mb-2 group-hover:scale-105 transition-transform">{stat.value}</div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
-                </div>
+                ))}
               </div>
-            ))}
-          </div> */}
+            </div>
+          </section>
         </div>
         <style jsx>{`
           @keyframes gradient {
@@ -762,160 +739,41 @@ const ServicesPage = () => {
         `}</style>
       </section>
 
-      
+      {/* Services */}
+      <ZohoShowcase />
+      <TallyServicesSection />
+      <PowerBIShowcase />
+      <ConsultingTrainingPremium />
+      <DevIntegrationCloudFuturistic />
 
-      {/* Service Categories */}
-      {/* <section className="py-20 scroll-mt-10" id="services-section">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="text-center mb-12">
-            <span className="text-sm font-semibold text-primary uppercase tracking-wider">Our Expertise</span>
-            <h2 className="text-4xl sm:text-5xl font-bold text-foreground mt-4 mb-6">Complete Service Portfolio</h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Explore our comprehensive range of services designed to accelerate your digital transformation
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-3 justify-center mb-16">
-            {categories.map(cat => (
-              <button
-                key={cat.id}
-                onClick={() => setActiveCategory(cat.id)}
-                className={`group relative px-6 py-3 rounded-full font-medium transition-all duration-300 overflow-hidden ${
-                  activeCategory === cat.id
-                    ? 'text-white shadow-accent'
-                    : 'bg-background text-muted-foreground hover:text-primary border border-border hover:border-primary/50'
-                }`}
-              >
-                {activeCategory === cat.id && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary animate-gradient" />
-                )}
-                <span className="relative z-10 flex items-center gap-2">
-                  {cat.icon}
-                  {cat.name}
-                </span>
-              </button>
-            ))}
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredServices.map((service, index) => (
-              <div
-                key={service.id}
-                className="group relative bg-background rounded-2xl overflow-hidden border border-border hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-accent animate-in fade-in slide-in-from-bottom"
-                style={{ animationDelay: `${index * 50}ms` }}
-              >
-                <div className="relative h-48 overflow-hidden">
-                  {service.image ? (
-                    <Image
-                      src={service.image.src}
-                      alt={service.image.alt}
-                      layout="fill"
-                      objectFit="contain"
-                      className="transition-transform duration-500 group-hover:scale-110"
-                    />
-                  ) : (
-                    <>
-                      <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-90`} />
-                      <div className="absolute inset-0 flex items-center justify-center text-white transform group-hover:scale-110 transition-transform duration-500">
-                        <div className="text-center">
-                          {service.icon}
-                          <div className="mt-4 text-sm font-semibold uppercase tracking-wider">{service.category}</div>
-                        </div>
-                      </div>
-                    </>
-                  )}
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">{service.title}</h3>
-                  <p className="text-muted-foreground mb-4 line-clamp-2">{service.shortDesc}</p>
-                  <div className="space-y-2 mb-6">
-                    {service.features.slice(0, 3).map((feature, idx) => (
-                      <div key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span>{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    <div className="inline-flex items-center gap-1 bg-primary/10 text-primary px-3 py-1.5 rounded-lg text-xs font-medium">
-                      <DollarSign className="h-3 w-3" />
-                      {service.pricing}
-                    </div>
-                    <div className="inline-flex items-center gap-1 bg-secondary/10 text-secondary px-3 py-1.5 rounded-lg text-xs font-medium">
-                      <Clock className="h-3 w-3" />
-                      {service.timeline}
-                    </div>
-                  </div>
-                  <Button className="w-full group/btn relative overflow-hidden" variant="outline">
-                    <span className="relative z-10 flex items-center justify-center">
-                      {service.cta}
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </span>
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-r ${service.gradient} opacity-0 group-hover/btn:opacity-100 transition-opacity`}
-                    />
-                  </Button>
-                </div>
-                <div className="absolute inset-0 bg-background/95 backdrop-blur-sm p-6 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-full group-hover:translate-y-0 overflow-y-auto custom-scrollbar">
-                  <div className="h-full flex flex-col">
-                    <h4 className="text-lg font-bold text-foreground mb-3">{service.title}</h4>
-                    <p className="text-sm text-muted-foreground mb-4">{service.fullDesc}</p>
-                    <div className="mb-4">
-                      <h5 className="text-sm font-semibold text-foreground mb-2">All Features:</h5>
-                      <div className="grid grid-cols-1 gap-1.5">
-                        {service.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-start gap-2 text-xs text-muted-foreground">
-                            <CheckCircle2 className="h-3 w-3 text-primary flex-shrink-0 mt-0.5" />
-                            <span>{feature}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="mb-4">
-                      <h5 className="text-sm font-semibold text-foreground mb-2">Deliverables:</h5>
-                      <div className="flex flex-wrap gap-1.5">
-                        {service.deliverables.map((item, idx) => (
-                          <span key={idx} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
-                            {item}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="mt-auto">
-                      <Button className={`w-full mb-2 bg-gradient-to-r ${service.gradient} text-white border-0 hover:opacity-90`}>
-                        Get Started Now
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <style jsx>{`
-            .custom-scrollbar::-webkit-scrollbar {
-              width: 4px;
-            }
+      {/* <CategoryServicesModel /> */}
+      {/* old with hover details on card caterogry service model */}
 
-            .custom-scrollbar::-webkit-scrollbar-track {
-              background: transparent;
-            }
+      {/* <ServicesSection /> */}
 
-            .custom-scrollbar::-webkit-scrollbar-thumb {
-              background: rgba(59, 130, 246, 0.3);
-              border-radius: 9999px;
-            }
+      {/* <DesignTwo />  */}
+      {/* Same as design 4- design 2 */}
 
-            .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-              background: rgba(59, 130, 246, 0.5);
-            }
+      {/* <DesignThree />  not good */}
+      {/* <DesignFour />  */}
 
-            .custom-scrollbar {
-              scrollbar-width: thin;
-              scrollbar-color: rgba(59, 130, 246, 0.3) transparent;
-            }
-          `}</style>
-        </div>
-      </section> */}
-      <NetflixServicesSection />
+      {/* <DesignFive />   */}
+      {/*  design five timeline */}
+
+      {/* <DesignSix />\ */}
+
+      {/* <DesignSeven />   */}
+      {/* background image with carosuel black screen design seven */}
+
+      {/* <DesignEight /> */}
+      {/* alll services with simple 3 column cards layout desgin eight */}
+
+      {/* <DesignNine /> */}
+      {/* left side content and right side image design nine */}
+
+      {/* <DesignTen /> */}
+
+      {/* <NetflixServicesSection /> */}
 
       {/* Process Timeline */}
       <section className="py-20 bg-background">
@@ -968,10 +826,8 @@ const ServicesPage = () => {
           </div>
         </div>
       </section>
-
       {/* Technologies & Tools */}
       <TechnologiesSection />
-
       {/* Industries We Serve */}
       <section className="py-20 bg-gradient-to-br from-background via-muted/30 to-background relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
@@ -1036,7 +892,6 @@ const ServicesPage = () => {
           </div>
         </div>
       </section>
-
       {/* Why Choose Us */}
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
@@ -1067,7 +922,6 @@ const ServicesPage = () => {
           </div>
         </div>
       </section>
-
       {/* Final CTA */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
@@ -1088,15 +942,17 @@ const ServicesPage = () => {
                   business.
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="bg-white text-primary hover:bg-white/90 shadow-xl shadow-accent hover:shadow-hover group cursor-pointer"
-                    aria-label="Schedule a free consultation"
-                  >
-                    Schedule Free Consultation
-                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </Button>
+                  <Link href="/contact">
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="bg-white text-primary hover:bg-white/90 shadow-xl shadow-accent hover:shadow-hover group cursor-pointer"
+                      aria-label="Schedule a free consultation"
+                    >
+                      Schedule Free Consultation
+                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
                   <Button
                     size="lg"
                     className="bg-transparent border-2 border-white text-white shadow-accent hover:shadow-hover hover:bg-white hover:text-primary"

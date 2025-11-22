@@ -1,205 +1,37 @@
 'use client';
-import { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import {
-  ArrowRight,
-  Target,
-  Award,
-  Users,
-  Lightbulb,
-  Shield,
-  Zap,
-  CheckCircle2,
-  ChevronLeft,
-  ChevronRight,
-  Linkedin,
-  Calendar,
-  MapPin,
-  Globe,
-  TrendingUp,
-} from 'lucide-react';
+import { coreValuesData, milestones, officeLocations, stats, team } from '@/data/about-data';
+import { ArrowRight, Award, Calendar, ChevronLeft, ChevronRight, Linkedin, MapPin, Users, Zap } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
+
+export const differentiators = [
+  {
+    icon: <Award className="h-8 w-8" />,
+    title: 'Industry expertise',
+    description: 'Our team brings proven experience in technology consulting, delivering strategic solutions across diverse sectors',
+    image: { src: '/assets/about/industry-expertise.avif', alt: 'Industry Expertise' },
+    stats: { value: '3+', label: 'Years Excellence' },
+  },
+  {
+    icon: <Users className="h-8 w-8" />,
+    title: 'Client-centric approach',
+    description: 'Tailored solutions designed around your business goals—your success drives every engagement and partnership',
+    image: { src: '/assets/about/client-centric.avif', alt: 'Client Centric' },
+    stats: { value: '24+', label: 'Expert Team' },
+  },
+  {
+    icon: <Zap className="h-8 w-8" />,
+    title: 'Innovation leadership',
+    description: 'Cutting-edge technologies and modern methodologies that deliver measurable business impact and sustainable growth',
+    image: { src: '/assets/about/innovation-leadership.avif', alt: 'Innovation Leadership' },
+    stats: { value: '3', label: 'Office Locations' },
+  },
+];
 
 const AboutPage = () => {
   const [currentMilestone, setCurrentMilestone] = useState(0);
-
-  // Company Stats
-  const stats = [
-    { value: '2021', label: 'Established' },
-    { value: '24+', label: 'Team members' },
-    { value: '3', label: 'Office locations' },
-    { value: '100%', label: 'Client dedication' },
-  ];
-
-  // Office Locations
-  const officeLocations = [
-    {
-      city: 'Bangalore',
-      state: 'Karnataka (Headquarters)',
-      gradient: 'bg-primary/10',
-      iconColor: 'text-primary',
-    },
-    {
-      city: 'Mumbai',
-      state: 'Maharashtra',
-      gradient: 'bg-secondary/10',
-      iconColor: 'text-secondary',
-    },
-    {
-      city: 'Kurnool',
-      state: 'Andhra Pradesh',
-      gradient: 'bg-accent/10',
-      iconColor: 'text-accent',
-    },
-  ];
-
-  // Core Values
-  const coreValuesData = [
-    {
-      icon: Shield,
-      title: 'Integrity',
-      description:
-        'We conduct business with honesty, transparency, and ethical principles. Our commitment to integrity builds lasting trust with clients and stakeholders.',
-      gradient: 'from-primary/20 to-primary/10',
-      iconColor: 'text-primary',
-    },
-    {
-      icon: Lightbulb,
-      title: 'Innovation',
-      description:
-        'We embrace creativity and continuous improvement, staying ahead of industry trends to deliver cutting-edge solutions that drive meaningful results.',
-      gradient: 'from-secondary/20 to-secondary/10',
-      iconColor: 'text-secondary',
-    },
-    {
-      icon: Award,
-      title: 'Excellence',
-      description:
-        'We pursue the highest standards in every engagement, delivering quality outcomes that exceed expectations and create lasting value.',
-      gradient: 'from-accent/20 to-accent/10',
-      iconColor: 'text-accent',
-    },
-    {
-      icon: Users,
-      title: 'Collaboration',
-      description:
-        'We believe in the power of partnership, working closely with clients and teams to co-create solutions that address complex challenges.',
-      gradient: 'from-primary/20 to-secondary/10',
-      iconColor: 'text-primary',
-    },
-    {
-      icon: CheckCircle2,
-      title: 'Accountability',
-      description:
-        'We take ownership of our commitments, delivering on promises and taking responsibility for outcomes at every stage of engagement.',
-      gradient: 'from-secondary/20 to-accent/10',
-      iconColor: 'text-secondary',
-    },
-    {
-      icon: Target,
-      title: 'Customer Focus',
-      description:
-        'Client success drives everything we do. We listen deeply, understand unique needs, and deliver solutions that create measurable business impact.',
-      gradient: 'from-accent/20 to-primary/10',
-      iconColor: 'text-accent',
-    },
-  ];
-
-  type TeamMember = {
-  name: string;
-  role: string;
-  image: {
-    src: string;
-    alt: string;
-  };
-  bio: string;
-  linkedin?: string; 
-};
-
-  //   Leadership Team
-  const team: TeamMember[] = [
-    {
-      name: 'Dellibabu Nallabothu',
-      role: 'Founder & CEO',
-      image: { src: '/assets/about/team-ceo.jpg', alt: 'Dellibabu Nallabothu' },
-      bio: 'Visionary entrepreneur with passion for innovation and digital transformation',
-      // linkedin: 'https://www.linkedin.com/in/dellibabun/',
-    },
-    {
-      name: 'Team Member',
-      role: 'Chief Technology Officer',
-      image: { src: '/assets/about/team-cto.avif', alt: 'CTO Name' },
-      bio: 'Technology leader specializing in cloud solutions and enterprise architecture',
-    },
-    {
-      name: 'Team Member',
-      role: 'Head of Operations',
-      image: { src: '/assets/about/team-ho.avif', alt: 'Operations Head' },
-      bio: 'Operations expert ensuring excellence in project delivery and client success',
-    },
-    {
-      name: 'Team Member',
-      role: 'Project Manager',
-      image: { src: '/assets/about/team-pm.avif', alt: 'Project Manager' },
-      bio: 'Experienced PM driving successful implementation of complex technology projects',
-    },
-  ];
-
-  // Differentiators
-  const differentiators = [
-    {
-      icon: <Award className="h-8 w-8" />,
-      title: 'Industry expertise',
-      description: 'Our team brings proven experience in technology consulting, delivering strategic solutions across diverse sectors',
-      image: { src: '/assets/about/industry-expertise.avif', alt: 'Industry Expertise' },
-      stats: { value: '3+', label: 'Years Excellence' },
-    },
-    {
-      icon: <Users className="h-8 w-8" />,
-      title: 'Client-centric approach',
-      description: 'Tailored solutions designed around your business goals—your success drives every engagement and partnership',
-      image: { src: '/assets/about/client-centric.avif', alt: 'Client Centric' },
-      stats: { value: '24+', label: 'Expert Team' },
-    },
-    {
-      icon: <Zap className="h-8 w-8" />,
-      title: 'Innovation leadership',
-      description: 'Cutting-edge technologies and modern methodologies that deliver measurable business impact and sustainable growth',
-      image: { src: '/assets/about/innovation-leadership.avif', alt: 'Innovation Leadership' },
-      stats: { value: '3', label: 'Office Locations' },
-    },
-  ];
-
-  // Company Milestones
-  const milestones = [
-    {
-      year: '2021',
-      title: 'Company founded',
-      description:
-        'NPK Business Solutions established by Dellibabu Nallabothu with a vision to transform business consulting and technology solutions',
-      image: { src: '/assets/about/milestone-founded.avif', alt: 'Company Founded' },
-    },
-    {
-      year: '2022',
-      title: 'Multi-city expansion',
-      description: 'Expanded operations with branches in Mumbai, Bangalore, and Kurnool, establishing regional presence across India',
-      image: { src: '/assets/about/milestone-expansion.avif', alt: 'Multi-City Expansion' },
-    },
-    {
-      year: '2023',
-      title: 'Team growth milestone',
-      description: 'Grew to a diverse team of 24+ professionals including Project Managers, Developers, Support Staff, and Managers',
-      image: { src: '/assets/about/milestone-team.avif', alt: 'Team Growth' },
-    },
-    {
-      year: '2024',
-      title: 'Client success stories',
-      description:
-        'Delivered transformative digital solutions across multiple industries, building long-term partnerships based on trust and results',
-      image: { src: '/assets/about/milestone-success.avif', alt: 'Client Success' },
-    },
-  ];
 
   const nextMilestone = () => {
     setCurrentMilestone(prev => (prev + 1) % milestones.length);
@@ -230,13 +62,17 @@ const AboutPage = () => {
                 value through innovation, expertise, and commitment to your success.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button size="lg" className="shadow-accent group hover:shadow-hover">
-                  Get started
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-                <Button size="lg" variant="outline">
-                  Contact us
-                </Button>
+                <Link href="/services">
+                  <Button size="lg" className="shadow-accent group hover:shadow-hover">
+                    Get started
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+                <Link href="/contact">
+                  <Button size="lg" variant="outline">
+                    Contact us
+                  </Button>
+                </Link>
               </div>
             </div>
             <div className="relative">
@@ -380,23 +216,7 @@ const AboutPage = () => {
 
               {/* Loaction - Mobile View */}
               <div className="md:hidden space-y-6">
-                {[
-                  {
-                    city: 'Bangalore',
-                    state: 'Karnataka (Headquarters)',
-                    year: '2021 - Founded',
-                    color: 'primary',
-                    colorClass: 'bg-primary text-primary',
-                  },
-                  {
-                    city: 'Mumbai',
-                    state: 'Maharashtra',
-                    year: '2022 - Expansion',
-                    color: 'secondary',
-                    colorClass: 'bg-secondary text-secondary',
-                  },
-                  { city: 'Kurnool', state: 'Andhra Pradesh', year: '2023 - Growth', color: 'accent', colorClass: 'bg-accent text-accent' },
-                ].map((location, index) => (
+                {officeLocations.map((location, index) => (
                   <div key={index} className="flex gap-4">
                     <div className="flex flex-col items-center">
                       <div className={`w-3 h-3 rounded-full ${location.colorClass.split(' ')[0]}`} />
@@ -529,14 +349,16 @@ const AboutPage = () => {
                   <h3 className="text-xl font-bold text-foreground mb-1">{member.name}</h3>
                   <div className="text-sm text-primary font-medium mb-3">{member.role}</div>
                   <p className="text-sm text-muted-foreground mb-4">{member.bio}</p>
-                  {member?.linkedin && (<Link
-                    href={member.linkedin}
-                    className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Linkedin className="h-5 w-5" />
-                  </Link>)}
+                  {member?.linkedin && (
+                    <Link
+                      href={member.linkedin}
+                      className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Linkedin className="h-5 w-5" />
+                    </Link>
+                  )}
                 </div>
               </div>
             ))}
@@ -624,12 +446,16 @@ const AboutPage = () => {
                 Let&apos;s discuss how our strategic expertise can transform your organization and drive sustainable growth
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
-                <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90 shadow-medium">
-                  Start a conversation
-                </Button>
-                <Button size="lg" variant="default" className="border-white text-white hover:shadow-hover shadow-accent">
-                  View our services
-                </Button>
+                <Link href="/contact">
+                  <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90 shadow-medium">
+                    Start a conversation
+                  </Button>
+                </Link>
+                <Link href="/services">
+                  <Button size="lg" variant="default" className="border-white text-white hover:shadow-hover shadow-accent">
+                    View our services
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

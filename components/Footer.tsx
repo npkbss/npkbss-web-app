@@ -104,13 +104,15 @@ const Footer = () => {
                 </div>
                 <span>npk@npkbss.in</span>
               </a>
-              <div className="flex items-start space-x-3 text-sm text-slate-300">
-                <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center mt-0.5">
+              <div
+                className="flex items-start space-x-3 text-sm text-slate-300 
+                bg-white/10 p-2"
+              >
+                <div className="w-10 h-10 p-2 bg-white/5 flex items-center justify-center">
                   <MapPin className="h-4 w-4" />
                 </div>
                 <div>
-                  <p>Bangalore, Karnataka</p>
-                  <p>India - 560001</p>
+                  <p>1st Floor, 379/10, 3rdB Main, 27th Cross, Raghavendra Layout, Hulimavu, BG Road, Bangalore-560076</p>
                 </div>
               </div>
             </div>

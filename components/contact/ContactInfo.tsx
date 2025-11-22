@@ -1,6 +1,6 @@
 'use client';
 
-import { contactInfo } from './data';
+import { contactInfo } from '@/data/contact-data';
 
 export default function ContactInfo() {
   return (
@@ -20,6 +20,12 @@ export default function ContactInfo() {
             </div>
           </div>
         ))}
+      </div>
+      <div className='mt-4'>
+        <p className='p-4'>
+          We're here to answer your questions, discuss your business needs, and help you find the perfect solution. Get in touch with us
+          today using the information below, or fill out the contact form, and we'll get back to you as soon as possible.
+        </p>
       </div>
     </div>
   );

@@ -32,9 +32,15 @@ const Header = () => {
             >
               Home
             </Link>
+             <Link
+              href="/services"
+              className="px-4 py-2 rounded-lg text-foreground hover:text-primary hover:bg-muted/50 transition-all duration-200 font-medium"
+            >
+              Services
+            </Link>
 
             {/* Services Dropdown */}
-            <div className="relative group">
+            {/* <div className="relative group">
               <button className="flex items-center px-4 py-2 rounded-lg text-foreground hover:text-primary hover:bg-muted/50 transition-all duration-200 font-medium">
                 Services
                 <ChevronDown className="ml-1 h-4 w-4 group-hover:rotate-180 transition-transform duration-200" />
@@ -57,7 +63,7 @@ const Header = () => {
                   </Link>
                 ))}
               </div>
-            </div>
+            </div> */}
 
             {/* Products */}
             <Link

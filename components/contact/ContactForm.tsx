@@ -1,15 +1,14 @@
 'use client';
 
+import { ArrowRight, Briefcase, CheckCircle2, Mail, MapPin, Phone, Users } from 'lucide-react';
 import { useState } from 'react';
-import { Users, Briefcase, Mail, Phone, MapPin, Layers, MessageCircle, ArrowRight, CheckCircle2 } from 'lucide-react';
-
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { zohoProducts } from '@/data/contact-data';
 
-import { zohoProducts } from '@/components/contact/data';
 
 export default function ContactForm() {
   const [loading, setLoading] = useState(false);
@@ -102,7 +101,7 @@ export default function ContactForm() {
           />
 
           <Field
-            label="Business Name"
+            label="Company Name"
             name="business"
             autoComplete="organization"
             icon={<Briefcase />}
@@ -133,14 +132,14 @@ export default function ContactForm() {
           />
         </div>
 
-        <Field
+        {/* <Field
           label="City"
           name="city"
           autoComplete="address-level2"
           icon={<MapPin />}
           value={form.city}
           onChange={(v: string) => update('city', v)}
-        />
+        /> */}
 
         {/* Products */}
         <div>
@@ -150,7 +149,7 @@ export default function ContactForm() {
             {zohoProducts.map(p => (
               <label
                 key={p}
-                className="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-black/20 hover:bg-white/20 hover:border-cyan-300/50 cursor-pointer transition-all"
+                className="flex items-center gap-3 p-2 rounded-xl bg-white/10 border border-black/20 hover:bg-white/20 hover:border-cyan-300/50 cursor-pointer transition-all"
               >
                 <Checkbox checked={form.zohoProducts.includes(p)} onCheckedChange={() => toggleProduct(p)} />
                 {p}
