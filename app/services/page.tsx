@@ -740,11 +740,13 @@ const ServicesPage = () => {
       </section>
 
       {/* Services */}
-      <ZohoShowcase />
-      <TallyServicesSection />
-      <PowerBIShowcase />
-      <ConsultingTrainingPremium />
-      <DevIntegrationCloudFuturistic />
+      <div id="services-section" className="scroll-mt-20">
+        <ZohoShowcase />
+        <TallyServicesSection />
+        <PowerBIShowcase />
+        <ConsultingTrainingPremium />
+        <DevIntegrationCloudFuturistic />
+      </div>
 
       {/* <CategoryServicesModel /> */}
       {/* old with hover details on card caterogry service model */}
