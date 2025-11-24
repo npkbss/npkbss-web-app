@@ -453,12 +453,12 @@ const allServices = [
 
 const featuredServices = [
   {
-    title: 'Power BI Analytics',
-    icon: <BarChart3 className="h-12 w-12" />,
-    description: 'Transform your data into actionable insights',
-    stats: '50+ Dashboards Built',
-    gradient: 'from-yellow-400 to-orange-600',
-    image: { src: '/assets/services/power-bi-logo.avif', alt: 'Power BI Analytics' },
+    title: 'Zoho Integration',
+    icon: <Workflow className="h-12 w-12" />,
+    description: 'Connect and automate your business',
+    stats: '200+ Integrations',
+    gradient: 'from-blue-500 to-cyan-500',
+    image: { src: '/assets/services/zoho-logo.avif', alt: 'Zoho Integration' },
   },
   {
     title: 'Tally Solutions',
@@ -469,12 +469,12 @@ const featuredServices = [
     image: { src: '/assets/services/tally-logo.avif', alt: 'Tally Solutions' },
   },
   {
-    title: 'Zoho Integration',
-    icon: <Workflow className="h-12 w-12" />,
-    description: 'Connect and automate your business',
-    stats: '200+ Integrations',
-    gradient: 'from-blue-500 to-cyan-500',
-    image: { src: '/assets/services/zoho-logo.avif', alt: 'Zoho Integration' },
+    title: 'Power BI Analytics',
+    icon: <BarChart3 className="h-12 w-12" />,
+    description: 'Transform your data into actionable insights',
+    stats: '50+ Dashboards Built',
+    gradient: 'from-yellow-400 to-orange-600',
+    image: { src: '/assets/services/power-bi-logo.avif', alt: 'Power BI Analytics' },
   },
 ];
 
