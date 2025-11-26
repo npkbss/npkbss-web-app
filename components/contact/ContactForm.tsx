@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowRight, Users, Briefcase, Mail, Phone, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -9,22 +9,33 @@ import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { allServices } from '@/data/contact';
 
-
 export default function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
-
+  const [turnstileToken, setTurnstileToken] = useState<string>('');
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const [form, setForm] = useState({
     fullName: '',
-    business: '',
+    businessName: '',
     email: '',
     phone: '',
     services: [] as string[],
     requirements: '',
     agree: false,
   });
+
+  // Turnstile callback
+  useEffect(() => {
+    (window as any).onTurnstileSuccess = function (token: string) {
+      console.log('TOKEN:', token);
+      setTurnstileToken(token);
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log('Turnstile:', (window as any).turnstile);
+  }, []);
 
   const update = (key: string, value: string | boolean | string[]) => {
     setForm(prev => ({ ...prev, [key]: value }));
@@ -36,6 +47,7 @@ export default function ContactForm() {
 
   const submitForm = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Site key:', process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
 
     const validation: Record<string, string> = {};
 
@@ -44,6 +56,11 @@ export default function ContactForm() {
     if (!form.services.length) validation.services = 'Select at least one service';
     if (!form.requirements) validation.requirements = 'Tell us what you need';
     if (!form.agree) validation.agree = 'You must agree before submitting';
+
+    if (!turnstileToken) {
+      alert("Please verify you're not a bot.");
+      return;
+    }
 
     if (Object.keys(validation).length > 0) {
       setErrors(validation);
@@ -57,7 +74,10 @@ export default function ContactForm() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          ...form,
+          turnstileToken,
+        }),
       });
 
       const data = await res.json();
@@ -66,7 +86,7 @@ export default function ContactForm() {
         setOpen(true);
         setForm({
           fullName: '',
-          business: '',
+          businessName: '',
           email: '',
           phone: '',
           services: [],
@@ -85,7 +105,8 @@ export default function ContactForm() {
     <>
       <form
         onSubmit={submitForm}
-        className="bg-white/10 backdrop-blur-xl rounded-3xl p-6 md:p-8 shadow-xl border border-white/20 space-y-6"
+        className="bg-white/10 backdrop-blur-xl rounded-3xl p-6 md:p-8 shadow-xl border border-white/20 space-y-6 scroll-mt-20"
+        id="contact-form"
       >
         <h2 className="text-3xl font-semibold text-black">Book Your Free Consultation</h2>
 
@@ -99,7 +120,7 @@ export default function ContactForm() {
             onChange={(v: string) => update('fullName', v)}
           />
 
-          <Field label="Company Name" value={form.business} icon={<Briefcase />} onChange={(v: string) => update('business', v)} />
+          <Field label="Company Name" value={form.businessName} icon={<Briefcase />} onChange={(v: string) => update('businessName', v)} />
 
           <Field
             label="Email Address"
@@ -155,6 +176,17 @@ export default function ContactForm() {
         </label>
         {errors.agree && <p className="text-red-600 text-xs">{errors.agree}</p>}
 
+        {/* <div
+          dangerouslySetInnerHTML={{
+            __html: `<div 
+      class="cf-turnstile"
+      data-sitekey="${process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}"
+      data-callback="onTurnstileSuccess"
+    ></div>`,
+          }}
+        /> */}
+        <div className="cf-turnstile" data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY} data-callback="onTurnstileSuccess"></div>
+
         <Button
           type="submit"
           disabled={loading}
@@ -184,7 +216,6 @@ export default function ContactForm() {
     </>
   );
 }
-
 
 function Field({
   label,
