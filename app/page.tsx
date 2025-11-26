@@ -201,7 +201,7 @@ const HomePage = () => {
 
           <div className="text-center mt-12">
             <Link href="/services">
-              <Button size="lg" variant="outline" className="shadow-accent hover:shadow-hover cursor-pointer">
+              <Button size="lg" variant="default" className="shadow-accent hover:shadow-hover cursor-pointer">
                 View All Services
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>

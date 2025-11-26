@@ -1,6 +1,6 @@
 'use client';
 
-import { contactInfo } from '@/data/contact-data';
+import { contactInfo } from "@/data/contact";
 
 export default function ContactInfo() {
   return (

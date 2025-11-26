@@ -1,7 +1,7 @@
 'use client';
 
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
-import { faqList } from '@/data/contact-data';
+import { faqList } from '@/data/contact';
 // import { MessageCircle } from 'lucide-react';
 
 export default function FAQ() {
