@@ -87,7 +87,7 @@ export const featuredServices: FeaturedService[] = [
     description: 'Zoho One, Books, CRM, Analytics and Flow — fully implemented and customized to your business workflows.',
     link: '/services#platform-solutions',
     image: {
-      src: '/assets/services/zoho-one.png',
+      src: '/assets/services/zoho-logo.avif',
       alt: 'Zoho Ecosystem',
     },
     highlight: true,
@@ -111,7 +111,7 @@ export const featuredServices: FeaturedService[] = [
     description: 'Interactive dashboards from Tally, Zoho, Excel and ERPs — build KPIs that give leadership real-time visibility.',
     link: '/services#platform-solutions',
     image: {
-      src: '/assets/services/powerbi.png',
+      src: '/assets/services/power-bi.jpg',
       alt: 'Power BI Analytics',
     },
     highlight: false,
@@ -123,7 +123,7 @@ export const featuredServices: FeaturedService[] = [
     description: 'Cloud-based ERP for finance, operations and CRM — ideal for scaling companies with complex processes.',
     link: '/services#platform-solutions',
     image: {
-      src: '/assets/services/oracle-netsuite.png',
+      src: '/assets/services/netsuite.png',
       alt: 'Netsuite ERP',
     },
     highlight: true,
@@ -152,6 +152,15 @@ export const featuredServices: FeaturedService[] = [
     },
     highlight: false,
   },
+    {
+    id: 'custom-applications',
+    category: 'Development & Integration',
+    title: 'Custom Applications',
+    description: 'Custom web, mobile & cloud applications built to streamline your unique business workflows and processes.',
+    link: '/services#development-integration',
+    image: { src: '/assets/services/custom-app.avif', alt: 'Custom Applications' },
+    highlight: false,
+  }
 ];
 
 export const processSteps: ProcessStep[] = [

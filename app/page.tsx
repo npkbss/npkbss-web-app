@@ -162,7 +162,7 @@ const HomePage = () => {
                         src={service.image.src}
                         alt={service.image.alt}
                         fill
-                        className="object-contain opacity-80 group-hover:scale-105 transition-transform duration-500 ease-out"
+                        className="object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
                       />
                     </div>
                   </div>
@@ -174,7 +174,7 @@ const HomePage = () => {
                         src={service.image.src}
                         alt={service.image.alt}
                         fill
-                        className="object-contain opacity-80 group-hover:scale-105 transition-transform duration-500 ease-out"
+                        className="object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
                       />
                     </div>
 
