@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
 import Header from '@/components/Header';
 import Script from 'next/script';
+import { AuthSessionProvider } from '@/components/auth-session-provider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -30,12 +31,15 @@ export default function RootLayout({
     <html lang="en">
       <head></head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Header />
-        {children}
-        <WhatsAppFloat />
-        <Footer />
-        {/* CloudFlare */}
-        <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></Script>
+        <AuthSessionProvider>
+          <Header />
+          {children}
+          <WhatsAppFloat />
+          <Footer />
+          
+          {/* CloudFlare */}
+          <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></Script>
+        </AuthSessionProvider>
       </body>
     </html>
   );
