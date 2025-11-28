@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
   try {
@@ -14,7 +17,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: false, message: 'Turnstile verification token missing' }, { status: 400 });
     }
 
-    //  Verify Turnstile with Cloudflare
+    // step1: Verify Turnstile with Cloudflare
     const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
       method: 'POST',
       body: new URLSearchParams({
@@ -30,6 +33,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: false, message: 'Failed CAPTCHA verification' }, { status: 400 });
     }
 
+    // step2: Insert into Supabase
     const { error } = await supabase.from('leads').insert([
       {
         full_name: fullName,
@@ -46,6 +50,35 @@ export async function POST(req: Request) {
     if (error) {
       console.error('DB Error:', error);
       return NextResponse.json({ success: false, message: 'Database insert failed' }, { status: 500 });
+    }
+
+    // step3: Send notification email via Resend
+    try {
+      const toEmails = (process.env.NOTIFICATIONS_TO || '')
+        .split(',')
+        .map(e => e.trim())
+        .filter(Boolean);
+
+      if (toEmails.length > 0) {
+        await resend.emails.send({
+          from: process.env.NOTIFICATIONS_FROM || 'NPK Leads <no-reply@npkbss.in>',
+          to: toEmails,
+          subject: `New Lead from ${fullName}`,
+          html: `
+            <h2>New Lead Received</h2>
+            <p><strong>Name:</strong> ${fullName}</p>
+            <p><strong>Business:</strong> ${businessName || '-'}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone || '-'}</p>
+            <p><strong>Services:</strong> ${services?.join(', ')}</p>
+            <p><strong>Requirements:</strong></p>
+            <p>${requirements.replace(/\n/g, '<br />')}</p>
+          `,
+        });
+      }
+    } catch (mailError) {
+      console.error('Email send error:', mailError);
+      // don't block the user if email fails
     }
 
     return NextResponse.json({ success: true });
