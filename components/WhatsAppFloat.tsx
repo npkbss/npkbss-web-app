@@ -5,7 +5,7 @@ import Image from "next/image";
 const WhatsAppFloat = () => {
   const whatsappNumber = "+8147707125";
   const defaultMessage =
-    "Hi! I'd like to know more about your business automation services.";
+    "Hi! I’m interested in your business automation and digital solutions. I’d like to understand the next steps.";
 
   const handleWhatsAppClick = () => {
     const url = `https://wa.me/${whatsappNumber.replace(

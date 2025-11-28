@@ -247,7 +247,7 @@ function Field({
           type={type}
           value={value}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
-          className={`pl-12 bg-white/10 border text-black rounded-xl backdrop-blur-md ${error ? 'border-red-500' : 'border-black/20'}`}
+          className={`pl-14 bg-white/10 border text-black rounded-xl backdrop-blur-md ${error ? 'border-red-500' : 'border-black/20'}`}
         />
       </div>
 
