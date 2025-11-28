@@ -104,7 +104,7 @@ export const services: ServiceItem[] = [
     title: 'Power BI Analytics',
     shortDesc: 'Dashboards, DAX, data modeling & automation.',
     fullDesc: 'Power BI consulting, custom dashboards, embedded analytics, forecasting, real-time streaming & enterprise BI.',
-    image: { src: '/assets/services/powerbi.png', alt: 'Power BI Analytics' },
+    image: { src: '/assets/services/powerbi.jpg', alt: 'Power BI Analytics' },
     features: ['DAX', 'Data Modeling', 'Live Reports', 'Mobile BI'],
     cta: 'Start Power BI Project',
   },
@@ -263,6 +263,7 @@ export const services: ServiceItem[] = [
     shortDesc: 'Team upskilling in automation tools.',
     fullDesc: 'Make.com, N8N, Zapier & Power Automate workshops for IT, operations & business teams.',
     features: ['N8N', 'Make.com', 'Zapier'],
+    image: { src: '/assets/services/automation-workshops.avif', alt: 'Automation Workshops' },
   },
 ];
 
