@@ -50,18 +50,24 @@ const Footer = () => {
           <div className="space-y-6">
             <h4 className="font-semibold text-lg text-white">Services</h4>
             <nav className="flex flex-col space-y-3">
-              {['Power BI Services', 'Tally Prime Implementation', 'Zoho Analytics', 'API Integrations', 'Accounting Services'].map(
-                service => (
-                  <Link
-                    key={service}
-                    href="/services"
-                    className="group text-sm text-slate-300 hover:text-white transition-all duration-200 flex items-center"
-                  >
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">{service}</span>
-                    <ArrowRight className="h-3 w-3 ml-1 opacity-0 group-hover:opacity-100 transition-all duration-200" />
-                  </Link>
-                )
-              )}
+              {[
+                'Zoho',
+                'Tally Prime Implementation',
+                'Power BI Services',
+                'Netsuite',
+                'Salesforce',
+                'Financial & Non-Financial MIS Services',
+                'Accounting Services',
+              ].map(service => (
+                <Link
+                  key={service}
+                  href="/services"
+                  className="group text-sm text-slate-300 hover:text-white transition-all duration-200 flex items-center"
+                >
+                  <span className="group-hover:translate-x-1 transition-transform duration-200">{service}</span>
+                  <ArrowRight className="h-3 w-3 ml-1 opacity-0 group-hover:opacity-100 transition-all duration-200" />
+                </Link>
+              ))}
             </nav>
           </div>
 
