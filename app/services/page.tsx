@@ -25,7 +25,7 @@ const Services = () => {
       <ServicesHighlights />
       <ServicesWhyChoose />
       <ServicesProcess />
-      <ServicesDeepDive />
+      {/* <ServicesDeepDive /> */}
       <ServingIndustries />
       {/* <ServicesCTA /> */}
       {/* <ServicesTestimonials /> */}
