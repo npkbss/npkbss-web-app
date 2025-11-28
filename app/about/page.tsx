@@ -1,4 +1,5 @@
 'use client';
+import CertificationBadges from '@/components/about/CertificationBadges';
 import { Button } from '@/components/ui/button';
 import { coreValuesData, milestones, officeLocations, stats, team } from '@/data/about-data';
 import { ArrowRight, Award, Calendar, ChevronLeft, ChevronRight, Linkedin, MapPin, Users, Zap } from 'lucide-react';
@@ -365,6 +366,9 @@ const AboutPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Zoho Certification Badges */}
+      <CertificationBadges />
 
       {/* Milestones */}
       <section className="py-20 bg-gray-50">
