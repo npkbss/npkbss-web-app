@@ -1,9 +1,9 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 
-const allowedAdmins = ['dilliprasadreddy0000@gmail.com', 'npk@npkbss.in', 'support@npkbss.in'];
+const allowedAdmins = ['dilliprasadreddy0000@gmail.com', 'npk@npkbss.in', 'support@npkbss.in', 'bharathganamaneni25@gmail.com'];
 
-const handler = NextAuth({
+export const authOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -12,15 +12,18 @@ const handler = NextAuth({
   ],
 
   callbacks: {
-    async signIn({ user }) {
-      return allowedAdmins.includes(user.email || '');
+    async signIn({ user }: any) {
+      return allowedAdmins.includes(user.email || 'support@npkbss.in');
     },
-    async session({ session }) {
+
+    async session({ session }: any) {
       return session;
     },
   },
 
   secret: process.env.NEXTAUTH_SECRET,
-});
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
