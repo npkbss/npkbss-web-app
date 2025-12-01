@@ -170,10 +170,25 @@ export default function ContactForm() {
           {errors.requirements && <p className="text-red-600 text-xs mt-1">{errors.requirements}</p>}
         </div>
 
-        <label className="flex items-start gap-3 text-black text-sm cursor-pointer">
+        {/* <label className="flex items-start gap-3 text-black text-sm cursor-pointer">
           <Checkbox checked={form.agree} onCheckedChange={(v: boolean | 'indeterminate') => update('agree', v === true)} />I agree to be
           contacted regarding this inquiry <span className="text-red-500">*</span>
+        </label> */}
+        <label className="flex items-start gap-3 text-black text-sm cursor-pointer leading-snug">
+          <Checkbox checked={form.agree} onCheckedChange={(v: boolean | 'indeterminate') => update('agree', v === true)} />
+          <span>
+            I agree to be contacted and acknowledge the{' '}
+            <a href="/privacy-policy" className="underline text-blue-600" target="_blank">
+              Privacy Policy
+            </a>{' '}
+            and{' '}
+            <a href="/terms-of-service" className="underline text-blue-600" target="_blank">
+              Terms of Service
+            </a>
+            .<span className="text-red-500"> *</span>
+          </span>
         </label>
+
         {errors.agree && <p className="text-red-600 text-xs">{errors.agree}</p>}
 
         {/* <div

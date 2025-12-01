@@ -130,10 +130,10 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-sm text-slate-400">© 2025 NPK Business Solutions. All rights reserved.</p>
             <div className="flex flex-wrap justify-center gap-6 text-sm">
-              <Link href="/privacy" className="text-slate-400 hover:text-white transition-all duration-200">
+              <Link href="/privacy-policy" className="text-slate-400 hover:text-white transition-all duration-200">
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="text-slate-400 hover:text-white transition-all duration-200">
+              <Link href="/terms-of-service" className="text-slate-400 hover:text-white transition-all duration-200">
                 Terms of Service
               </Link>
               <Link href="/cookies" className="text-slate-400 hover:text-white transition-all duration-200">
