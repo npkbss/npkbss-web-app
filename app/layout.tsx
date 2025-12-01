@@ -6,6 +6,7 @@ import WhatsAppFloat from '@/components/WhatsAppFloat';
 import Header from '@/components/Header';
 import Script from 'next/script';
 import { AuthSessionProvider } from '@/components/auth-session-provider';
+import { Analytics } from '@vercel/analytics/next';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -35,8 +36,9 @@ export default function RootLayout({
           <Header />
           {children}
           <WhatsAppFloat />
+          <Analytics />
           <Footer />
-          
+
           {/* CloudFlare */}
           <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></Script>
         </AuthSessionProvider>
