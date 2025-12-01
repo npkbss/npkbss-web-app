@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { signOut } from 'next-auth/react';
 import { LogoutButton } from '@/components/admin/LogoutButton';
+import Image from 'next/image';
 
 interface AdminLayoutProps {
   children: ReactNode;
@@ -24,6 +25,7 @@ export default async function AdminLayout({ children }: AdminLayoutProps) {
       <header className="border-b bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2">
+            <Image src="/assets/npk-logo.jpg" alt="NPK Logo" width={48} height={48} className="object-cover rounded-lg" />
             <span className="font-semibold text-slate-900 text-sm sm:text-base">NPK Admin</span>
             <span className="hidden sm:inline-block text-xs text-slate-500">• Internal Dashboard</span>
           </div>
