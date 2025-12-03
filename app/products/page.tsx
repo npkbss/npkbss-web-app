@@ -9,11 +9,13 @@ import {
   CheckCircle2,
   Cpu,
   Database,
+  HelpCircle,
   Layers,
   LayoutGrid,
   MessageCircle,
   Printer,
   Settings,
+  Shield,
   Star,
   TrendingUp,
   Zap,
@@ -157,6 +159,25 @@ const ProductsPage: React.FC = () => {
         </div>
       </section>
 
+      {/* Trust/Stats Section */}
+      <section className="bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {[
+              { label: 'Active Users', value: '5,000+' },
+              { label: 'Add-ins Deployed', value: '50+' },
+              { label: 'Client Retention', value: '98%' },
+              { label: 'Support Rating', value: '4.9/5' },
+            ].map((stat, i) => (
+              <div key={i} className="p-4">
+                <div className="text-2xl md:text-3xl font-bold text-slate-900 mb-1">{stat.value}</div>
+                <div className="text-sm text-slate-500 font-medium uppercase tracking-wide">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <div id="product-list-container">
         {/* Category Tabs */}
         <div className="sticky top-20 z-40 bg-white shadow-md border-b border-gray-200">
@@ -214,7 +235,84 @@ const ProductsPage: React.FC = () => {
         </section>
       </div>
 
-      <hr className="my-8 border-gray-200" />
+      <hr className="border-gray-200" />
+
+      {/* Feature Highlight Section */}
+      <section className="py-20 bg-slate-600 text-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-sm font-medium mb-6">
+                <span className="flex h-2 w-2 rounded-full bg-blue-500 mr-2"></span>
+                Seamless Integration
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+                Connect TallyPrime to the <br />
+                <span className="text-blue-400">Modern </span>Web Ecosystem
+              </h2>
+              <p className="text-slate-300 text-lg mb-8 leading-relaxed">
+                Stop working in silos. Our advanced connectors bridge the gap between your accounting software and your favorite
+                productivity tools.
+              </p>
+
+              <div className="space-y-6">
+                {[
+                  { title: 'WhatsApp Automation', desc: 'Send invoices instantly without saving numbers.' },
+                  { title: 'Cloud Backup', desc: 'Secure off-site backups to Google Drive & OneDrive.' },
+                  { title: 'Power BI Analytics', desc: 'Visualize your financial health with interactive dashboards.' },
+                ].map((item, i) => (
+                  <div key={i} className="flex">
+                    <div className="shrink-0 h-12 w-12 rounded-xl bg-slate-800 flex items-center justify-center border border-slate-700 mr-4">
+                      <div className="h-6 w-6 bg-blue-500 rounded-lg opacity-80"></div>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-white mb-1">{item.title}</h3>
+                      <p className="text-slate-400 text-sm">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="relative rounded-2xl bg-slate-800 border border-slate-700 p-2 shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
+                <div className="absolute inset-0 bg-blue-500/5 rounded-2xl **backdrop-blur-sm**"></div>
+
+                <div className="rounded-xl bg-slate-900 overflow-hidden border border-slate-800">
+                  <div className="h-8 bg-slate-800 border-b border-slate-700 flex items-center px-4 space-x-2">
+                    <div className="h-3 w-3 rounded-full bg-red-500"></div>
+                    <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
+                    <div className="h-3 w-3 rounded-full bg-green-500"></div>
+                  </div>
+
+                  <div className="relative w-full aspect-video">
+                    <Image
+                      src="/assets/products/tally-screen-highlight.png"
+                      alt="Tally Integration Mockup Dashboard"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      priority
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-xl border border-slate-100 max-w-xs">
+                <div className="flex items-center space-x-3">
+                  <div className="h-10 w-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                    <HelpCircle size={20} />
+                  </div>
+                  <div>
+                    <div className="text-xs text-slate-500 font-semibold uppercase">Security Status</div>
+                    <div className="text-slate-900 font-bold">Enterprise Grade</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Testimonials */}
       <section className="py-16 bg-white">
