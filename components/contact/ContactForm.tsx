@@ -8,12 +8,14 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { allServices } from '@/data/contact';
+import { useRouter } from 'next/navigation';
 
 export default function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState<string>('');
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const router = useRouter();
 
   const [form, setForm] = useState({
     fullName: '',
@@ -99,6 +101,11 @@ export default function ContactForm() {
     }
 
     setLoading(false);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    router.push('/services');
   };
 
   return (
@@ -223,7 +230,7 @@ export default function ContactForm() {
             <CheckCircle2 className="w-12 h-12 text-green-500" />
           </div>
 
-          <Button className="mt-6 bg-cyan-500 text-black" onClick={() => setOpen(false)}>
+          <Button className="mt-6 bg-cyan-500 text-black" onClick={handleClose}>
             Close
           </Button>
         </DialogContent>
