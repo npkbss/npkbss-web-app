@@ -1,4 +1,4 @@
-// data/about-data.ts
+// data/about.ts
 import { Award, CheckCircle2, Lightbulb, Shield, Target, Users } from 'lucide-react';
 
 export const stats = [
@@ -88,38 +88,12 @@ export type TeamMember = {
   linkedin?: string;
 };
 
-// export const team: TeamMember[] = [
-//   {
-//     name: 'Dellibabu Nallabothu',
-//     role: 'Founder & CEO',
-//     image: { src: '/assets/about/team-ceo.jpg', alt: 'Dellibabu Nallabothu' },
-//     bio: 'Visionary entrepreneur with passion for innovation and digital transformation',
-//     linkedin: 'https://www.linkedin.com/in/dellibabun/',
-//   },
-//   {
-//     name: 'Team Member',
-//     role: 'Senior Tally Devloper',
-//     image: { src: '/assets/about/team-cto.avif', alt: 'CTO Name' },
-//     bio: '15+ Year of Experiance on core Tally Cutomization.',
-//   },
-//   {
-//     name: 'GnanaSekhar GC',
-//     role: 'Net Suite Devloper',
-//     image: { src: '/assets/about/team-ho.avif', alt: 'Operations Head' },
-//     bio: '',
-//   },
-//   {
-//     name: 'Shantanu Bajpai',
-//     role: 'Digital Transformation Head',
-//     image: { src: '/assets/about/team-pm.avif', alt: 'Project Manager' },
-//     bio: 'Operations expert ensuring excellence in project delivery and client success',
-//   },
-// ];
 export const team: TeamMember[] = [
   {
     name: 'Dellibabu Nallabothu',
     role: 'Founder & CEO',
     image: { src: '/assets/about/team-ceo.jpg', alt: 'Dellibabu Nallabothu' },
+    //     bio: 'Visionary entrepreneur with passion for innovation and digital transformation',
     bio: 'A visionary entrepreneur and strategic leader dedicated to driving innovation and digital transformation. Dellibabu is passionate about building solutions that reshape industry standards and deliver measurable business value.',
     linkedin: 'https://www.linkedin.com/in/dellibabun/',
   },
@@ -127,6 +101,7 @@ export const team: TeamMember[] = [
     name: 'Ram Bachan Singh',
     role: 'Senior Tally Devloper',
     image: { src: '/assets/about/ram-bachan-singh.jpg', alt: 'CTO Name' },
+    //     bio: '15+ Year of Experiance on core Tally Cutomization.',
     bio: 'A highly experienced Senior Tally Developer with over 15 years of specialized expertise in core Tally Customization. This individual is key to architecting robust, tailored accounting and business solutions.',
   },
   {
@@ -139,7 +114,9 @@ export const team: TeamMember[] = [
     name: 'Shantanu Bajpai',
     role: 'Digital Transformation Head',
     image: { src: '/assets/about/shantanu-bajpai.jpg', alt: 'Project Manager' },
+    //     bio: 'Operations expert ensuring excellence in project delivery and client success',
     bio: 'As the Head of Digital Transformation, Shantanu is an operations expert focused on ensuring excellence in project delivery and driving client success. He strategically guides organizations through their journey of adopting cutting-edge digital technologies.',
+    linkedin: 'https://www.linkedin.com/in/shantanubajpai88/',
   },
 ];
 
