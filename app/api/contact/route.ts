@@ -61,7 +61,7 @@ export async function POST(req: Request) {
 
       if (toEmails.length > 0) {
         await resend.emails.send({
-          from: process.env.NOTIFICATIONS_FROM || 'NPK Leads <no-reply@npkbss.in>',
+          from: 'npkbusinesssolutions@gmail.com',
           to: toEmails,
           subject: `New Lead from ${fullName}`,
           html: `
