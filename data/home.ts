@@ -245,7 +245,7 @@ export const testimonials: Testimonial[] = [
     quote:
       'Power BI dashboards built by NPK transformed our month-end closing. Reports that took 3 days now refresh automatically in minutes.',
     logo: '/assets/testimonials/company1.svg',
-    image: '/assets/testimonials/rajesh-sharma.webp',
+    image: '/assets/testimonials/rajesh-sharma.avif',
   },
   {
     id: 'distribution-zoho',
@@ -254,7 +254,7 @@ export const testimonials: Testimonial[] = [
     role: 'Operations Head',
     quote: 'Zoho implementation streamlined our sales → delivery → billing workflow. We finally have visibility across all branches.',
     logo: '/assets/testimonials/company2.svg',
-    image: '/assets/testimonials/anita-desai.avif',
+    image: '/assets/testimonials/anita-desai.jpg',
   },
   {
     id: 'retail-automation',
