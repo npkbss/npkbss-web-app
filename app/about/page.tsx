@@ -1,7 +1,7 @@
 'use client';
 import CertificationBadges from '@/components/about/CertificationBadges';
 import { Button } from '@/components/ui/button';
-import { coreValuesData, milestones, officeLocations, stats, team } from '@/data/about-data';
+import { coreValuesData, milestones, officeLocations, stats, team } from '@/data/about';
 import { ArrowRight, Award, Calendar, ChevronLeft, ChevronRight, Linkedin, MapPin, Users, Zap } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -77,7 +77,7 @@ const AboutPage = () => {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-square rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 shadow-accent overflow-hidden">
+              <div className="aspect-square rounded-full bg-linear-to-br from-primary/20 to-secondary/20 shadow-accent overflow-hidden">
                 <Image src="/assets/about/about-hero.avif" priority fill className="rounded-2xl" alt="About Us Hero" />
               </div>
             </div>
@@ -99,7 +99,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Our Story Section - With Roadmap Visualization */}
+      {/* Our Story Section */}
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="max-w-4xl mx-auto">
@@ -258,7 +258,7 @@ const AboutPage = () => {
               return (
                 <div key={index} className="flex gap-6 items-start group">
                   <div
-                    className={`flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${value.gradient} flex items-center justify-center group-hover:scale-110 transition-transform`}
+                    className={`shrink-0 w-12 h-12 rounded-xl bg-linear-to-br ${value.gradient} flex items-center justify-center group-hover:scale-110 transition-transform`}
                   >
                     <IconComponent className={`h-6 w-6 ${value.iconColor}`} />
                   </div>
@@ -336,7 +336,7 @@ const AboutPage = () => {
                 key={index}
                 className="group bg-background rounded-2xl overflow-hidden shadow-soft hover:shadow-accent border border-border transition-all duration-300 hover:-translate-y-2"
               >
-                <div className="aspect-square bg-gradient-to-br from-primary/10 to-secondary/10 overflow-hidden relative">
+                <div className="aspect-square bg-linear-to-br from-primary/10 to-secondary/10 overflow-hidden relative">
                   <Image
                     src={member.image.src}
                     alt={member.image.alt}
@@ -385,7 +385,6 @@ const AboutPage = () => {
             <div className="relative">
               <div className="bg-background rounded-2xl overflow-hidden shadow-accent border border-border">
                 <div className="grid md:grid-cols-2 min-h-[310px]">
-                  {/* Text Section */}
                   <div className="p-8 md:p-12 flex flex-col justify-center h-full">
                     <div className="inline-flex items-center gap-2 text-primary font-bold text-lg mb-4">
                       <Calendar className="h-5 w-5" />
@@ -397,8 +396,7 @@ const AboutPage = () => {
                     </p>
                   </div>
 
-                  {/* Image Section */}
-                  <div className="relative bg-gradient-to-br from-primary/10 to-secondary/10">
+                  <div className="relative bg-linear-to-br from-primary/10 to-secondary/10">
                     <Image
                       src={milestones[currentMilestone].image.src}
                       alt={milestones[currentMilestone].image.alt}
@@ -410,7 +408,6 @@ const AboutPage = () => {
                 </div>
               </div>
 
-              {/* Timeline Navigation */}
               <div className="flex items-center justify-between mt-8">
                 <div className="flex gap-2">
                   {milestones.map((_, index) => (
