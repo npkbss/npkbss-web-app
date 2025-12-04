@@ -9,21 +9,27 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const HomePage = () => {
-
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-28 overflow-hidden">
+      <section className="relative py-20 xl:py-28 overflow-hidden">
         <div className="absolute inset-0 opacity-5"></div>
+
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center relative">
             {/* Left Content */}
-            <div className="space-y-8">
+            <div className="space-y-8 z-10">
               <div className="inline-block">
                 <span className="text-sm font-semibold text-primary bg-primary/10 px-4 py-2 rounded-full">{heroData.badge}</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight drop-shadow-md">{heroData.title}</h1>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-display leading-tight drop-shadow-md text-gray-800">
+                Simplifying{' '}
+                <span className="bg-linear-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                  finance and operations
+                </span>{' '}
+                with smart platforms & automation.
+              </h1>
 
               <p className="text-lg text-muted-foreground max-w-xl">{heroData.description}</p>
 
@@ -48,7 +54,7 @@ const HomePage = () => {
                     <Image
                       src={item.logo}
                       alt={item.name}
-                      width={80}
+                      width={70}
                       height={40}
                       className="object-contain grayscale hover:grayscale-0 transition"
                     />
@@ -58,15 +64,9 @@ const HomePage = () => {
             </div>
 
             {/* Right Image */}
-            <div className="relative">
+            <div className="relative w-full max-w-md mx-auto lg:max-w-none lg:w-full">
               <div className="aspect-square rounded-2xl overflow-hidden">
-                <Image
-                  src={heroData.image.src}
-                  alt={heroData.image.alt}
-                  priority
-                  fill
-                  className="object-cover rounded-2xl mix-blend-darken"
-                />
+                <Image src={heroData.image.src} alt={heroData.image.alt} priority fill className="object-cover rounded-2xl" />
               </div>
             </div>
           </div>
@@ -79,7 +79,7 @@ const HomePage = () => {
           <div className="text-center mb-16">
             <span className="text-sm font-semibold text-primary uppercase tracking-wider">What We Do</span>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-sans text-blue-900 mt-4 mb-6">
               End-to-end services designed for growing businesses
             </h2>
 
@@ -124,7 +124,7 @@ const HomePage = () => {
           <div className="text-center mb-16">
             <span className="text-sm font-semibold text-primary uppercase tracking-wider">Featured Solutions</span>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6 drop-shadow-md">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-sans text-blue-900 mt-4 mb-6 drop-shadow-md">
               Our most in-demand solutions
             </h2>
 
@@ -216,7 +216,9 @@ const HomePage = () => {
           <div className="text-center mb-16">
             <span className="text-sm font-semibold text-primary uppercase tracking-wider">How We Work</span>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6">Our process for delivering impact</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6 font-sans text-blue-900">
+              Our process for delivering impact
+            </h2>
 
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               A structured, transparent workflow that ensures smooth implementation, clean systems and real results.
@@ -250,7 +252,7 @@ const HomePage = () => {
           <div className="text-center mb-16">
             <span className="text-sm font-semibold text-primary uppercase tracking-wider">Why Choose Us</span>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-sans text-blue-900 mt-4 mb-6">
               We help businesses run smarter, cleaner and faster
             </h2>
 
@@ -296,7 +298,9 @@ const HomePage = () => {
             <div>
               <span className="text-sm font-semibold text-primary uppercase tracking-wider">Success Stories</span>
 
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6">Real results from real businesses</h2>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6 font-sans">
+                Real results from real businesses
+              </h2>
 
               <p className="text-lg text-muted-foreground">How SMEs improved efficiency, reporting and operations with our solutions.</p>
             </div>
@@ -315,7 +319,7 @@ const HomePage = () => {
 
             {/* Overlay content */}
             <div className="absolute inset-0 flex flex-col items-center justify-center px-6 z-10">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 drop-shadow">{finalCta.title}</h2>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 drop-shadow font-sans">{finalCta.title}</h2>
 
               <p className="text-lg text-white/90 max-w-2xl mx-auto mb-8 leading-relaxed">{finalCta.description}</p>
 
@@ -347,7 +351,9 @@ const HomePage = () => {
           <div className="text-center mb-16">
             <span className="text-sm font-semibold text-primary uppercase tracking-wider">FAQs</span>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6">Frequently asked questions</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground font-sans text-blue-900 mt-4 mb-6">
+              Frequently asked questions
+            </h2>
 
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Everything SMEs typically ask before getting started with finance, ERP or automation projects.

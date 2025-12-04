@@ -27,13 +27,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head></head>
+      <head>
+          <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></Script></head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <AuthSessionProvider>
           <LayoutClient>{children}</LayoutClient>
 
           {/* CloudFlare */}
-          <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></Script>
         </AuthSessionProvider>
       </body>
     </html>
