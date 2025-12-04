@@ -128,19 +128,19 @@ const ProductsPage: React.FC = () => {
             <Badge className="mb-6 bg-blue-500/20 text-blue-300 hover:bg-blue-500/30 border-blue-500/50 px-4 py-1.5 text-sm font-medium backdrop-blur-sm">
               Trusted by 500+ Businesses
             </Badge>
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight font-display">
               Enhance <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-indigo-400">TallyPrime</span> with{' '}
-              <br />
+              {/* <br /> */}
               Powerful Add-ins
             </h1>
-            <p className="text-lg md:text-xl text-slate-300 mb-8 leading-relaxed max-w-2xl">
+            <p className="text-lg md:text-xl text-slate-300 mb-8 leading-relaxed max-w-2xl font-sans">
               Streamline your accounting, inventory, compliance, and automation with our enterprise-grade add-ins. Designed to make your
               business operations seamless.
             </p>
             <div className="flex flex-wrap gap-4">
               <Button
                 size="lg"
-                className="bg-blue-600 hover:shadow-hover shadow-accent text-white border-none h-12 px-8 text-base shadow-lg cursor-pointer"
+                className="bg-blue-600 hover:shadow-hover hover:shadow-accent text-white border-none h-12 px-8 text-base shadow-lg cursor-pointer"
                 onClick={() => document.getElementById('product-list-container')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Explore Add-ins
@@ -149,7 +149,7 @@ const ProductsPage: React.FC = () => {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="h-12 px-8 text-base border-slate-600 text-white hover:bg-white/10 hover:text-white hover:border-white cursor-pointer"
+                  className="h-12 px-8 text-base border-slate-600 bg-transparent text-white hover:bg-white/10 hover:text-white hover:border-white cursor-pointer"
                 >
                   Request Demo
                 </Button>
@@ -164,8 +164,8 @@ const ProductsPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { label: 'Active Users', value: '5,000+' },
-              { label: 'Add-ins Deployed', value: '50+' },
+              { label: 'Active Users', value: '900+' },
+              { label: 'Add-ins Deployed', value: '300+' },
               { label: 'Client Retention', value: '98%' },
               { label: 'Support Rating', value: '4.9/5' },
             ].map((stat, i) => (
@@ -246,11 +246,11 @@ const ProductsPage: React.FC = () => {
                 <span className="flex h-2 w-2 rounded-full bg-blue-500 mr-2"></span>
                 Seamless Integration
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight font-sans">
                 Connect TallyPrime to the <br />
                 <span className="text-blue-400">Modern </span>Web Ecosystem
               </h2>
-              <p className="text-slate-300 text-lg mb-8 leading-relaxed">
+              <p className="text-slate-300 text-lg mb-8 leading-relaxed font-sans">
                 Stop working in silos. Our advanced connectors bridge the gap between your accounting software and your favorite
                 productivity tools.
               </p>
@@ -317,7 +317,7 @@ const ProductsPage: React.FC = () => {
       {/* Testimonials */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-800 text-center mb-12">What Our Clients Say</h2>
+          <h2 className="text-3xl font-bold text-gray-800 text-center mb-12 font-sans">What Our Clients Say</h2>
           <div className="relative bg-white p-8 rounded-2xl shadow-xl border border-slate-100 max-w-3xl mx-auto overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-2 bg-linear-to-r from-blue-500 to-indigo-600"></div>
             <div className="absolute -top-10 -left-10 w-32 h-32 bg-blue-50 rounded-full opacity-50"></div>
@@ -370,14 +370,14 @@ const ProductsPage: React.FC = () => {
 
             <div className="relative z-10 flex h-full px-4 py-8 sm:px-8 sm:py-10 lg:px-12 lg:py-auto">
               <div className="my-auto max-w-md sm:max-w-2xl lg:max-w-3xl">
-                <h2 className="text-[1.5rem] sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-3 sm:mb-5">
+                <h2 className="text-[1.5rem] sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-3 sm:mb-5 font-sans">
                   Ready to Supercharge Your TallyPrime?
                 </h2>
-                <p className="text-sm sm:text-base md:text-lg text-white/90 mb-4 sm:mb-6 max-w-xl">
+                <p className="text-sm sm:text-base md:text-lg text-white/90 mb-4 sm:mb-6 max-w-xl font-sans">
                   Schedule a free 45‑minute demo of the add-in modules that solve your specific automation, control, or reporting
                   challenges.
                 </p>
-                <p className="text-sm sm:text-base md:text-lg text-white/90 mb-6 sm:mb-8 max-w-xl">
+                <p className="text-sm sm:text-base md:text-lg text-white/90 mb-6 sm:mb-8 max-w-xl font-sans ">
                   Stop manual workarounds. Start operating at peak efficiency with enterprise-grade Tally enhancements.
                 </p>
                 <div className="flex flex-col md:flex-row flex-wrap gap-4">
@@ -413,8 +413,8 @@ const ProductsPage: React.FC = () => {
       <section className="py-16 bg-white relative">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">Frequently Asked Questions</h2>
-            <p className="mt-4 text-slate-600 text-lg max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 font-sans">Frequently Asked Questions</h2>
+            <p className="mt-4 text-slate-600 text-lg max-w-2xl mx-auto font-sans">
               Clear answers to help you understand our add-in licensing, installation, compatibility, and support model.
             </p>
           </div>

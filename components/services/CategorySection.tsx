@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { ServiceGroup, ServiceItem } from '@/types/services';
 import { getIcon } from '@/utils/iconMap';
+import Link from 'next/link';
 
 interface Props {
   group: ServiceGroup;
@@ -24,7 +25,7 @@ export default function CategorySection({ group }: Props) {
           <span className="inline-flex items-center gap-2 px-5 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium">
             {group.category.title}
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">{group.category.title}</h2>
+          <h2 className="text-4xl md:text-5xl font-bold leading-tight text-blue-900">{group.category.title}</h2>
           <p className="text-lg text-slate-600 leading-relaxed">{group.category.description}</p>
         </div>
 
@@ -77,12 +78,7 @@ function ServiceRow({ service, reverse }: { service: ServiceItem; reverse: boole
         `}
       >
         {service.image ? (
-          <Image
-            src={service.image.src}
-            alt={service.image.alt}
-            fill
-            className="object-contain scale-90 object-center"
-          />
+          <Image src={service.image.src} alt={service.image.alt} fill className="object-contain scale-90 object-center" />
         ) : (
           <div className="w-full h-full bg-slate-200" />
         )}
@@ -99,14 +95,11 @@ function ServiceRow({ service, reverse }: { service: ServiceItem; reverse: boole
 
       {/* TEXT SIDE */}
       <div className="lg:w-1/2 space-y-5">
-        {/* ICON + TAG */}
         <div className="flex items-center gap-3">
           <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center shadow-inner">
             <Icon className="w-7 h-7 text-primary" />
           </div>
-          <span className="text-xs uppercase tracking-wide text-slate-500">
-            {service.title}
-          </span>
+          <span className="text-xs uppercase tracking-wide text-slate-500">{service.title}</span>
         </div>
 
         <h3 className="text-3xl font-bold text-slate-900">{service.title}</h3>
@@ -115,28 +108,21 @@ function ServiceRow({ service, reverse }: { service: ServiceItem; reverse: boole
 
         <div className="flex flex-wrap gap-2 pt-2">
           {service.features?.slice(0, 5).map((feat, i) => (
-            <span
-              key={i}
-              className="px-3 py-1 bg-slate-100 rounded-full text-xs text-slate-700 shadow-sm"
-            >
+            <span key={i} className="px-3 py-1 bg-slate-100 rounded-full text-xs text-slate-700 shadow-sm">
               {feat}
             </span>
           ))}
         </div>
 
         {service.cta && (
-          <Button
-            className="mt-5"
-            onClick={() =>
-              document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })
-            }
-          >
-            {service.cta}
-            <ArrowRight className="ml-2 w-4 h-4" />
-          </Button>
+          <Link href="/contact#contact-form">
+            <Button className="mt-5">
+              {service.cta}
+              <ArrowRight className="ml-2 w-4 h-4" />
+            </Button>
+          </Link>
         )}
       </div>
     </div>
   );
 }
-

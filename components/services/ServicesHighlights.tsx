@@ -4,7 +4,7 @@ import { serviceHighlights } from '@/data/services';
 
 export default function ServicesHighlights() {
   return (
-    <section className="py-16 bg-white border-y border-slate-200">
+    <section className="py-16 border-y border-slate-200 bg-linear-to-br from-background to-accent/30">
       <div className="max-w-7xl mx-auto px-6">
         <div
           className="

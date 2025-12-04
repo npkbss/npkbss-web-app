@@ -1,12 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { Sparkles, Star, ArrowRight } from 'lucide-react';
+import { Sparkles, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white pt-24 pb-40">
+    <section className="relative overflow-hidden bg-linear-to-br from-slate-900 via-blue-900 to-indigo-900 text-white py-20">
       {/* Decorative Blobs */}
       <svg className="absolute -left-28 -top-32 opacity-30" width="520" height="520">
         <defs>
@@ -39,13 +39,13 @@ export default function Hero() {
       <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
         <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 mb-6">
           <Sparkles className="h-4 w-4 text-yellow-300" />
-          <span className="text-sm">Premium Zoho Partner — Strategic Automations</span>
+          <span className="text-sm">Experts and Consultants — Strategic Automations</span>
           <Star className="h-4 w-4 text-yellow-300" />
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
+        <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4 font-display">
           Creative Zoho implementations that{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-indigo-300">actually move the needle</span>
+          <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-300 to-indigo-300">actually move the needle</span>
         </h1>
 
         <p className="text-slate-200 max-w-2xl mx-auto mb-8">
@@ -57,9 +57,9 @@ export default function Hero() {
             <Link href="#contact-form">Book Free Consult</Link>
           </Button>
 
-          <a href="#faq" className="text-sm text-slate-200 hover:text-white transition py-2">
+          <Link href="#faq" className="text-sm text-slate-200 hover:text-white transition py-2 items-center">
             View FAQs
-          </a>
+          </Link>
         </div>
       </div>
     </section>

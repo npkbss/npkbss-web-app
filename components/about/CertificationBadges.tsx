@@ -27,6 +27,26 @@ export default function CertificationBadges() {
       img: '/assets/about/zoho-analytics-associate.png',
       color: 'border-green-200 hover:border-green-400',
     },
+    {
+      label: 'Zoho Books Certified Associate',
+      img: '/assets/about/zoho-books-associate.png',
+      color: 'border-blue-200 hover:border-blue-400',
+    },
+    {
+      label: 'Zoho Desk Certified Associate',
+      img: '/assets/about/zoho-desk-certified-associate.png',
+      color: 'border-purple-200 hover:border-purple-400',
+    },
+    {
+      label: 'Zoho Project Certified Associate',
+      img: '/assets/about/zoho-projects-associate.png',
+      color: 'border-orange-200 hover:border-orange-400',
+    },
+    {
+      label: 'Zoho Payroll Certified Associate',
+      img: '/assets/about/zoho-payroll-associate.png',
+      color: 'border-green-200 hover:border-green-400',
+    },
   ];
 
   return (
@@ -38,7 +58,7 @@ export default function CertificationBadges() {
             <Award className="w-6 h-6 text-blue-600" />
           </div>
 
-          <h3 className="sm:text-3xl md:text-4xl font-bold text-slate-900 mb-3">Certified Expertise</h3>
+          <h3 className="sm:text-3xl md:text-5xl font-bold text-slate-900 mb-3 font-sans">Certified Expertise</h3>
 
           <p className="text-slate-600 max-w-2xl mx-auto text-lg">
             Our leadership team is backed by globally recognized Zoho certifications, ensuring expert-level implementation and consulting
@@ -86,7 +106,7 @@ export default function CertificationBadges() {
         {/* Trust footer */}
         <div className="mt-10 text-center">
           <p className="text-sm text-slate-500">
-            <span className="font-semibold text-slate-700">4 Active Certifications</span> • Globally Recognized Standards
+            <span className="font-semibold text-slate-700"> Active Certifications</span> • Globally Recognized Standards
           </p>
         </div>
       </div>

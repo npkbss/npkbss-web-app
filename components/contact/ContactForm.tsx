@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Users, Briefcase, Mail, Phone, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -16,6 +16,9 @@ export default function ContactForm() {
   const [turnstileToken, setTurnstileToken] = useState<string>('');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const router = useRouter();
+  const [token, setToken] = useState('');
+  const hasRendered = useRef(false); 
+  const retryInterval = useRef<number | null>(null);
 
   const [form, setForm] = useState({
     fullName: '',
@@ -28,15 +31,60 @@ export default function ContactForm() {
   });
 
   // Turnstile callback
-  useEffect(() => {
-    (window as any).onTurnstileSuccess = function (token: string) {
-      console.log('TOKEN:', token);
-      setTurnstileToken(token);
-    };
-  }, []);
+  //  useEffect(() => {
+  //   const turnstile = (window as any).turnstile;
 
+  //   if (turnstile && document.querySelector('.cf-turnstile')) {
+  //     turnstile.render('.cf-turnstile', {
+  //       sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
+  //       callback: (token: string) => setTurnstileToken(token)
+  //     });
+  //   }
+  // }, []);
   useEffect(() => {
-    console.log('Turnstile:', (window as any).turnstile);
+    const sitekey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+
+    const tryRender = () => {
+      const win = window as any;
+
+      // Script not ready
+      if (!win.turnstile || typeof win.turnstile.render !== 'function') return false;
+
+      // Prevent duplicate render
+      if (hasRendered.current) return true;
+
+      const container = document.getElementById('turnstile-container');
+      if (!container) return false;
+
+      container.innerHTML = ''; // cleanup just in case
+
+      win.turnstile.render('#turnstile-container', {
+        sitekey,
+        callback: (val: string) => {
+          setToken(val);
+        },
+      });
+
+      hasRendered.current = true;
+      return true;
+    };
+
+    // immediate attempt
+    if (!tryRender()) {
+      let tries = 0;
+      retryInterval.current = window.setInterval(() => {
+        tries += 1;
+        if (tryRender() || tries > 20) {
+          if (retryInterval.current) clearInterval(retryInterval.current);
+        }
+      }, 200);
+    }
+
+    // cleanup
+    return () => {
+      hasRendered.current = true; // do NOT render again even if remounted
+      if (retryInterval.current) clearInterval(retryInterval.current);
+    };
   }, []);
 
   const update = (key: string, value: string | boolean | string[]) => {
@@ -55,6 +103,7 @@ export default function ContactForm() {
 
     if (!form.fullName) validation.fullName = 'Full Name is required';
     if (!form.email) validation.email = 'Email is required';
+    if (!form.phone) validation.phone = 'Phone is required';
     if (!form.services.length) validation.services = 'Select at least one service';
     if (!form.requirements) validation.requirements = 'Tell us what you need';
     if (!form.agree) validation.agree = 'You must agree before submitting';
@@ -104,20 +153,20 @@ export default function ContactForm() {
   };
 
   const handleClose = () => {
-    setOpen(false);
     router.push('/services');
+    setOpen(false);
   };
 
   return (
     <>
       <form
         onSubmit={submitForm}
-        className="bg-white/10 backdrop-blur-xl rounded-3xl p-6 md:p-8 shadow-xl border border-white/20 space-y-6 scroll-mt-20"
+        className="bg-white/10 backdrop-blur-xl rounded-2xl p-4 md:p-6 shadow-xl border border-white/20 space-y-4 scroll-mt-24"
         id="contact-form"
       >
         <h2 className="text-3xl font-semibold text-black">Book Your Free Consultation</h2>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid sm:grid-cols-2 gap-4">
           <Field
             label="Full Name"
             required
@@ -139,17 +188,17 @@ export default function ContactForm() {
             onChange={(v: string) => update('email', v)}
           />
 
-          <Field label="Phone (Optional)" type="tel" value={form.phone} icon={<Phone />} onChange={(v: string) => update('phone', v)} />
+          <Field label="Phone" required type="tel" value={form.phone} icon={<Phone />} onChange={(v: string) => update('phone', v)} />
         </div>
 
         <div>
-          <LabelRequired>Services Interested In</LabelRequired>
+          <LabelRequired>Services & Products Interested In</LabelRequired>
 
           <div className="grid sm:grid-cols-2 gap-3 mt-2">
             {allServices.map(service => (
               <label
                 key={service}
-                className="flex items-center gap-3 p-3 rounded-xl bg-white/10 border border-black/20 hover:bg-white/20 cursor-pointer transition"
+                className="flex items-center gap-3 p-1 rounded-xl bg-white/10 border border-black/20 hover:bg-white/20 cursor-pointer transition"
               >
                 <Checkbox
                   checked={form.services.includes(service)}
@@ -170,7 +219,7 @@ export default function ContactForm() {
             value={form.requirements}
             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => update('requirements', e.target.value)}
             className="bg-white/10 border-black/20 text-black rounded-xl mt-2"
-            rows={4}
+            rows={3}
             placeholder="Tell us what you want to build or improve..."
           />
 
@@ -207,12 +256,13 @@ export default function ContactForm() {
     ></div>`,
           }}
         /> */}
-        <div className="cf-turnstile" data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY} data-callback="onTurnstileSuccess"></div>
+        {/* <div className="cf-turnstile" data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY} data-callback="onTurnstileSuccess"></div> */}
+        <div id="turnstile-container" className="mt-2"></div>
 
         <Button
           type="submit"
           disabled={loading}
-          className="w-full py-5 rounded-xl text-lg bg-linear-to-r from-cyan-400 to-indigo-500 text-black font-semibold shadow-xl hover:scale-[1.02] transition"
+          className="w-full py-4 rounded-xl text-base bg-linear-to-r from-cyan-400 to-indigo-500 text-black font-semibold shadow-xl hover:scale-[1.02] transition"
         >
           {loading ? 'Submitting...' : 'Submit Request'}
           <ArrowRight className="ml-2 h-5 w-5" />

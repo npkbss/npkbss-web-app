@@ -57,8 +57,8 @@ export const ServingIndustries = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
           <div className="text-center mb-16">
             <span className="text-sm font-semibold text-primary uppercase tracking-wider">Industry Expertise</span>
-            <h2 className="text-4xl sm:text-5xl font-bold text-foreground mt-4 mb-6">Serving Diverse Industries</h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">Tailored solutions for your specific industry challenges</p>
+            <h2 className="text-4xl sm:text-5xl font-bold text-blue-900 mt-4 mb-6 font-sans">Serving Diverse Industries</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto font-sans">Tailored solutions for your specific industry challenges</p>
           </div>
           <div className="relative max-w-6xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">

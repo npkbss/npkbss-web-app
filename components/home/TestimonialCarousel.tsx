@@ -118,7 +118,9 @@ export default function TestimonialCarousel() {
           <div className="text-2xl font-bold text-foreground mb-2">{testimonials[index].company}</div>
         </div>
 
-        <blockquote className="text-lg text-foreground mb-6 leading-relaxed h-[100px]">“{item.quote}”</blockquote>
+        <blockquote className="text-lg text-foreground mb-6 py-2 md:py-0 leading-relaxed md:h-[100px] sm:max-h-auto sm:min-h-[200px] md:min-h-[100px]">
+          “{item.quote}”
+        </blockquote>
 
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 rounded-full overflow-hidden relative">
@@ -132,10 +134,10 @@ export default function TestimonialCarousel() {
           </div>
         </div>
 
-        <Link href="/case-studies" className="inline-flex items-center text-primary font-medium mt-6 hover:gap-2 transition-all">
+        {/* <Link href="/case-studies" className="inline-flex items-center text-primary font-medium mt-6 hover:gap-2 transition-all">
           View more stories
           <ArrowRight className="ml-1 h-4 w-4" />
-        </Link>
+        </Link> */}
       </div>
 
       {/* DOTS + PROGRESS BAR */}

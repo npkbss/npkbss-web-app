@@ -13,8 +13,8 @@ export default function ServicesWhyChoose() {
 
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="text-center max-w-4xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900">Why Companies Choose Our Services</h2>
-          <p className="mt-4 text-slate-600 text-lg leading-relaxed">
+          <h2 className="text-3xl md:text-5xl font-bold text-blue-900 font-sans">Why Companies Choose Our Services</h2>
+          <p className="mt-4 text-slate-600 text-lg leading-relaxed font-sans ">
             Years of hands-on experience, strong platform knowledge, and a business-first mindset — all combined into one trusted service
             stack.
           </p>

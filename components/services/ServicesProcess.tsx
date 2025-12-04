@@ -136,8 +136,8 @@ export default function ServicesProcess() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="text-center mb-16">
           <span className="text-sm font-semibold text-primary uppercase tracking-wider">Our Process</span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-foreground mt-4 mb-6">How We Deliver Premium Services</h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl font-bold text-blue-900 mt-4 mb-6 font-sans">How We Deliver Premium Services</h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto font-sans">
             A refined execution framework used across ERP, automation, analytics, cloud, operations, and integrations — built for speed &
             precision.
           </p>

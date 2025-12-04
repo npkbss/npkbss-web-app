@@ -27,7 +27,7 @@ export const differentiators = [
     title: 'Innovation leadership',
     description: 'Cutting-edge technologies and modern methodologies that deliver measurable business impact and sustainable growth',
     image: { src: '/assets/about/innovation-leadership.avif', alt: 'Innovation Leadership' },
-    stats: { value: '3', label: 'Office Locations' },
+    stats: { value: '4', label: 'Office Locations' },
   },
 ];
 
@@ -45,7 +45,7 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-28 overflow-hidden">
+      <section className="relative py-20 xl:py-28 overflow-hidden">
         <div className="absolute inset-0 hero-gradient opacity-5"></div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -55,10 +55,10 @@ const AboutPage = () => {
                   About NPK Business Solutions
                 </span>
               </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight font-display">
                 Empowering businesses through innovation and strategic partnership
               </h1>
-              <p className="text-lg text-muted-foreground max-w-xl">
+              <p className="text-lg text-muted-foreground max-w-xl font-sans">
                 More than a technology provider—we&apos;re your strategic partner in navigating the digital age. Delivering exceptional
                 value through innovation, expertise, and commitment to your success.
               </p>
@@ -105,7 +105,7 @@ const AboutPage = () => {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <span className="text-sm font-semibold text-primary uppercase tracking-wider">Our Story</span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6 font-sans">
                 Your strategic partner in the digital age
               </h2>
             </div>
@@ -134,110 +134,122 @@ const AboutPage = () => {
                 transformation.
               </p>
             </div>
+            {/* Desktop/Tablet View - Horizontal Roadmap */}
+            <div className="hidden md:block relative py-12">
+              <svg className="w-full h-46 absolute inset-0" viewBox="0 0 1200 200" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="roadGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style={{ stopColor: 'rgb(99, 102, 241)', stopOpacity: 1 }} />
+                    <stop offset="40%" style={{ stopColor: 'rgb(139, 92, 246)', stopOpacity: 1 }} />
+                    <stop offset="70%" style={{ stopColor: 'rgb(6, 182, 212)', stopOpacity: 1 }} />
+                    <stop offset="100%" style={{ stopColor: 'rgb(16, 185, 129)', stopOpacity: 1 }} />
+                  </linearGradient>
+                </defs>
 
-            {/* Office Locations Journey - Roadmap Style */}
-            <div className="mt-16 relative">
-              <div className="text-center mb-4">
-                <h3 className="text-2xl font-bold text-foreground mb-2">Our expansion journey</h3>
-                <p className="text-muted-foreground">Growing across India to serve you better</p>
-              </div>
+                {/* Road Path */}
+                <path
+                  d="M 50 150 Q 300 200 500 120 T 850 100 T 1150 80"
+                  stroke="url(#roadGradient)"
+                  strokeWidth="4"
+                  fill="none"
+                  className="animate-draw"
+                />
 
-              {/* Desktop/Tablet View - Horizontal Roadmap */}
-              <div className="hidden md:block relative py-12">
-                <svg className="w-full h-46 absolute inset-0" viewBox="0 0 1000 200" preserveAspectRatio="none">
-                  <defs>
-                    <linearGradient id="roadGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" style={{ stopColor: 'rgb(99, 102, 241)', stopOpacity: 1 }} />
-                      <stop offset="50%" style={{ stopColor: 'rgb(139, 92, 246)', stopOpacity: 1 }} />
-                      <stop offset="100%" style={{ stopColor: 'rgb(6, 182, 212)', stopOpacity: 1 }} />
-                    </linearGradient>
-                  </defs>
-                  {/* Curved Road Path */}
-                  <path
-                    d="M 50 150 Q 250 180 350 120 T 650 100 T 950 80"
-                    stroke="url(#roadGradient)"
-                    strokeWidth="4"
-                    fill="none"
-                    className="animate-draw"
-                  />
-                  {/* Milestone Dots */}
-                  <circle cx="150" cy="160" r="8" fill="rgb(99, 102, 241)" className="animate-pulse" />
-                  <circle cx="450" cy="87" r="8" fill="rgb(139, 92, 246)" className="animate-pulse" />
-                  <circle cx="780" cy="115" r="8" fill="rgb(6, 182, 212)" className="animate-pulse" />
-                </svg>
+                {/* Milestone Dots */}
+                <circle cx="180" cy="168" r="8" fill="rgb(99, 102, 241)" className="animate-pulse" />
+                <circle cx="480" cy="126" r="8" fill="rgb(139, 92, 246)" className="animate-pulse" />
+                <circle cx="800" cy="85" r="8" fill="rgb(6, 182, 212)" className="animate-pulse" />
+                <circle cx="1080" cy="110" r="8" fill="rgb(16, 185, 129)" className="animate-pulse" />
+              </svg>
 
-                {/* Location Cards */}
-                <div className="relative grid grid-cols-3 gap-8 pt-8">
-                  <div className="relative" style={{ marginTop: '60px', marginLeft: '80px' }}>
-                    <div className="p-6 hover:shadow-accent transition-all">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                          <div className="p-6">
-                            <MapPin className="h-5 w-5 text-primary" />
-                          </div>
-                        </div>
-                        <div>
-                          <h4 className="font-bold text-foreground">Bangalore</h4>
-                          <span className="text-xs text-primary font-medium">2021 - Founded</span>
-                          <p className="text-sm text-muted-foreground">Karnataka (Headquarters)</p>
-                        </div>
+              {/* Location Cards */}
+              <div className="relative grid grid-cols-4 gap-8 pt-8">
+                {/* Bangalore */}
+                <div className="relative" style={{ marginTop: '60px', marginLeft: '40px' }}>
+                  <div className="p-6 hover:shadow-accent transition-all">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <MapPin className="h-5 w-5 text-primary" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-foreground">Bangalore</h4>
+                        <span className="text-xs text-primary font-medium">2021 - Founded</span>
+                        <p className="text-sm text-muted-foreground">Karnataka</p>
                       </div>
                     </div>
                   </div>
-                  <div className="relative" style={{ marginTop: '-10px', marginLeft: '40px' }}>
-                    <div className=" rounded-xl p-6 hover:shadow-accent transition-all">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center">
-                          <MapPin className="h-5 w-5 text-secondary" />
-                        </div>
-                        <div>
-                          <h4 className="font-bold text-foreground">Mumbai</h4>
-                          <span className="text-xs text-secondary font-medium">2022 - Expansion</span>
-                          <p className="text-sm text-muted-foreground">Maharashtra</p>
-                        </div>
+                </div>
+
+                {/* Mumbai */}
+                <div className="relative" style={{ marginTop: '40px', marginLeft: '40px' }}>
+                  <div className="p-6 hover:shadow-accent transition-all">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center">
+                        <MapPin className="h-5 w-5 text-secondary" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-foreground">Mumbai</h4>
+                        <span className="text-xs text-secondary font-medium">2022 - Expansion</span>
+                        <p className="text-sm text-muted-foreground">Maharashtra</p>
                       </div>
                     </div>
                   </div>
-                  <div className="relative" style={{ marginTop: '20px', marginLeft: '20px' }}>
-                    <div className=" rounded-xl p-6  hover:shadow-accent transition-all">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
-                          <MapPin className="h-5 w-5 text-accent" />
-                        </div>
-                        <div>
-                          <h4 className="font-bold text-foreground">Kurnool</h4>
-                          <span className="text-xs text-accent font-medium">2023 - Growth</span>
-                          <p className="text-sm text-muted-foreground">Andhra Pradesh</p>
-                        </div>
+                </div>
+
+                {/* Kurnool */}
+                <div className="relative" style={{ marginTop: '-15px', marginLeft: '20px' }}>
+                  <div className="p-6 hover:shadow-accent transition-all">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
+                        <MapPin className="h-5 w-5 text-accent" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-foreground">Kurnool</h4>
+                        <span className="text-xs text-accent font-medium">2023 - Growth</span>
+                        <p className="text-sm text-muted-foreground">Andhra Pradesh</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Lucknow */}
+                <div className="relative" style={{ marginTop: '10px', marginLeft: '10px' }}>
+                  <div className="p-6 hover:shadow-accent transition-all">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center">
+                        <MapPin className="h-5 w-5 text-emerald-500" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-foreground">Lucknow</h4>
+                        <span className="text-xs text-emerald-500 font-medium">2024 - New Branch</span>
+                        <p className="text-sm text-muted-foreground">Uttar Pradesh</p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-
-              {/* Loaction - Mobile View */}
-              <div className="md:hidden space-y-6">
-                {officeLocations.map((location, index) => (
-                  <div key={index} className="flex gap-4">
-                    <div className="flex flex-col items-center">
-                      <div className={`w-3 h-3 rounded-full ${location.colorClass.split(' ')[0]}`} />
-                      {index < 2 && <div className={`w-0.5 h-full ${location.colorClass.split(' ')[0]}/30 mt-2`} />}
-                    </div>
-                    <div className="flex-1 pb-6">
-                      <div className="bg-background rounded-xl p-4 border border-border shadow-soft">
-                        <div className="flex items-center gap-2 mb-2">
-                          <MapPin className={`h-4 w-4 ${location.colorClass.split(' ')[1]}`} />
-                          <h4 className="font-bold text-foreground">{location.city}</h4>
-                        </div>
-                        <span className={`text-xs ${location.colorClass.split(' ')[1]} font-medium block mb-1`}>{location.year}</span>
-                        <p className="text-sm text-muted-foreground">{location.state}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
+            <div className="md:hidden space-y-6 mt-8">
+              {officeLocations.map((location, index) => (
+                <div key={index} className="flex gap-4">
+                  <div className="flex flex-col items-center">
+                    <div className={`w-3 h-3 rounded-full ${location.colorClass.split(' ')[0]}`} />
+                    {index < 2 && <div className={`w-0.5 h-full ${location.colorClass.split(' ')[0]}/30 mt-2`} />}
+                  </div>
+                  <div className="flex-1 pb-6">
+                    <div className="bg-background rounded-xl p-4 border border-border shadow-soft">
+                      <div className="flex items-center gap-2 mb-2">
+                        <MapPin className={`h-4 w-4 ${location.colorClass.split(' ')[1]}`} />
+                        <h4 className="font-bold text-foreground">{location.city}</h4>
+                      </div>
+                      <span className={`text-xs ${location.colorClass.split(' ')[1]} font-medium block mb-1`}>{location.year}</span>
+                      <p className="text-sm text-muted-foreground">{location.state}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
         </div>
       </section>
 
@@ -246,7 +258,7 @@ const AboutPage = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="text-center mb-16">
             <span className="text-sm font-semibold text-primary uppercase tracking-wider">Principles</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6">Our core values</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6 font-sans">Our core values</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               The fundamental principles that guide our decisions, shape our culture, and define how we serve our clients
             </p>
@@ -278,7 +290,7 @@ const AboutPage = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="text-center mb-16">
             <span className="text-sm font-semibold text-primary uppercase tracking-wider">Differentiators</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6">What sets us apart</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6 font-sans">What sets us apart</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Unique advantages that make us the preferred partner for business transformation
             </p>
@@ -324,7 +336,7 @@ const AboutPage = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="text-center mb-16">
             <span className="text-sm font-semibold text-primary uppercase tracking-wider">Leadership</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6">Meet our leadership team</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6 font-sans">Meet our leadership team</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Experienced leaders driving innovation and excellence across every engagement
             </p>
@@ -375,7 +387,7 @@ const AboutPage = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="text-center mb-16">
             <span className="text-sm font-semibold text-primary uppercase tracking-wider">Journey</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6">Our growth milestones</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6 font-sans">Our growth milestones</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Key achievements that shaped our evolution as a leading business solutions provider
             </p>
@@ -442,7 +454,7 @@ const AboutPage = () => {
             <Image src="/assets/about/about-cta.avif" alt="Join our team" fill className="object-cover object-center" priority />
             <div className="absolute inset-0 bg-black/50" />
             <div className="relative z-10 flex flex-col items-center justify-center h-full px-6">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">Ready to partner with us?</h2>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 font-sans">Ready to partner with us?</h2>
               <p className="text-lg text-white/90 max-w-2xl mx-auto mb-8">
                 Let&apos;s discuss how our strategic expertise can transform your organization and drive sustainable growth
               </p>

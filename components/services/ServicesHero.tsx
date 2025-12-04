@@ -7,7 +7,7 @@ import { getIcon } from '@/utils/iconMap';
 
 export default function ServicesHero() {
   return (
-    <section className="relative py-24 lg:py-32 bg-linear-to-b from-white via-slate-50/60 to-white overflow-hidden">
+    <section className="relative py-20 xl:py-28 bg-linear-to-b from-white via-slate-50/60 to-white overflow-hidden">
       {/* Background aesthetics */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-16 w-72 h-72 bg-primary/10 blur-3xl rounded-full opacity-40" />
@@ -21,7 +21,7 @@ export default function ServicesHero() {
         </span>
 
         {/* Heading */}
-        <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-slate-900">
+        <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-slate-900 font-display">
           Complete IT & Business Solutions—
           <br />
           <span className="bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">Built for Growing Companies</span>

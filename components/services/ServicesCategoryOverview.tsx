@@ -1,11 +1,10 @@
 'use client';
 
 import { ArrowRight } from 'lucide-react';
-import { getIcon } from '@/utils/iconMap'; // Your icon mapping utility
-import { groupedServices } from '@/data/services'; // Array of categories
+import { getIcon } from '@/utils/iconMap';
+import { groupedServices } from '@/data/services';
 
 export default function ServicesCategoryOverview() {
-  // For animated hover effect on each card in desktop
   const handleScrollToCategory = (slug: string) => {
     if (typeof window !== 'undefined' && document) {
       document.getElementById(`cat-${slug}`)?.scrollIntoView({ behavior: 'smooth' });
@@ -33,9 +32,7 @@ export default function ServicesCategoryOverview() {
         {/* Heading */}
         <div className="text-center max-w-4xl mx-auto mb-16">
           <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
-            <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-gradient">
-              Explore Our Core Service Categories
-            </span>
+            <span className="text-blue-900 font-display animate-gradient">Explore Our Core Service Categories</span>
           </h2>
           <p className="mt-4 text-slate-600 text-lg">
             Solve every part of your business workflow — platforms, analytics, cloud, automation, operations, and training.
@@ -44,7 +41,7 @@ export default function ServicesCategoryOverview() {
 
         {/* Service Category Cards */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-          {groupedServices.map(({ category }, idx) => {
+          {groupedServices.map(({ category }) => {
             const CatIcon = getIcon(category.icon);
             return (
               <div
@@ -53,10 +50,10 @@ export default function ServicesCategoryOverview() {
                 className="group relative overflow-hidden rounded-3xl p-8 bg-white border border-border shadow-soft hover:shadow-accent hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 cursor-pointer"
               >
                 {/* Gradient hover overlay */}
-                <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20" />
+                <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-linear-to-br from-primary/20 via-secondary/20 to-accent/20" />
                 {/* Icon box */}
                 <div className="relative mb-6 inline-flex">
-                  <div className="p-2 rounded-2xl bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
+                  <div className="p-2 rounded-2xl bg-linear-to-br from-primary/10 via-secondary/10 to-accent/10">
                     <CatIcon className="w-8 h-8 text-primary" />
                   </div>
                 </div>

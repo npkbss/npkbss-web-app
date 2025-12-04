@@ -4,7 +4,7 @@ import { Award, CheckCircle2, Lightbulb, Shield, Target, Users } from 'lucide-re
 export const stats = [
   { value: '2021', label: 'Established' },
   { value: '24+', label: 'Team members' },
-  { value: '3', label: 'Office locations' },
+  { value: '4', label: 'Office locations' },
   { value: '100%', label: 'Client dedication' },
 ];
 
@@ -24,6 +24,12 @@ export const officeLocations = [
     colorClass: 'bg-secondary text-secondary',
   },
   { city: 'Kurnool', state: 'Andhra Pradesh', year: '2023 - Growth', color: 'accent', colorClass: 'bg-accent text-accent' },
+  {
+    city: 'Lucknow',
+    state: 'Uttar Pradesh',
+    year: '2024 - New Branch',
+    colorClass: 'bg-orange-500 text-orange-500',
+  },
 ];
 
 export const coreValuesData = [
