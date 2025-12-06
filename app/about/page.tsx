@@ -55,7 +55,7 @@ const AboutPage = () => {
                   About NPK Business Solutions
                 </span>
               </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight font-display">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-blue-900 leading-tight font-display">
                 Empowering businesses through innovation and strategic partnership
               </h1>
               <p className="text-lg text-muted-foreground max-w-xl font-sans">
@@ -105,7 +105,7 @@ const AboutPage = () => {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <span className="text-sm font-semibold text-primary uppercase tracking-wider">Our Story</span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6 font-sans">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-blue-900 mt-4 mb-6 font-sans">
                 Your strategic partner in the digital age
               </h2>
             </div>
@@ -258,7 +258,7 @@ const AboutPage = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="text-center mb-16">
             <span className="text-sm font-semibold text-primary uppercase tracking-wider">Principles</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6 font-sans">Our core values</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-blue-900 mt-4 mb-6 font-sans">Our core values</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               The fundamental principles that guide our decisions, shape our culture, and define how we serve our clients
             </p>
@@ -290,7 +290,7 @@ const AboutPage = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="text-center mb-16">
             <span className="text-sm font-semibold text-primary uppercase tracking-wider">Differentiators</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6 font-sans">What sets us apart</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-blue-900 mt-4 mb-6 font-sans">What sets us apart</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Unique advantages that make us the preferred partner for business transformation
             </p>
@@ -336,7 +336,7 @@ const AboutPage = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="text-center mb-16">
             <span className="text-sm font-semibold text-primary uppercase tracking-wider">Leadership</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6 font-sans">Meet our leadership team</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-blue-900 mt-4 mb-6 font-sans">Meet our leadership team</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Experienced leaders driving innovation and excellence across every engagement
             </p>
@@ -387,7 +387,7 @@ const AboutPage = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="text-center mb-16">
             <span className="text-sm font-semibold text-primary uppercase tracking-wider">Journey</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6 font-sans">Our growth milestones</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-blue-900 mt-4 mb-6 font-sans">Our growth milestones</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Key achievements that shaped our evolution as a leading business solutions provider
             </p>

@@ -58,7 +58,7 @@ export default function CertificationBadges() {
             <Award className="w-6 h-6 text-blue-600" />
           </div>
 
-          <h3 className="sm:text-3xl md:text-5xl font-bold text-slate-900 mb-3 font-sans">Certified Expertise</h3>
+          <h3 className="sm:text-3xl md:text-5xl font-bold text-blue-900 mb-3 font-sans">Certified Expertise</h3>
 
           <p className="text-slate-600 max-w-2xl mx-auto text-lg">
             Our leadership team is backed by globally recognized Zoho certifications, ensuring expert-level implementation and consulting

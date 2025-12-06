@@ -1,6 +1,6 @@
 // 'use client';
 
-import { Link, Linkedin, Mail, MailIcon, MapPin, Phone } from 'lucide-react';
+import { Facebook, Link, Linkedin, Mail, MailIcon, MapPin, Phone } from 'lucide-react';
 import Image from 'next/image';
 import { Button } from './ui/button';
 
@@ -212,6 +212,14 @@ const Footer: React.FC = () => (
                 variant="ghost"
                 size="icon"
                 className="text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200"
+                onClick={() => window.open('https://www.facebook.com/profile.php?id=61580820672997', '_blank')}
+              >
+                <Facebook className="h-5 w-5" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200"
               >
                 <a href="mailto:npk@npkbss.in">
                   <MailIcon className="h-5 w-5" />
@@ -259,11 +267,11 @@ const Footer: React.FC = () => (
             <li className="flex items-start">
               <MapPin size={16} className="mr-3 mt-1 text-blue-500 flex-shrink-0" />
               <span>
-                1st Floor, 379/10, 3rd B Main,
+                001, #62, Comfort Annapoorna,
                 <br />
-                27th Cross, Raghavendra Layout,
+                12th Main Road, 3rd Block East,
                 <br />
-                Hulimavu, BG Road, Bangalore, Karnataka 560091
+                Jayanagar, Bangalore – 560011
               </span>
             </li>
             <li className="flex items-center">
