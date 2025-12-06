@@ -17,7 +17,7 @@ export default function ContactForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const router = useRouter();
   const [token, setToken] = useState('');
-  const hasRendered = useRef(false); 
+  const hasRendered = useRef(false);
   const retryInterval = useRef<number | null>(null);
 
   const [form, setForm] = useState({
@@ -30,38 +30,26 @@ export default function ContactForm() {
     agree: false,
   });
 
-  // Turnstile callback
-  //  useEffect(() => {
-  //   const turnstile = (window as any).turnstile;
-
-  //   if (turnstile && document.querySelector('.cf-turnstile')) {
-  //     turnstile.render('.cf-turnstile', {
-  //       sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
-  //       callback: (token: string) => setTurnstileToken(token)
-  //     });
-  //   }
-  // }, []);
   useEffect(() => {
     const sitekey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
     const tryRender = () => {
       const win = window as any;
 
-      // Script not ready
       if (!win.turnstile || typeof win.turnstile.render !== 'function') return false;
 
-      // Prevent duplicate render
       if (hasRendered.current) return true;
 
       const container = document.getElementById('turnstile-container');
       if (!container) return false;
 
-      container.innerHTML = ''; // cleanup just in case
+      container.innerHTML = '';
 
       win.turnstile.render('#turnstile-container', {
         sitekey,
         callback: (val: string) => {
-          setToken(val);
+          // setToken(val);
+          setTurnstileToken(val)
         },
       });
 
@@ -69,7 +57,6 @@ export default function ContactForm() {
       return true;
     };
 
-    // immediate attempt
     if (!tryRender()) {
       let tries = 0;
       retryInterval.current = window.setInterval(() => {
@@ -80,9 +67,8 @@ export default function ContactForm() {
       }, 200);
     }
 
-    // cleanup
     return () => {
-      hasRendered.current = true; // do NOT render again even if remounted
+      hasRendered.current = true;
       if (retryInterval.current) clearInterval(retryInterval.current);
     };
   }, []);
@@ -97,7 +83,7 @@ export default function ContactForm() {
 
   const submitForm = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Site key:', process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
+    // console.log('Site key:', process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
 
     const validation: Record<string, string> = {};
 
@@ -226,10 +212,6 @@ export default function ContactForm() {
           {errors.requirements && <p className="text-red-600 text-xs mt-1">{errors.requirements}</p>}
         </div>
 
-        {/* <label className="flex items-start gap-3 text-black text-sm cursor-pointer">
-          <Checkbox checked={form.agree} onCheckedChange={(v: boolean | 'indeterminate') => update('agree', v === true)} />I agree to be
-          contacted regarding this inquiry <span className="text-red-500">*</span>
-        </label> */}
         <label className="flex items-start gap-3 text-black text-sm cursor-pointer leading-snug">
           <Checkbox checked={form.agree} onCheckedChange={(v: boolean | 'indeterminate') => update('agree', v === true)} />
           <span>
@@ -244,19 +226,9 @@ export default function ContactForm() {
             .<span className="text-red-500"> *</span>
           </span>
         </label>
-
         {errors.agree && <p className="text-red-600 text-xs">{errors.agree}</p>}
 
-        {/* <div
-          dangerouslySetInnerHTML={{
-            __html: `<div 
-      class="cf-turnstile"
-      data-sitekey="${process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}"
-      data-callback="onTurnstileSuccess"
-    ></div>`,
-          }}
-        /> */}
-        {/* <div className="cf-turnstile" data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY} data-callback="onTurnstileSuccess"></div> */}
+
         <div id="turnstile-container" className="mt-2"></div>
 
         <Button

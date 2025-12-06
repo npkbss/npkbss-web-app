@@ -1,3 +1,4 @@
+// app/api/contact/route.ts
 import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 import { Resend } from 'resend';
@@ -61,7 +62,7 @@ export async function POST(req: Request) {
 
       if (toEmails.length > 0) {
         await resend.emails.send({
-          from:  'npkbusinesssolutions@gmail.com',
+          from: process.env.NOTIFICATIONS_FROM || 'npkbusinesssolutions@gmail.com',
           to: toEmails,
           subject: `New Lead from ${fullName}`,
           html: `

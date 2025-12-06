@@ -1,7 +1,12 @@
+// app/api/auth/[...nextauth]/route.ts
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 
-const allowedAdmins = ['dilliprasadreddy0000@gmail.com', 'npk@npkbss.in', 'support@npkbss.in', 'bharathganamaneni25@gmail.com'];
+const envAdmins = process.env.ADMIN_EMAILS ? process.env.ADMIN_EMAILS.split(',').map(e => e.trim()) : [];
+
+const defaultAdmin = 'npkbusinesssolutions@gmail.com';
+
+const allowedAdmins = [...envAdmins, defaultAdmin];
 
 export const authOptions = {
   providers: [
@@ -13,7 +18,8 @@ export const authOptions = {
 
   callbacks: {
     async signIn({ user }: any) {
-      return allowedAdmins.includes(user.email || 'support@npkbss.in');
+      const email = user.email || defaultAdmin;
+      return allowedAdmins.includes(email);
     },
 
     async session({ session }: any) {
@@ -25,5 +31,4 @@ export const authOptions = {
 };
 
 const handler = NextAuth(authOptions);
-
 export { handler as GET, handler as POST };

@@ -26,3 +26,15 @@ Automation & Workflow
 Training & Empowerment
   ☑ ERP / CRM / BI Training
   ☑ Automation Workshops
+
+
+          {/* <div
+          dangerouslySetInnerHTML={{
+            __html: `<div 
+      class="cf-turnstile"
+      data-sitekey="${process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}"
+      data-callback="onTurnstileSuccess"
+    ></div>`,
+          }}
+        /> */}
+        {/* <div className="cf-turnstile" data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY} data-callback="onTurnstileSuccess"></div> */}
