@@ -20,7 +20,7 @@ export default function SettingsPage() {
   }, []);
 
   async function loadAdmins() {
-    const res = await fetch('/api/admins');
+    const res = await fetch('/api/admin/admins');
     const data = await res.json();
     setAdmins(data);
   }
@@ -31,7 +31,7 @@ export default function SettingsPage() {
       return;
     }
 
-    await fetch('/api/admins', {
+    await fetch('/api/admin/admins', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export default function SettingsPage() {
   }
 
   async function deleteAdmin(admin: Admin) {
-    await fetch('/api/admins', {
+    await fetch('/api/admin/admins', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
