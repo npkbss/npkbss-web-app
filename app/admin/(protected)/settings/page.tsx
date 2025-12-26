@@ -1,10 +1,16 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabaseClient';
+import { supabaseServer } from '@/lib/supabase-server';
+
+type Admin = {
+  id: string;
+  email: string;
+  created_at: string;
+};
 
 export default function SettingsPage() {
-  const [admins, setAdmins] = useState([]);
+  const [admins, setAdmins] = useState<Admin[]>([]);
   const [email, setEmail] = useState('');
 
   useEffect(() => {
@@ -12,21 +18,20 @@ export default function SettingsPage() {
   }, []);
 
   async function loadAdmins() {
-    const { data } = await supabase.from('admins').select('*').order('created_at', { ascending: false });
-
+    const { data } = await supabaseServer.from('admins').select('*').order('created_at', { ascending: false });
     setAdmins(data || []);
   }
 
   async function addAdmin() {
     if (!email) return;
 
-    await supabase.from('admins').insert({ email });
+    await supabaseServer.from('admins').insert({ email });
     setEmail('');
     loadAdmins();
   }
 
-  async function deleteAdmin(id) {
-    await supabase.from('admins').delete().eq('id', id);
+  async function deleteAdmin(id:string) {
+    await supabaseServer.from('admins').delete().eq('id', id);
     loadAdmins();
   }
 

@@ -1,5 +1,5 @@
 // app/admin/(protected)/leads/[id]/page.tsx
-import { supabase } from '@/lib/supabase-client';
+import { supabaseServer } from '@/lib/supabase-server';
 import Link from 'next/link';
 
 interface LeadDetailPageProps {
@@ -23,7 +23,7 @@ type Lead = {
 export default async function LeadDetailPage({ params }: LeadDetailPageProps) {
   const id = Number(params.id);
 
-  const { data, error } = await supabase.from('leads').select('*').eq('id', id).single();
+  const { data, error } = await supabaseServer.from('leads').select('*').eq('id', id).single();
 
   if (error || !data) {
     console.error(error);
