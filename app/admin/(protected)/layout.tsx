@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { signOut } from 'next-auth/react';
 import { LogoutButton } from '@/components/admin/LogoutButton';
 import Image from 'next/image';
+import { Settings, Settings2, Settings2Icon, SettingsIcon } from 'lucide-react';
 
 interface AdminLayoutProps {
   children: ReactNode;
@@ -30,12 +31,15 @@ export default async function AdminLayout({ children }: AdminLayoutProps) {
             <span className="hidden sm:inline-block text-xs text-slate-500">• Internal Dashboard</span>
           </div>
 
-          <nav className="flex items-center gap-4 text-xs sm:text-sm text-slate-600">
-            <Link href="/admin" className="hover:text-slate-900">
+          <nav className="flex items-center gap-4 text-xs sm:text-sm text-slate-600 ">
+            <Link href="/admin" className="hover:text-slate-900 hover:underline">
               Dashboard
             </Link>
-            <Link href="/admin/leads" className="hover:text-slate-900">
+            <Link href="/admin/leads" className="hover:text-slate-900 hover:underline">
               Leads
+            </Link>
+            <Link href="/admin/settings" className="hover:text-slate-900">
+              <Settings />
             </Link>
 
             <div className="pl-3 border-l border-slate-300">
