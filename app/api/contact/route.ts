@@ -1,9 +1,10 @@
 // app/api/contact/route.ts
 import { NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { supabaseServer } from '@/lib/supabase-server';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+const isProd = process.env.NODE_ENV === 'production';
 
 export async function POST(req: Request) {
   try {
@@ -14,28 +15,30 @@ export async function POST(req: Request) {
     if (!fullName || !email || !services?.length || !requirements || !agree) {
       return NextResponse.json({ success: false, message: 'Missing required fields' }, { status: 400 });
     }
-    if (!turnstileToken) {
+    if (isProd && !turnstileToken) {
       return NextResponse.json({ success: false, message: 'Turnstile verification token missing' }, { status: 400 });
     }
 
     // step1: Verify Turnstile with Cloudflare
-    const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-      method: 'POST',
-      body: new URLSearchParams({
-        secret: process.env.TURNSTILE_SECRET_KEY!,
-        response: turnstileToken,
-      }),
-    });
+    if (isProd) {
+      const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+        method: 'POST',
+        body: new URLSearchParams({
+          secret: process.env.TURNSTILE_SECRET_KEY!,
+          response: turnstileToken,
+        }),
+      });
 
-    const verifyResult = await verifyRes.json();
+      const verifyResult = await verifyRes.json();
 
-    if (!verifyResult.success) {
-      console.error('Turnstile Failed:', verifyResult);
-      return NextResponse.json({ success: false, message: 'Failed CAPTCHA verification' }, { status: 400 });
+      if (!verifyResult.success) {
+        console.error('Turnstile Failed:', verifyResult);
+        return NextResponse.json({ success: false, message: 'Failed CAPTCHA verification' }, { status: 400 });
+      }
     }
 
     // step2: Insert into Supabase
-    const { error } = await supabase.from('leads').insert([
+    const { error } = await supabaseServer.from('leads').insert([
       {
         full_name: fullName,
         business_name: businessName,

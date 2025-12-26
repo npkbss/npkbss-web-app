@@ -1,6 +1,6 @@
 // app/admin/(protected)/dashboard/page.tsx
 
-import { supabase } from '@/lib/supabase';
+import { supabaseServer } from '@/lib/supabase-server';
 
 type LeadRow = {
   id: number;
@@ -11,7 +11,7 @@ type LeadRow = {
 };
 
 export default async function DashboardPage() {
-  const { data, error } = await supabase
+  const { data, error } = await supabaseServer
     .from('leads')
     .select('id, created_at, full_name, email, services')
     .order('created_at', { ascending: false });

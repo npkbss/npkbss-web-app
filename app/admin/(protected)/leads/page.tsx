@@ -1,5 +1,5 @@
 // app/admin/(protected)/leads/page.tsx
-import { supabase } from '@/lib/supabase';
+import { supabaseServer } from '@/lib/supabase-server';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
@@ -29,7 +29,7 @@ export default async function LeadsPage({ searchParams }: LeadsPageProps) {
   const from = (page - 1) * PAGE_SIZE;
   const to = from + PAGE_SIZE - 1;
 
-  const { data, error, count } = await supabase
+  const { data, error, count } = await supabaseServer
     .from('leads')
     .select('id, created_at, full_name, business_name, email, phone, city, services', {
       count: 'exact',
