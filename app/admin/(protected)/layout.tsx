@@ -38,6 +38,9 @@ export default async function AdminLayout({ children }: AdminLayoutProps) {
             <Link href="/admin/leads" className="hover:text-slate-900 hover:underline">
               Leads
             </Link>
+            <Link href="/admin/jobs" className="hover:text-slate-900 hover:underline">
+              Jobs
+            </Link>
             <Link href="/admin/settings" className="hover:text-slate-900">
               <Settings />
             </Link>
