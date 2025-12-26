@@ -67,7 +67,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'You have already applied for this job' }, { status: 409 });
     }
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, message: 'Application submitted successfully!' });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
