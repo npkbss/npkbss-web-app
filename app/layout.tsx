@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 import LayoutClient from './LayoutClient';
+import { Toaster } from 'sonner';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -28,10 +29,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-          <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></Script></head>
+        <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></Script>
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <AuthSessionProvider>
-          <LayoutClient>{children}</LayoutClient>
+          <LayoutClient><Toaster position="top-right" expand={false} richColors className='mt-80'/>{children}</LayoutClient>
 
           {/* CloudFlare */}
         </AuthSessionProvider>

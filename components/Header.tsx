@@ -11,7 +11,12 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  const isActive = (path: string) => pathname === path;
+  const isActive = (path: string) => {
+    if (path === '/') {
+      return pathname === '/';
+    }
+    return pathname.startsWith(path);
+  };
 
   const handleBookMeeting = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (pathname !== '/contact') {
@@ -48,7 +53,7 @@ const Header = () => {
               { name: 'Services', href: '/services' },
               { name: 'Products', href: '/products' },
               { name: 'About', href: '/about' },
-              { name: 'Gallery', href: '/gallery' },
+              { name: 'Careers', href: '/careers' },
             ].map(item => (
               <Link
                 key={item.name}
