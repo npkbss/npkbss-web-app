@@ -4,7 +4,7 @@ import TestimonialCarousel from '@/components/home/TestimonialCarousel';
 import { Button } from '@/components/ui/button';
 import { benefits, faqs, featuredServices, finalCta, heroData, processSteps, serviceCategories } from '@/data/home';
 import { processIcons } from '@/utils/icons';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Sparkles, Star } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -23,7 +23,7 @@ const HomePage = () => {
                 <span className="text-sm font-semibold text-primary bg-primary/10 px-4 py-2 rounded-full">{heroData.badge}</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-display leading-tight drop-shadow-md text-gray-800">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-display leading-tight drop-shadow-md text-gray-800 ">
                 Simplifying{' '}
                 <span className="bg-linear-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
                   finance and operations
@@ -32,6 +32,11 @@ const HomePage = () => {
               </h1>
 
               <p className="text-lg text-muted-foreground max-w-xl">{heroData.description}</p>
+              <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 mb-6 bg-linear-to-br from-slate-900 via-blue-900 to-indigo-900 text-white">
+                <Sparkles className="h-4 w-4 text-yellow-300" />
+                <span className="text-sm">Zoho Authorized Partner</span>
+                <Star className="h-4 w-4 text-yellow-300" />
+              </div>
 
               <div className="flex flex-wrap gap-4">
                 <Link href={heroData.primaryCta.href}>
@@ -162,7 +167,7 @@ const HomePage = () => {
                         src={service.image.src}
                         alt={service.image.alt}
                         fill
-                        className="object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                       />
                     </div>
                   </div>
@@ -251,6 +256,10 @@ const HomePage = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="text-center mb-16">
             <span className="text-sm font-semibold text-primary uppercase tracking-wider">Why Choose Us</span>
+            <div className="w-fit mx-auto flex items-center gap-3 mt-4 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 mb-6 bg-linear-to-br from-slate-900 via-blue-900 to-indigo-900 text-white">
+              <Sparkles className="h-4 w-4 text-yellow-300" />
+              <span className="text-sm">Trusted Zoho Partner</span>
+            </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-sans text-blue-900 mt-4 mb-6">
               We help businesses run smarter, cleaner and faster

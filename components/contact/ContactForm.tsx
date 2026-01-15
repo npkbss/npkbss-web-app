@@ -94,13 +94,13 @@ export default function ContactForm() {
     if (!form.requirements) validation.requirements = 'Tell us what you need';
     if (!form.agree) validation.agree = 'You must agree before submitting';
 
-    if (!turnstileToken) {
-      alert("Please verify you're not a bot.");
+    if (Object.keys(validation).length > 0) {
+      setErrors(validation);
       return;
     }
 
-    if (Object.keys(validation).length > 0) {
-      setErrors(validation);
+    if (!turnstileToken) {
+      alert("Please verify you're not a bot.");
       return;
     }
 

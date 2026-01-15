@@ -53,7 +53,7 @@ export const services: ServiceItem[] = [
     categorySlug: 'platform-solutions',
     icon: 'Server',
     title: 'Zoho Ecosystem',
-    shortDesc: 'Full Zoho suite setup, customization & automation.',
+    shortDesc: 'Certified Zoho Authorized Partner — Trusted Business CRM & Automation Implementation.',
     fullDesc:
       'Complete Zoho One implementation: Books, Analytics, Payroll, Inventory, CRM, Bigin, Desk, Flow, Creator, Qntrl, Projects, People, Recruit, Contracts, Sign, Mail, automation workflows, and cross-app integrations.',
     image: { src: '/assets/services/zoho-logo.avif', alt: 'Zoho Ecosystem' },

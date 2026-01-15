@@ -1,6 +1,6 @@
 // 'use client';
 
-import { Facebook, Link, Linkedin, Mail, MailIcon, MapPin, Phone } from 'lucide-react';
+import { Facebook, Link, Linkedin, Mail, MailIcon, MapPin, Phone, Sparkles, Star } from 'lucide-react';
 import Image from 'next/image';
 import { Button } from './ui/button';
 
@@ -185,6 +185,11 @@ const Footer: React.FC = () => (
             </div>
             <span className="text-lg font-bold">NPK Business Solutions</span>
           </div>
+           <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 mb-6 bg-linear-to-br from-slate-900 via-blue-900 to-indigo-900 text-white">
+                <Sparkles className="h-4 w-4 text-yellow-300" />
+                <span className="text-sm">Zoho Authorized Partner</span>
+                <Star className="h-4 w-4 text-yellow-300" />
+              </div>
           <p className="text-slate-400 text-sm leading-relaxed mb-6">
             Driving sustainable growth through digital transformation for businesses of all sizes. We bridge the gap between technology and
             operations.

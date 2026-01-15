@@ -55,7 +55,7 @@ const CareersPage = () => {
                   <CardTitle className="text-2xl font-bold">{job.title}</CardTitle>
                   <CardDescription>{job.description}</CardDescription>
                   <CardAction>
-                    <Button onClick={() => router.push(`/careers/${job.id}`)}>View Details</Button>
+                    <Button onClick={() => router.push(`/careers/${job.id}`)}>Apply</Button>
                   </CardAction>
                 </CardHeader>
 

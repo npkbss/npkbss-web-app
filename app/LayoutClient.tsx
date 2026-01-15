@@ -6,6 +6,7 @@ import WhatsAppFloat from '@/components/WhatsAppFloat';
 import Header from '@/components/Header';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { ZohoPartnerPopup } from '@/components/zoho-partner-popup';
 
 export default function LayoutClient({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -14,6 +15,7 @@ export default function LayoutClient({ children }: { children: React.ReactNode }
   return (
     <>
       {!isAdminRoute && <Header />}
+      {!isAdminRoute && <ZohoPartnerPopup />}
 
       {children}
 

@@ -39,7 +39,7 @@ export default function Hero() {
       <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
         <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 mb-6">
           <Sparkles className="h-4 w-4 text-yellow-300" />
-          <span className="text-sm">Experts and Consultants — Strategic Automations</span>
+          <span className="text-sm">Experts and Consultants — Strategic Automations — Trusted Zoho Partner</span>
           <Star className="h-4 w-4 text-yellow-300" />
         </div>
 

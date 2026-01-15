@@ -87,7 +87,7 @@ export const featuredServices: FeaturedService[] = [
     description: 'Zoho One, Books, CRM, Analytics and Flow — fully implemented and customized to your business workflows.',
     link: '/services#platform-solutions',
     image: {
-      src: '/assets/services/zoho-logo.avif',
+      src: '/assets/home/zoho-authorized-partner-image.png',
       alt: 'Zoho Ecosystem',
     },
     highlight: true,
@@ -123,7 +123,7 @@ export const featuredServices: FeaturedService[] = [
     description: 'Cloud-based ERP for finance, operations and CRM — ideal for scaling companies with complex processes.',
     link: '/services#platform-solutions',
     image: {
-      src: '/assets/services/netsuite.png',
+      src: '/assets/home/oracle-netsuite.png',
       alt: 'Netsuite ERP',
     },
     highlight: true,
