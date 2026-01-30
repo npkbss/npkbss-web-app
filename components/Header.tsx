@@ -94,7 +94,7 @@ const Header = () => {
                 { name: 'Services', href: '/services' },
                 { name: 'Products', href: '/products' },
                 { name: 'About', href: '/about' },
-                { name: 'Gallery', href: '/gallery' },
+                { name: 'Careers', href: '/careers' },
               ].map(item => (
                 <Link
                   key={item.name}

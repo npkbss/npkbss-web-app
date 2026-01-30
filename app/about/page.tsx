@@ -230,26 +230,26 @@ const AboutPage = () => {
               </div>
             </div>
           </div>
-            <div className="md:hidden space-y-6 mt-8">
-              {officeLocations.map((location, index) => (
-                <div key={index} className="flex gap-4">
-                  <div className="flex flex-col items-center">
-                    <div className={`w-3 h-3 rounded-full ${location.colorClass.split(' ')[0]}`} />
-                    {index < 2 && <div className={`w-0.5 h-full ${location.colorClass.split(' ')[0]}/30 mt-2`} />}
-                  </div>
-                  <div className="flex-1 pb-6">
-                    <div className="bg-background rounded-xl p-4 border border-border shadow-soft">
-                      <div className="flex items-center gap-2 mb-2">
-                        <MapPin className={`h-4 w-4 ${location.colorClass.split(' ')[1]}`} />
-                        <h4 className="font-bold text-foreground">{location.city}</h4>
-                      </div>
-                      <span className={`text-xs ${location.colorClass.split(' ')[1]} font-medium block mb-1`}>{location.year}</span>
-                      <p className="text-sm text-muted-foreground">{location.state}</p>
+          <div className="md:hidden space-y-6 mt-8">
+            {officeLocations.map((location, index) => (
+              <div key={index} className="flex gap-4">
+                <div className="flex flex-col items-center">
+                  <div className={`w-3 h-3 rounded-full ${location.colorClass.split(' ')[0]}`} />
+                  {index < 2 && <div className={`w-0.5 h-full ${location.colorClass.split(' ')[0]}/30 mt-2`} />}
+                </div>
+                <div className="flex-1 pb-6">
+                  <div className="bg-background rounded-xl p-4 border border-border shadow-soft">
+                    <div className="flex items-center gap-2 mb-2">
+                      <MapPin className={`h-4 w-4 ${location.colorClass.split(' ')[1]}`} />
+                      <h4 className="font-bold text-foreground">{location.city}</h4>
                     </div>
+                    <span className={`text-xs ${location.colorClass.split(' ')[1]} font-medium block mb-1`}>{location.year}</span>
+                    <p className="text-sm text-muted-foreground">{location.state}</p>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -396,7 +396,7 @@ const AboutPage = () => {
           <div className="max-w-4xl mx-auto">
             <div className="relative">
               <div className="bg-background rounded-2xl overflow-hidden shadow-accent border border-border">
-                <div className="grid md:grid-cols-2 min-h-[310px]">
+                <div className="grid md:grid-cols-2 min-h-[350px]">
                   <div className="p-8 md:p-12 flex flex-col justify-center h-full">
                     <div className="inline-flex items-center gap-2 text-primary font-bold text-lg mb-4">
                       <Calendar className="h-5 w-5" />
@@ -408,7 +408,7 @@ const AboutPage = () => {
                     </p>
                   </div>
 
-                  <div className="relative bg-linear-to-br from-primary/10 to-secondary/10">
+                  <div className="relative bg-linear-to-br hidden md:block from-primary/10 to-secondary/10">
                     <Image
                       src={milestones[currentMilestone].image.src}
                       alt={milestones[currentMilestone].image.alt}
@@ -450,7 +450,7 @@ const AboutPage = () => {
       {/* CTA Section */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="relative rounded-3xl overflow-hidden text-center shadow-accent h-[50vh] md:h-[60vh]">
+          <div className="relative rounded-3xl overflow-hidden text-center shadow-accent h-[70vh] md:h-[60vh]">
             <Image src="/assets/about/about-cta.avif" alt="Join our team" fill className="object-cover object-center" priority />
             <div className="absolute inset-0 bg-black/50" />
             <div className="relative z-10 flex flex-col items-center justify-center h-full px-6">

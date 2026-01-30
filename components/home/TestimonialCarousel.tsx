@@ -115,14 +115,14 @@ export default function TestimonialCarousel() {
       >
         <div className="h-10 mb-6 relative">
           {/* <Image src={item.logo} alt={item.company} fill className="object-contain" /> */}
-          <div className="text-2xl font-bold text-foreground mb-2">{testimonials[index].company}</div>
+          <div className="text-2xl font-bold text-foreground mb-2 h-[150px]">{testimonials[index].company}</div>
         </div>
 
-        <blockquote className="text-lg text-foreground mb-6 py-2 md:py-0 leading-relaxed md:h-[100px] sm:max-h-auto sm:min-h-[200px] md:min-h-[100px]">
+        <blockquote className="text-lg text-foreground mb-6 py-2 md:py-0 leading-relaxed h-[200px] sm:max-h-auto sm:min-h-[200px] md:min-h-[100px] md:h-[100px]">
           “{item.quote}”
         </blockquote>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 h-[90px]">
           <div className="w-12 h-12 rounded-full overflow-hidden relative">
             <Image src={item.image} alt={item.author} fill className="object-cover" />
           </div>

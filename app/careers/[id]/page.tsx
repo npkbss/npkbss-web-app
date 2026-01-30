@@ -37,7 +37,7 @@ const JobDetailsPage = () => {
     <div className="min-h-screen bg-primary/10 font-display">
       <div className="sticky top-20 z-50 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 py-4">
-          <button className="flex gap-2 items-center" onClick={() => router.push('/careers')}>
+          <button className="flex gap-2 items-center hover:underline" onClick={() => router.push('/careers')}>
             <ArrowLeft className="w-4 h-4" />
             Back to Careers
           </button>
@@ -51,9 +51,9 @@ const JobDetailsPage = () => {
               <Badge variant="outline" className="mb-3 w-fit">
                 {jobDetails.department}
               </Badge>
-              <h1 className="text-4xl font-bold font-display">{jobDetails.title}</h1>
+              <h1 className="md:text-3xl text-2xl font-bold font-display">{jobDetails.title}</h1>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+              <div className="flex flex-col md:grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
                 <Info icon={<MapPin />} text={jobDetails.location} />
                 <Info icon={<Briefcase />} text={jobDetails.type} />
                 <Info icon={<Clock />} text={jobDetails.experience} />

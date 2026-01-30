@@ -33,7 +33,10 @@ export default function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <AuthSessionProvider>
-          <LayoutClient><Toaster position="top-right" expand={false} richColors className='mt-80'/>{children}</LayoutClient>
+          <LayoutClient>
+            <Toaster position="top-right" expand={false} richColors className="mt-80" />
+            {children}
+          </LayoutClient>
 
           {/* CloudFlare */}
         </AuthSessionProvider>

@@ -181,15 +181,15 @@ const ProductsPage: React.FC = () => {
       <div id="product-list-container">
         {/* Category Tabs */}
         <div className="sticky top-20 z-40 bg-white shadow-md border-b border-gray-200">
-          <div className="pt-20 lg:pt-0"></div>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4 md:hidden">Filter by Category</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+          {/* <div className="pt-20 lg:pt-0"></div> */}
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 md:py-3 py-2">
+            <h2 className="text-xl font-semibold text-gray-800 mb-2 md:hidden">Filter by Category</h2>
+            <div className="flex md:grid overflow-x-auto md:overflow-visible grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 pb-2">
               {productData.map(category => (
                 <motion.button
                   key={category.name}
                   onClick={() => setActiveCategory(category.name)}
-                  className={`p-3 rounded-xl transition-all text-sm font-semibold text-left border-2 flex items-center justify-start h-full w-full 
+                  className={`shrink-0 md:shrink px-3 py-2 md:p-2 rounded-xl transition-all text-sm font-semibold border-2 flex items-center min-w-[22px] md:min-w-0 
                     ${
                       activeCategory === category.name
                         ? 'bg-blue-600 text-white border-blue-600 shadow-lg'
@@ -200,7 +200,7 @@ const ProductsPage: React.FC = () => {
                 >
                   <span className="flex items-center">
                     <span
-                      className={`p-2 rounded-full mr-2 ${activeCategory === category.name ? 'bg-white text-blue-600' : 'bg-blue-50/70'}`}
+                      className={`p-1 md:p-1.5 rounded-full mr-2 ${activeCategory === category.name ? 'bg-white text-blue-600' : 'bg-blue-50/70'}`}
                     >
                       {getCategoryIcon(category.name)}
                     </span>
@@ -246,9 +246,13 @@ const ProductsPage: React.FC = () => {
                 <span className="flex h-2 w-2 rounded-full bg-blue-500 mr-2"></span>
                 Seamless Integration
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight font-sans">
+              <h2 className="text-3xl md:text-4xl hidden md:block font-bold mb-6 leading-tight font-sans">
                 Connect TallyPrime to the <br />
                 <span className="text-blue-400">Modern </span>Web Ecosystem
+              </h2>
+              <h2 className="text-3xl md:hidden font-bold mb-6 leading-tight font-sans">
+                Connect TallyPrime to the
+                <span className="text-blue-400"> Modern </span>Web Ecosystem
               </h2>
               <p className="text-slate-300 text-lg mb-8 leading-relaxed font-sans">
                 Stop working in silos. Our advanced connectors bridge the gap between your accounting software and your favorite
@@ -298,7 +302,7 @@ const ProductsPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-xl border border-slate-100 max-w-xs">
+              <div className="absolute -bottom-6 -left-2 md:-left-6 bg-white p-4 rounded-xl shadow-xl border border-slate-100 max-w-xs">
                 <div className="flex items-center space-x-3">
                   <div className="h-10 w-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
                     <HelpCircle size={20} />
@@ -435,7 +439,6 @@ const ProductsPage: React.FC = () => {
           {/* CTA */}
           <div className="text-center mt-16">
             <p className="text-slate-600 mb-4">Didn't find what you were looking for?</p>
-
             <Link
               href="/contact"
               className="

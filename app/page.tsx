@@ -322,7 +322,7 @@ const HomePage = () => {
       {/* CTA Section */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="relative rounded-3xl overflow-hidden text-center shadow-accent h-[50vh] md:h-[60vh] max-h-[500px]">
+          <div className="relative rounded-3xl overflow-hidden text-center shadow-accent min-h-[440px] sm:min-h-[500px] md:h-[60vh] md:max-h-[500px]">
             {/* Background Image */}
             <Image src={finalCta.background} alt={finalCta.title} fill className="object-cover object-center brightness-50" priority />
 
@@ -360,9 +360,7 @@ const HomePage = () => {
           <div className="text-center mb-16">
             <span className="text-sm font-semibold text-primary uppercase tracking-wider">FAQs</span>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground font-sans text-blue-900 mt-4 mb-6">
-              Frequently asked questions
-            </h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-sans text-blue-900 mt-4 mb-6">Frequently asked questions</h2>
 
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Everything SMEs typically ask before getting started with finance, ERP or automation projects.

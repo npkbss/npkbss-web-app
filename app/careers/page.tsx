@@ -50,7 +50,7 @@ const CareersPage = () => {
             {filteredJobs.length === 0 && <p className="text-center text-gray-500">No jobs found</p>}
 
             {filteredJobs.map(job => (
-              <Card key={job.id} className="bg-white">
+              <Card key={job.id} className="bg-white overflow-x-auto">
                 <CardHeader>
                   <CardTitle className="text-2xl font-bold">{job.title}</CardTitle>
                   <CardDescription>{job.description}</CardDescription>
@@ -81,8 +81,8 @@ const CareersPage = () => {
                 </CardContent>
 
                 {job.skills && (
-                  <CardFooter>
-                    <div className="flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-full">
+                  <CardFooter className='p-4'>
+                    <div className="flex flex-wrap items-center gap-2 bg-gray-100 px-4 py-2 rounded-full">
                       <Layers className="w-4 h-4" />
                       {job.skills.map(skill => (
                         <span key={skill} className="ml-2">
