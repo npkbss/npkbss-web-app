@@ -1,6 +1,11 @@
 // ===============================
-// TERMS OF SERVICE PAGE (page.tsx)
+// TERMS OF SERVICE PAGE
 // ===============================
+
+export const metadata = {
+  title: 'Terms of Service | NPK Business Solutions',
+  description: 'Terms and conditions governing the use of the NPK Business Solutions website and services.',
+};
 
 export default function TermsOfServicePage() {
   return (
@@ -70,7 +75,7 @@ export default function TermsOfServicePage() {
           To the maximum extent permitted by law, the Company is not liable for indirect, incidental, or consequential damages, including
           loss of profits, data, or business interruption.
         </p>
-        <p>If no purchases were made through the Service, our total liability shall not exceed 100 USD.</p>
+        <p>Our total liability shall be limited to the maximum extent permitted by applicable law.</p>
       </section>
 
       <section className="space-y-3">
