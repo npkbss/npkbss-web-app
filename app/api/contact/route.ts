@@ -4,7 +4,8 @@ import { supabaseServer } from '@/lib/supabase-server';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const isProd = process.env.NODE_ENV === 'production';
+const appEnv = process.env.NEXT_PUBLIC_APP_ENV || 'prod';
+const isProd = appEnv === 'prod';
 
 export async function POST(req: Request) {
   try {
@@ -55,8 +56,18 @@ export async function POST(req: Request) {
       console.error('DB Error:', error);
       return NextResponse.json({ success: false, message: 'Database insert failed' }, { status: 500 });
     }
+    // console.log('Contact API hit');
+    // console.log('ENV NOTIFICATIONS_TO:', process.env.NOTIFICATIONS_TO);
+    // console.log('ENV RESEND KEY exists:', !!process.env.RESEND_API_KEY);
+    // console.log('RESEND KEY:', process.env.RESEND_API_KEY);
 
     // step3: Send notification email via Resend
+    // Skip emails in dev
+    if (appEnv === 'dev') {
+      console.log('[DEV] Email skipped');
+      return NextResponse.json({ success: true });
+    }
+
     try {
       const toEmails = (process.env.NOTIFICATIONS_TO || '')
         .split(',')
@@ -64,8 +75,9 @@ export async function POST(req: Request) {
         .filter(Boolean);
 
       if (toEmails.length > 0) {
-        await resend.emails.send({
-          from: 'dilliprasadreddy0000@gmail.com',
+        const result = await resend.emails.send({
+          // from: 'onboarding@resend.dev', // testing domain
+          from: process.env.NOTIFICATIONS_FROM! || 'NPK Business Solutions <no-reply@npkbss.in>' || 'npkbusinesssolutions@gmail.com',
           to: toEmails,
           subject: `New Lead from ${fullName}`,
           html: `
@@ -79,6 +91,7 @@ export async function POST(req: Request) {
             <p>${requirements.replace(/\n/g, '<br />')}</p>
           `,
         });
+        // console.log('Resend response:', result);
       }
     } catch (mailError) {
       console.error('Email send error:', mailError);
