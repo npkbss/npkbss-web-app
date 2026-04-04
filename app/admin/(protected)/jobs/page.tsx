@@ -1,84 +1,126 @@
-import { Job } from '@/types/career';
-import React from 'react';
-import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { supabaseServer } from '@/lib/supabase-server';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import Link from 'next/link';
+import { Plus, Pencil } from 'lucide-react';
+import JobStatusActions from '@/components/admin/JobStatusActions';
 
-export const jobs: Job[] = [
-  {
-    id: 'application-support-executive',
-    title: 'Application Support Executive',
-    department: 'Support',
-    location: 'Jayanagar, Bangalore (WFO)',
-    type: 'Full-time',
-    experience: '0–1 Year',
-    description: 'Support business applications such as Zoho, Tally, Power BI, and custom-built applications.',
-    skills: ['MS Excel', 'Email Communication', 'Business Processes', 'ERP Basics'],
-  },
-  {
-    id: 'zoho-developer',
-    title: 'Zoho Developer',
-    department: 'Engineering',
-    location: 'Jayanagar, Bangalore (WFO)',
-    type: 'Full-time',
-    experience: '1 Year',
-    description: 'Customization, automation, and support of Zoho applications for partner clients.',
-    skills: ['Zoho CRM', 'Zoho Creator', 'Deluge', 'APIs', 'Integrations'],
-  },
-  {
-    id: 'tally-developer-freelancer',
-    title: 'Tally Developer (Freelancer)',
-    department: 'Finance / ERP',
-    location: 'Remote',
-    type: 'Freelance / Project-based',
-    experience: 'Experienced',
-    description: 'Work on multiple client projects involving Tally customization and integrations.',
-    skills: ['TallyPrime', 'TDL', 'API Integration', 'Automation'],
-  },
-  {
-    id: 'interns-freshers-2025',
-    title: 'Interns & Fresh Graduates (2025)',
-    department: 'Multiple',
-    location: 'Jayanagar, Bangalore (WFO)',
-    type: 'Internship / Full-time',
-    experience: 'Freshers',
-    description: 'Hiring interns and fresh graduates interested in ERP implementations, reporting, and support.',
-    skills: ['MS Excel', 'PowerPoint', 'Communication', 'ERP Interest'],
-  },
-];
+type Job = {
+  id: string;
+  title: string;
+  department: string;
+  location: string;
+  status: 'draft' | 'open' | 'closed';
+  is_published: boolean;
+  created_at: string;
+  published_at: string | null;
+  closed_at: string | null;
+};
 
-const Jobs = () => {
+const env = process.env.NEXT_PUBLIC_APP_ENV || 'prod';
+
+export default async function AdminJobsPage() {
+  const { data: jobs, error } = await supabaseServer
+    .from('jobs')
+    .select('id, title, department, location, status, is_published, created_at, published_at, closed_at')
+    .eq('environment', env)
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    return <div className="p-6 text-red-600">Failed to load jobs</div>;
+  }
+
   return (
-    <div className="min-h-screen">
-      <div className="flex flex-col space-y-6">
-        {jobs.map(job => {
-          return (
-            <Card key={job.id}>
-              <CardHeader>
-                <CardTitle className="text-2xl font-bold">{job.title}</CardTitle>
-                <CardDescription>{job.description}</CardDescription>
-                <CardAction className="space-x-2">
-                  {/* <Button asChild>
-                    <Link href={`/admin/jobs/${job.id}/candidates`}>View Details </Link>
-                  </Button> */}
-                  <Button asChild variant="secondary">
-                    <Link href={`/admin/jobs/${job.id}/candidates`}>View Candidates </Link>
-                  </Button>
-                </CardAction>
-              </CardHeader>
-              <CardContent>
-                <p>{job.location}</p>
-                <p>{job.department}</p>
-                <p>{job.experience}</p>
-                <p>{job.type}</p>
-              </CardContent>
-              <CardFooter className='flex flex-wrap gap-2'>{job.skills && job.skills.map((skill, index) => <span key={index}>{skill}</span>)}</CardFooter>
-            </Card>
-          );
-        })}
+    <div className="p-6 space-y-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold">Job Management</h1>
+
+        <Link href="/admin/jobs/new">
+          <Button>
+            <Plus className="w-4 h-4 mr-2" />
+            Create Job
+          </Button>
+        </Link>
+      </div>
+
+      {/* Table */}
+      <div className="rounded-lg border bg-white">
+        <Table>
+          <TableHeader className="bg-gray-100">
+            <TableRow>
+              <TableHead>Title</TableHead>
+              <TableHead>Department</TableHead>
+              <TableHead>Location</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Published</TableHead>
+              <TableHead>Published At</TableHead>
+              <TableHead>Closed At</TableHead>
+              <TableHead className="text-right">Actions</TableHead>
+            </TableRow>
+          </TableHeader>
+
+          <TableBody>
+            {jobs?.length === 0 && (
+              <TableRow>
+                <TableCell colSpan={8} className="text-center text-muted-foreground py-10">
+                  No jobs created yet
+                </TableCell>
+              </TableRow>
+            )}
+
+            {jobs?.map(job => (
+              <TableRow key={job.id}>
+                <TableCell className="font-medium">{job.title}</TableCell>
+                <TableCell>{job.department}</TableCell>
+                <TableCell>{job.location}</TableCell>
+
+                <TableCell>
+                  <StatusBadge status={job.status} />
+                </TableCell>
+
+                <TableCell>
+                  {job.is_published ? <Badge className="bg-green-600">Yes</Badge> : <Badge variant="secondary">No</Badge>}
+                </TableCell>
+
+                <TableCell>{job.published_at ? new Date(job.published_at).toLocaleDateString() : '—'}</TableCell>
+
+                <TableCell>{job.closed_at ? new Date(job.closed_at).toLocaleDateString() : '—'}</TableCell>
+
+                <TableCell className="text-right">
+                  <div className="flex justify-end items-center gap-2">
+                    {job.status !== 'closed' && (
+                      <Link href={`/admin/jobs/${job.id}/edit`}>
+                        <Button size="sm" variant="outline">
+                          <Pencil className="w-4 h-4 mr-1" />
+                          Edit
+                        </Button>
+                      </Link>
+                    )}
+
+                    {/* ALL state actions live here */}
+                    <JobStatusActions jobId={job.id} status={job.status} />
+                  </div>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
       </div>
     </div>
   );
-};
+}
 
-export default Jobs;
+/* ------------------ */
+/* Status Badge */
+function StatusBadge({ status }: { status: 'draft' | 'open' | 'closed' }) {
+  switch (status) {
+    case 'open':
+      return <Badge className="bg-blue-600">Open</Badge>;
+    case 'closed':
+      return <Badge className='bg-red-400'>Closed</Badge>;
+    default:
+      return <Badge variant="outline">Draft</Badge>;
+  }
+}
