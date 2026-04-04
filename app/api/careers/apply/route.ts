@@ -39,10 +39,12 @@ export async function POST(req: Request) {
     }
 
     // Upload resume
+    const appEnv = process.env.NEXT_PUBLIC_APP_ENV || 'prod';
+    const bucket = appEnv === 'dev' ? 'resumes-dev' : 'resumes-prod';
     const fileExt = resume.name.split('.').pop();
-    const filePath = `${jobId}/${randomUUID()}-${Date.now()}.${fileExt}`;
+    const filePath = `${appEnv}/${jobId}/${randomUUID()}-${Date.now()}.${fileExt}`;
 
-    const { error: uploadError } = await supabaseServer.storage.from('resumes').upload(filePath, resume, {
+    const { error: uploadError } = await supabaseServer.storage.from(bucket).upload(filePath, resume, {
       contentType: resume.type,
       upsert: false,
     });
@@ -61,6 +63,7 @@ export async function POST(req: Request) {
       phone,
       resume_path: filePath,
       user_agent: req.headers.get('user-agent'),
+      environment: appEnv,
     });
 
     if (insertError) {

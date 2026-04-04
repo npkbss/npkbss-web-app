@@ -4,10 +4,10 @@ import { NextResponse } from 'next/server';
 
 export async function GET(
   _req: Request,
-  { params }: { params: { jobId: string } }
+  { params }: { params: Promise<{ jobId: string }> }
 ) {
   const env = process.env.NEXT_PUBLIC_APP_ENV || 'prod';
-  const { jobId } = params;
+  const { jobId } = await params;
 
   // check env
   if (!['dev', 'prod'].includes(env)) {

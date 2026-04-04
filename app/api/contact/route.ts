@@ -49,6 +49,7 @@ export async function POST(req: Request) {
         requirements,
         services: JSON.stringify(services),
         agree,
+        environment: appEnv,
       },
     ]);
 
