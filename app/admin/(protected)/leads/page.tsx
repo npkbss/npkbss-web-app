@@ -22,6 +22,7 @@ interface LeadsPageProps {
 }
 
 const PAGE_SIZE = 20;
+const env = process.env.NEXT_PUBLIC_APP_ENV || 'prod';
 
 export default async function LeadsPage({ searchParams }: LeadsPageProps) {
   const q = searchParams?.q?.trim() || '';
@@ -34,6 +35,7 @@ export default async function LeadsPage({ searchParams }: LeadsPageProps) {
     .select('id, created_at, full_name, business_name, email, phone, city, services', {
       count: 'exact',
     })
+    .eq('environment', env)
     .order('created_at', { ascending: false });
 
   if (error) {

@@ -2,16 +2,23 @@
 import { supabaseServer } from '@/lib/supabase-server';
 import { NextResponse } from 'next/server';
 
-export async function GET(_req: Request, context: { params: Promise<{ jobId: string }> }) {
-  // console.log('API jobId param:', (await context.params).jobId);
-  const { jobId } = await context.params;
+export async function GET(
+  _req: Request,
+  { params }: { params: { jobId: string } }
+) {
+  const env = process.env.NEXT_PUBLIC_APP_ENV || 'prod';
+  const { jobId } = params;
 
-  // console.log('SERVICE ROLE KEY present:', !!process.env.SUPABASE_SERVICE_ROLE_KEY);
+  // check env
+  if (!['dev', 'prod'].includes(env)) {
+    return NextResponse.json({ error: 'Invalid environment' }, { status: 500 });
+  }
 
   const { data, error } = await supabaseServer
     .from('career_applications')
-    .select('*')
+    .select('id, name, email, phone, resume_path, created_at')
     .eq('job_id', jobId)
+    .eq('environment', env)
     .order('created_at', { ascending: false });
 
   if (error) {
@@ -20,3 +27,4 @@ export async function GET(_req: Request, context: { params: Promise<{ jobId: str
 
   return NextResponse.json(data);
 }
+
