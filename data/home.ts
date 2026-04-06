@@ -85,7 +85,7 @@ export const featuredServices: FeaturedService[] = [
     category: 'Platform Solutions',
     title: 'Zoho Ecosystem Implementation',
     description: 'Zoho One, Books, CRM, Analytics and Flow — fully implemented and customized to your business workflows.',
-    link: '/services#platform-solutions',
+    link: '/services/zoho-ecosystem',
     image: {
       src: '/assets/home/zoho-authorized-partner-image.png',
       alt: 'Zoho Ecosystem',
@@ -97,7 +97,7 @@ export const featuredServices: FeaturedService[] = [
     category: 'Finance & ERP',
     title: 'Tally Prime Implementation',
     description: 'End-to-end setup, GST compliance, multi-branch configuration, inventory and job costing for Tally Prime.',
-    link: '/services#platform-solutions',
+    link: '/services/tally-prime',
     image: {
       src: '/assets/home/tally-prime.avif',
       alt: 'Tally Prime',
@@ -109,7 +109,7 @@ export const featuredServices: FeaturedService[] = [
     category: 'Analytics',
     title: 'Power BI Analytics & Dashboards',
     description: 'Interactive dashboards from Tally, Zoho, Excel and ERPs — build KPIs that give leadership real-time visibility.',
-    link: '/services#platform-solutions',
+    link: '/services/power-bi-analytics',
     image: {
       src: '/assets/services/power-bi.jpg',
       alt: 'Power BI Analytics',
@@ -121,7 +121,7 @@ export const featuredServices: FeaturedService[] = [
     category: 'ERP & Cloud',
     title: 'Netsuite ERP Setup & Support',
     description: 'Cloud-based ERP for finance, operations and CRM — ideal for scaling companies with complex processes.',
-    link: '/services#platform-solutions',
+    link: '/services/netsuite-erp',
     image: {
       src: '/assets/home/oracle-netsuite.png',
       alt: 'Netsuite ERP',
@@ -133,7 +133,7 @@ export const featuredServices: FeaturedService[] = [
     category: 'Reporting & Insights',
     title: 'Financial & Non-Financial MIS',
     description: 'Build custom MIS packs — financial + operational — tailored for leadership and investor reporting.',
-    link: '/services#business-operations',
+    link: '/services/financial-non-financial-mis',
     image: {
       src: '/assets/services/mis-report.jpg',
       alt: 'MIS Reporting',
@@ -145,7 +145,7 @@ export const featuredServices: FeaturedService[] = [
     category: 'CRM & Cloud',
     title: 'Salesforce CRM Implementation',
     description: 'Unify sales, service and marketing workflows with a powerful CRM built for fast-growing teams.',
-    link: '/services#platform-solutions',
+    link: '/services/salesforce-crm',
     image: {
       src: '/assets/services/salesforce.jpg',
       alt: 'Salesforce CRM',
@@ -157,7 +157,7 @@ export const featuredServices: FeaturedService[] = [
     category: 'Development & Integration',
     title: 'Custom Applications',
     description: 'Custom web, mobile & cloud applications built to streamline your unique business workflows and processes.',
-    link: '/services#development-integration',
+    link: '/services/custom-applications',
     image: { src: '/assets/services/custom-app.avif', alt: 'Custom Applications' },
     highlight: false,
   }

@@ -8,6 +8,7 @@ export interface ServiceCategory {
 
 export interface ServiceItem {
   id: number;
+  slug: string;
   categorySlug: string;
   icon: string;
   title: string;

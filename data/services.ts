@@ -50,6 +50,7 @@ export const serviceCategories: ServiceCategory[] = [
 export const services: ServiceItem[] = [
   {
     id: 101,
+    slug: 'zoho-ecosystem',
     categorySlug: 'platform-solutions',
     icon: 'Server',
     title: 'Zoho Ecosystem',
@@ -63,6 +64,7 @@ export const services: ServiceItem[] = [
 
   {
     id: 102,
+    slug: 'tally-prime',
     categorySlug: 'platform-solutions',
     icon: 'Calculator',
     title: 'Tally Prime',
@@ -75,6 +77,7 @@ export const services: ServiceItem[] = [
 
   {
     id: 103,
+    slug: 'netsuite-erp',
     categorySlug: 'platform-solutions',
     icon: 'Server',
     title: 'NetSuite ERP',
@@ -87,6 +90,7 @@ export const services: ServiceItem[] = [
 
   {
     id: 104,
+    slug: 'salesforce-crm',
     categorySlug: 'platform-solutions',
     icon: 'Server',
     title: 'Salesforce CRM',
@@ -99,6 +103,7 @@ export const services: ServiceItem[] = [
 
   {
     id: 105,
+    slug: 'power-bi-analytics',
     categorySlug: 'platform-solutions',
     icon: 'BarChart3',
     title: 'Power BI Analytics',
@@ -111,6 +116,7 @@ export const services: ServiceItem[] = [
 
   {
     id: 201,
+    slug: 'registration-services',
     categorySlug: 'business-operations',
     icon: 'Briefcase',
     title: 'Registration Services',
@@ -122,6 +128,7 @@ export const services: ServiceItem[] = [
 
   {
     id: 202,
+    slug: 'accounting-audit',
     categorySlug: 'business-operations',
     icon: 'FileSpreadsheet',
     title: 'Accounting & Audit',
@@ -133,6 +140,7 @@ export const services: ServiceItem[] = [
 
   {
     id: 203,
+    slug: 'fixed-assets-mobile-audit',
     categorySlug: 'business-operations',
     icon: 'Database',
     title: 'Fixed Assets & Mobile Audit',
@@ -144,6 +152,7 @@ export const services: ServiceItem[] = [
 
   {
     id: 204,
+    slug: 'financial-non-financial-mis',
     categorySlug: 'business-operations',
     icon: 'BarChart3',
     title: 'Financial & Non-Financial MIS',
@@ -155,6 +164,7 @@ export const services: ServiceItem[] = [
 
   {
     id: 205,
+    slug: 'data-migration-analysis',
     categorySlug: 'business-operations',
     icon: 'Database',
     title: 'Data Migration & Analysis',
@@ -166,6 +176,7 @@ export const services: ServiceItem[] = [
 
   {
     id: 301,
+    slug: 'custom-applications',
     categorySlug: 'development-integration',
     icon: 'Code2',
     title: 'Custom Applications',
@@ -178,6 +189,7 @@ export const services: ServiceItem[] = [
 
   {
     id: 302,
+    slug: 'api-development-integrations',
     categorySlug: 'development-integration',
     icon: 'Plug',
     title: 'API Development & Integrations',
@@ -189,6 +201,7 @@ export const services: ServiceItem[] = [
 
   {
     id: 303,
+    slug: 'cloud-infrastructure-migration',
     categorySlug: 'development-integration',
     icon: 'Cloud',
     title: 'Cloud Infrastructure & Migration',
@@ -201,6 +214,7 @@ export const services: ServiceItem[] = [
 
   {
     id: 401,
+    slug: 'n8n-automation',
     categorySlug: 'automation-workflow',
     icon: 'Workflow',
     title: 'N8N Automation',
@@ -212,6 +226,7 @@ export const services: ServiceItem[] = [
 
   {
     id: 402,
+    slug: 'make-automation',
     categorySlug: 'automation-workflow',
     icon: 'Workflow',
     title: 'Make.com Automation',
@@ -223,6 +238,7 @@ export const services: ServiceItem[] = [
 
   {
     id: 403,
+    slug: 'zapier-automation',
     categorySlug: 'automation-workflow',
     icon: 'Workflow',
     title: 'Zapier Automation',
@@ -234,6 +250,7 @@ export const services: ServiceItem[] = [
 
   {
     id: 404,
+    slug: 'power-automate-automation',
     categorySlug: 'automation-workflow',
     icon: 'Workflow',
     title: 'Power Automate',
@@ -245,6 +262,7 @@ export const services: ServiceItem[] = [
 
   {
     id: 501,
+    slug: 'erp-crm-bi-training',
     categorySlug: 'training-empowerment',
     icon: 'GraduationCap',
     title: 'ERP / CRM / BI Training',
@@ -257,6 +275,7 @@ export const services: ServiceItem[] = [
 
   {
     id: 502,
+    slug: 'automation-workshops',
     categorySlug: 'training-empowerment',
     icon: 'GraduationCap',
     title: 'Automation Workshops',

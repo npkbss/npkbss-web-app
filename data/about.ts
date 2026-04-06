@@ -109,20 +109,20 @@ export const team: TeamMember[] = [
     linkedin: 'https://www.linkedin.com/in/dellibabun/',
     bio: 'A highly experienced Senior Tally Developer with over 15 years of specialized expertise in core Tally Customization. This individual is key to architecting robust, tailored accounting and business solutions.',
   },
-  {
-    name: 'GnanaSekhar GC',
-    role: 'Net Suite Devloper',
-    image: { src: '/assets/about/team-pm.avif', alt: 'Operations Head' },
-    linkedin: 'https://www.linkedin.com/in/dellibabun/',
-    bio: 'A skilled NetSuite Developer focused on implementing, customizing, and optimizing cloud ERP solutions. GnanaSekhar ensures seamless integration and maximum efficiency for our clients’ business processes.',
-  },
-  {
-    name: 'Shantanu Bajpai',
-    role: 'Digital Transformation Head',
-    image: { src: '/assets/about/shantanu-bajpai.jpg', alt: 'Project Manager' },
-    bio: 'Digital transformation professional with expertise in business process reengineering and optimisation across e-commerce, maritime, and IT industries. Transitioned from Merchant Marine to tech consulting, helping clients implement innovative solutions with effective change management.',
-    linkedin: 'https://www.linkedin.com/in/shantanubajpai88/',
-  },
+  // {
+  //   name: 'GnanaSekhar GC',
+  //   role: 'Net Suite Devloper',
+  //   image: { src: '/assets/about/team-pm.avif', alt: 'Operations Head' },
+  //   linkedin: 'https://www.linkedin.com/in/dellibabun/',
+  //   bio: 'A skilled NetSuite Developer focused on implementing, customizing, and optimizing cloud ERP solutions. GnanaSekhar ensures seamless integration and maximum efficiency for our clients’ business processes.',
+  // },
+  // {
+  //   name: 'Shantanu Bajpai',
+  //   role: 'Digital Transformation Head',
+  //   image: { src: '/assets/about/shantanu-bajpai.jpg', alt: 'Project Manager' },
+  //   bio: 'Digital transformation professional with expertise in business process reengineering and optimisation across e-commerce, maritime, and IT industries. Transitioned from Merchant Marine to tech consulting, helping clients implement innovative solutions with effective change management.',
+  //   linkedin: 'https://www.linkedin.com/in/shantanubajpai88/',
+  // },
 ];
 
 export const milestones = [
