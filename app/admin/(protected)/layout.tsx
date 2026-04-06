@@ -9,12 +9,14 @@ import { LogoutButton } from '@/components/admin/LogoutButton';
 import Image from 'next/image';
 import { Settings, Settings2, Settings2Icon, SettingsIcon } from 'lucide-react';
 
+import { authOptions } from '@/lib/auth';
+
 interface AdminLayoutProps {
   children: ReactNode;
 }
 
 export default async function AdminLayout({ children }: AdminLayoutProps) {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
 
   if (!session) {
     redirect('/admin/login');
