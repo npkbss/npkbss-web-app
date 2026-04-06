@@ -114,14 +114,21 @@ function ServiceRow({ service, reverse }: { service: ServiceItem; reverse: boole
           ))}
         </div>
 
-        {service.cta && (
-          <Link href="/contact#contact-form">
-            <Button className="mt-5">
-              {service.cta}
+        <div className="flex flex-col sm:flex-row gap-4 pt-5">
+          <Link href={`/services/${service.slug}`}>
+            <Button className="w-full sm:w-auto">
+              Learn More
               <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
           </Link>
-        )}
+          {service.cta && (
+            <Link href="/contact#contact-form">
+              <Button variant="outline" className="w-full sm:w-auto">
+                {service.cta}
+              </Button>
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   );
